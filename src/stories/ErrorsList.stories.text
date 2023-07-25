@@ -1,0 +1,67 @@
+// import ErrorsListNew from "../components/ErrorsList/ErrorsList";
+
+// export default {
+//     title: 'ErrorsListNew',
+//     component: ErrorsListNew
+// }
+
+// const errorsListProps = {
+
+//     valueToCheck: 'cat',
+//     rulesList: [
+//         {
+//             textRule: 'Should contain at least one capital character',
+//             ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+//                 const letters = valueToCheck.split('');
+
+//                 return !letters.some((letter: any) => {
+
+//                     return (letter === letter.toUpperCase());
+//                 });
+//             }
+//         },
+//         {
+//             textRule: 'Should contain at least one lowcase character',
+//             ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+//                 const letters = valueToCheck.split('');
+
+//                 return !letters.some((letter: any) => {
+
+//                     return (letter === letter.toLowerCase());
+//                 });
+//             }
+//         },
+//         {
+//             textRule: 'Should contain at least one number',
+//             ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+//                 const letters = valueToCheck.split('');
+
+//                 return !letters.some((letter: any) => {
+
+//                     return !isNaN(letter);
+//                 });
+//             }
+//         },
+//         {
+//             textRule: 'Should only characters and numbers',
+//             ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+//                 return !(/^[A-Za-z0-9]*$/.test(valueToCheck));
+//             },
+//         },
+//         {
+//             textRule: 'Should not contain any spaces',
+//             ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+//                 return !valueToCheck.contains(' ');
+//             },
+//         },
+        
+//     ]
+
+// };
+
+// export const Mistake = () => <ErrorsListNew {...errorsListProps} />

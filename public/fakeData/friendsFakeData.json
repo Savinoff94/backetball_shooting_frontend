@@ -1,0 +1,52 @@
+{
+    "friends" :{
+        "1" :{"id" : "1",
+            "imageSrc" : "",
+            "name" : "Andrei",
+            "simpleStats" : {
+                "freethrows" : "70",
+                "threePointers" : "70",
+                "twoPointers" : "70"
+            }
+        },
+        "13" :{"id" : "13",
+            "imageSrc" : "",
+            "name" : "Vlas",
+            "simpleStats" : {
+                "freethrows" : "70",
+                "threePointers" : "70",
+                "twoPointers" : "70"
+            }
+        }
+    },
+    "pendingOtherUsersFriendRequests" : {
+        "3" :{"id" : "3",
+            "imageSrc" : "",
+            "name" : "Yevgenii",
+            "simpleStats" : {
+                "freethrows" : "70",
+                "threePointers" : "70",
+                "twoPointers" : "70"
+            }
+        },
+        "4" :{"id" : "4",
+            "imageSrc" : "",
+            "name" : "Vasilii",
+            "simpleStats" : {
+                "freethrows" : "70",
+                "threePointers" : "70",
+                "twoPointers" : "70"
+            }
+        }
+    },
+    "pendingThisUsersFriendRequests" : {
+        "11" :{"id" : "11",
+        "imageSrc" : "",
+        "name" : "Zeev",
+        "simpleStats" : {
+            "freethrows" : "70",
+            "threePointers" : "70",
+            "twoPointers" : "70"
+        }}
+    }
+}

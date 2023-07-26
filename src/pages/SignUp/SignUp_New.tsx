@@ -35,7 +35,7 @@ export default function SignUpPage() : JSX.Element {
         event.preventDefault();
 
         try {
-            const response = await fetch("", {
+            const response = await fetch("http://localhost:5000/api/registration", {
               method: "POST", // or 'PUT'
               headers: {
                 "Content-Type": "application/json",

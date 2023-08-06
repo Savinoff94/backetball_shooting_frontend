@@ -99,20 +99,20 @@ export default function SignUpPage() : JSX.Element {
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
     })
-    
+    // added value to input, should check
     return (
         <>
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="login">First name: </label>
-                <input onChange={handleLoginChange} type="text" name="login"  required/>
+                <input value={login} onChange={handleLoginChange} type="text" name="login"  required/>
                 <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={loginServerErrors}/>
                 <br/>
                 <label htmlFor="email">email: </label>
-                <input onChange={handleEmailChange} type="email" name="email"  required/>
+                <input value={email} onChange={handleEmailChange} type="email" name="email"  required/>
                 <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={emailServerErrors}/>
                 <br/>
                 <label htmlFor="password">password: </label>
-                <input onChange={handlePasswordChange} type="password" name="password"  required/>
+                <input value={password} onChange={handlePasswordChange} type="password" name="password"  required/>
                 <ErrorsListNew errorInfosList={passwordErrorInfoList} serverErrors={passwordServerErrors}/>
                 <br/>
                 <button disabled={isDisabled} type="submit" value="Login"/>

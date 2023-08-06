@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import {FriendsButtons, FriendListTypes} from '../constants/constants';
-import {removeItemFromObjById, transferItemFromObjToObj} from '../helpers/common';
-import FriendBlockList from '../components/FriendBlockList/FriendBlockList';
-import {UserBasicInfo, friendsButtonsActionsMap} from '../types/friendsTypes';
+import {FriendsButtons, FriendListTypes} from '../../constants/constants';
+import {removeItemFromObjById, transferItemFromObjToObj} from '../../helpers/common';
+import FriendBlockList from '../../components/FriendBlockList/FriendBlockList';
+import {UserBasicInfo, friendsButtonsActionsMap} from '../../types/friendsTypes';
 
 //add fetch OnDelete
 export default function Friends() {

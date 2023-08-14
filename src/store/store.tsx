@@ -1,4 +1,7 @@
+import axios from "axios";
 import { makeAutoObservable } from "mobx";
+import { API_URL } from "../http";
+import { AuthResponse } from "../models/response/AuthResponse";
 import { IUser } from "../models/response/IUser";
 import AuthService from "../services/AuthService";
 
@@ -34,7 +37,22 @@ export default class Store {
 
         } catch (error) {
 
-            console.log(error.response?.data?.message);
+            if(axios.isAxiosError(error)) {
+
+                if(axios.isAxiosError(error)) {
+
+                console.log(error.response?.data?.message);
+            
+            } else {
+
+                console.error(error);
+            }
+            
+            } else {
+
+                console.error(error);
+            }
+
         }
     }
 
@@ -49,7 +67,14 @@ export default class Store {
 
         } catch (error) {
 
-            console.log(error.response?.data?.message);
+            if(axios.isAxiosError(error)) {
+
+                console.log(error.response?.data?.message);
+            
+            } else {
+
+                console.error(error);
+            }
         }
     }
 
@@ -61,7 +86,37 @@ export default class Store {
             this.setAuth(false);
             this.setUser({} as IUser);
         } catch (error) {
-            console.log(error.response?.data?.message)
+
+            if(axios.isAxiosError(error)) {
+
+                console.log(error.response?.data?.message);
+            
+            } else {
+
+                console.error(error);
+            }
+        }
+    }
+
+    async checkAuth() {
+
+        try {
+            
+            const response = await axios.get<AuthResponse>(API_URL + '/refresh', {withCredentials: true})
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken)
+            this.setAuth(true)
+            this.setUser(response.data.user)
+        } catch (error) {
+            
+            if(axios.isAxiosError(error)) {
+
+                console.log(error.response?.data?.message);
+            
+            } else {
+
+                console.error(error);
+            }
         }
     }
 }

@@ -1,10 +1,17 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {SignUpLoginRulesList, SignUpEmailRulesList, SignUpPasswordRulesList} from './helpers/inputCheckerInfosLists';
 import ErrorsListNew from './components/ErrorsListNew/ErrorsListNew';
-import {RuleInfo} from './components/ErrorsListNew/types/ErrorsList_NewTypes'
+import {RuleInfo} from './components/ErrorsListNew/types/ErrorsList_NewTypes';
+import { Context } from '../../index';
+// import {observer} from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 
 
-export default function SignUpPage() : JSX.Element {
+function SignUpPage() : JSX.Element {
+
+    const navigate = useNavigate();
+
+    const {store} = useContext(Context)
 
     const [login,setLogin] = useState <string> ('')
     const [email, setEmail] = useState <string> ('')
@@ -34,22 +41,13 @@ export default function SignUpPage() : JSX.Element {
         
         event.preventDefault();
 
-        try {
-            const response = await fetch("http://localhost:5000/api/registration", {
-              method: "POST", // or 'PUT'
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({login, email, password}),
-            });
-        
-            const result = await response.json();
+        await store.registration(login, password, email);
 
-            console.log("Success:", result);
-
-        } catch (error) {
-            
-        console.error("Error:", error);
+        if(store.isAuth) {
+            navigate('/mainMenu');
+        }
+        else {
+            console.log('sign up handleFormSubmit error no auth');
         }
     }
 
@@ -63,7 +61,7 @@ export default function SignUpPage() : JSX.Element {
         setPasswordServerErrors([]);
     }
 
-    let isDisabled = false;
+    let isSubmitFormDisabled = false;
 
     
     const loginErrorInfoList =  SignUpLoginRulesList.map((ruleInfo: RuleInfo) => {
@@ -72,7 +70,7 @@ export default function SignUpPage() : JSX.Element {
 
         if(isError) {
 
-            isDisabled = true
+            isSubmitFormDisabled = true
         }
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
@@ -83,7 +81,7 @@ export default function SignUpPage() : JSX.Element {
 
         if(isError) {
 
-            isDisabled = true
+            isSubmitFormDisabled = true
         }
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
@@ -94,7 +92,7 @@ export default function SignUpPage() : JSX.Element {
 
         if(isError) {
 
-            isDisabled = true
+            isSubmitFormDisabled = true
         }
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
@@ -115,10 +113,13 @@ export default function SignUpPage() : JSX.Element {
                 <input value={password} onChange={handlePasswordChange} type="password" name="password"  required/>
                 <ErrorsListNew errorInfosList={passwordErrorInfoList} serverErrors={passwordServerErrors}/>
                 <br/>
-                <button disabled={isDisabled} type="submit" value="Login"/>
+                <button disabled={isSubmitFormDisabled} type="submit" value="Login"/>
                 
                 <button onClick={handleReset} type="reset" value="Reset"/>
             </form>
         </>
     );
 }
+
+export default SignUpPage;
+// export default observer(SignUpPage);

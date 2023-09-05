@@ -6,14 +6,23 @@ type FriendBlockListNewType = {
 
     usersInfosList: FriendBlockUserInfo[],
     buttonsInfosList: FriendActionButtonInfo[],
+    friendBlockInfo: {
+        type: string,
+        color: string
+    }
 }
 
 export default function FriendBlockListNew(friendBlockPropsList: FriendBlockListNewType):JSX.Element {
 
-    const {usersInfosList, buttonsInfosList} = friendBlockPropsList;
+    const {usersInfosList, buttonsInfosList, friendBlockInfo} = friendBlockPropsList;
+
+    const ulStyle = {
+        borderColor:friendBlockInfo['color'],
+        borderStyle: usersInfosList.length === 0 ? 'hidden' : 'solid'
+    }
 
     return (
-        <ul>
+        <ul key={friendBlockInfo['type']} style={ulStyle}>
             {
                 usersInfosList.map((friendBlockPropsList: FriendBlockUserInfo) : JSX.Element => {
 

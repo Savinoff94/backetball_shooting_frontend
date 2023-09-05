@@ -8,19 +8,22 @@ import MainMenu from './pages/MainMenu/MainMenu';
 import SignInPage from './pages/SignIn/SignIn'
 import { Context } from '.';
 import {observer} from 'mobx-react-lite';
+import WithAuth from './commonComponents/withAuth/WithAuth';
+import FriendsNew from './pages/Friends/FriendsNew';
+
 // import { Sign } from 'crypto';
 
 function App() {
 
-  const {store} = useContext(Context)
+  // const {store} = useContext(Context)
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if(localStorage.getItem('token')) {
+  //   if(localStorage.getItem('token')) {
 
-      store.checkAuth()
-    }
-  },[])
+  //     store.checkAuth()
+  //   }
+  // },[])
 
   return (
     <div className="App">
@@ -28,10 +31,12 @@ function App() {
         <Route path="/" element = {<EntranceMenu/>} />
         <Route path="/signin" element = {<SignInPage/>} />
         <Route path="/signup" element = {<SignUpPage/>} />
-        <Route path="/mainMenu" element = {<MainMenu/>} />
+        <Route path="/mainMenu" element = {WithAuth('/', <MainMenu/>)} />
+        <Route path="/friends" element = {WithAuth('/', <FriendsNew/>)} />
       </Routes>
     </div>
   );
 }
 
 export default observer(App);
+

@@ -1,103 +1,103 @@
 {
     "1" :{"id" : "1",
-        "imageSrc" : "",
-        "name" : "Andrei",
+        "imageSrc" : "#",
+        "login" : "Andrei",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "2" :{"id" : "2",
-        "imageSrc" : "",
-        "name" : "Boris",
+        "imageSrc" : "#",
+        "login" : "Boris",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "3" :{"id" : "3",
-        "imageSrc" : "",
-        "name" : "Yevgenii",
+        "imageSrc" : "#",
+        "login" : "Yevgenii",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "4" :{"id" : "4",
-        "imageSrc" : "",
-        "name" : "Vasilii",
+        "imageSrc" : "#",
+        "login" : "Vasilii",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "5" :{"id" : "5",
-        "imageSrc" : "",
-        "name" : "Viktor",
+        "imageSrc" : "#",
+        "login" : "Viktor",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "6" :{"id" : "6",
-        "imageSrc" : "",
-        "name" : "Dmitrii",
+        "imageSrc" : "#",
+        "login" : "Dmitrii",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "7" :{"id" : "7",
-        "imageSrc" : "",
-        "name" : "Alexey",
+        "imageSrc" : "#",
+        "login" : "Alexey",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "8" :{"id" : "8",
-        "imageSrc" : "",
-        "name" : "Alexander",
+        "imageSrc" : "#",
+        "login" : "Alexander",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "9" :{"id" : "9",
-        "imageSrc" : "",
-        "name" : "Uri",
+        "imageSrc" : "#",
+        "login" : "Uri",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "10" :{"id" : "10",
-        "imageSrc" : "",
-        "name" : "Oad",
+        "imageSrc" : "#",
+        "login" : "Oad",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "11" :{"id" : "11",
-        "imageSrc" : "",
-        "name" : "Zeev",
+        "imageSrc" : "#",
+        "login" : "Zeev",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "12" :{"id" : "12",
-        "imageSrc" : "",
-        "name" : "Yosi",
+        "imageSrc" : "#",
+        "login" : "Yosi",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "13" :{"id" : "13",
-        "imageSrc" : "",
-        "name" : "Vlas",
+        "imageSrc" : "#",
+        "login" : "Vlas",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",

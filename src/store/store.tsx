@@ -11,6 +11,8 @@ export default class Store {
 
     isAuth = false; 
 
+    isLoading = false;
+
     constructor() {
 
         makeAutoObservable(this)
@@ -24,6 +26,11 @@ export default class Store {
     setUser(user: IUser) {
 
         this.user = user;
+    }
+
+    setIsLoading(bool: boolean) {
+
+        this.isLoading = bool;
     }
 
     async login(email: string, password: string) {
@@ -43,11 +50,10 @@ export default class Store {
 
                 console.log(error.response?.data?.message);
             
-            } else {
+                } else {
 
-                console.error(error);
-            }
-            
+                    console.error(error);
+                }
             } else {
 
                 console.error(error);
@@ -56,11 +62,11 @@ export default class Store {
         }
     }
 
-    async registration(email: string, password: string) {
+    async registration(login:string, password: string,email: string) {
         
         try {
             
-            const response = await AuthService.registration(email, password);
+            const response = await AuthService.registration(login, password, email);
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
@@ -100,10 +106,11 @@ export default class Store {
 
     async checkAuth() {
 
+        this.setIsLoading(true);
+
         try {
             
             const response = await axios.get<AuthResponse>(API_URL + '/refresh', {withCredentials: true})
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
@@ -117,6 +124,15 @@ export default class Store {
 
                 console.error(error);
             }
+
+        } finally {
+
+            this.setIsLoading(false);
         }
+    }
+
+    getUser() {
+
+        return structuredClone(this.user);
     }
 }

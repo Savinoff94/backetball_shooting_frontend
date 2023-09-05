@@ -1,15 +1,15 @@
 {
     "3" :{"id" : "3",
-        "imageSrc" : "",
-        "name" : "Yevgenii",
+        "imageSrc" : "#",
+        "login" : "Yevgenii",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",
             "twoPointers" : "70"
         }},
     "4" :{"id" : "4",
-        "imageSrc" : "",
-        "name" : "Vasilii",
+        "imageSrc" : "#",
+        "login" : "Vasilii",
         "simpleStats" : {
             "freethrows" : "70",
             "threePointers" : "70",

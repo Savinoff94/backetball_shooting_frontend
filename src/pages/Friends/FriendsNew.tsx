@@ -12,6 +12,11 @@ import {
   updateUserConectionsObj
 } from './helpers/userConnections';
 
+import {filterByLogin} from './helpers/userFrontEndFilters';
+import UserService from "../../services/UserService";
+import { AxiosResponse } from "axios";
+
+
 export default function FriendsNew() {
    
     const [search, setSearch] = useState <UsersInfoById> ({});
@@ -139,48 +144,38 @@ export default function FriendsNew() {
       setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
     }
 
-    const onSearch = (userInput: string) => {
+    const onSearch = async (userInput: string) => {
 
       userInput = userInput.toLowerCase();
 
       if(userInput.length !== 1 && ((userInput.length % 3) !== 0)) {
+
+        const filteredSearch = filterByLogin(search, userInput);
+
+        setSearch(filteredSearch);
         
         return;
       }
-    
-      fetch('http://localhost:3000/fakeData/usersFakeData.json')
-      .then((response) => response.json())
-      .then((users) => {
-  
+
+      try {
+
+        const usersResponse : AxiosResponse<UsersInfoById> = await UserService.searchUsers(userInput, false);
+
+        const users : UsersInfoById = usersResponse.data;
+
         const displayedUsers = [...Object.keys(friends), ...Object.keys(pendingOtherUsersFriendRequests), ...Object.keys(pendingThisUserFriendRequests)];
   
         displayedUsers.forEach((id) => {
   
           delete users[id];
         });
-  
-        const idsWithCoincidenceName = Object.keys(users).filter((userId) => {
 
-          const userLogin = users[userId.toString()]['login'].toLowerCase();
-  
-          if(userLogin.includes(userInput)) {
-  
-            return true;
-          }
-  
-          return false;
-        });
-  
-        const searchUsers: any = {};
-  
-        idsWithCoincidenceName.forEach((userId) => {
-  
-          searchUsers[userId] = structuredClone(users[userId]);
-  
-        });
-  
-        setSearch(searchUsers);
-      });
+        setSearch(structuredClone(users));
+        
+      } catch (error) {
+        
+        console.log(error)
+      }
     }
     
     const searchProps = {

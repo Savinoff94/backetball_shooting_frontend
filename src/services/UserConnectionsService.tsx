@@ -5,10 +5,10 @@ import { IUser } from "../models/response/IUser";
 
 export default class UserConnectionsService {
 
-    static fetchUsers(): Promise<AxiosResponse<IUser[]>> {
+    // static fetchUsers(): Promise<AxiosResponse<IUser[]>> {
 
-        return $api.get<IUser[]>('/users');
-    }
+    //     return $api.get<IUser[]>('/users');
+    // }
 
     static async setUserConnections(userConnections: BaseUserConnectionsObjType): Promise<AxiosResponse> {
 
@@ -20,9 +20,9 @@ export default class UserConnectionsService {
         return $api.post('/getUserConnections');
     }
     
-    static async getUsers(name: string): Promise<AxiosResponse<UsersInfoById>> {
+    // static async getUsers(login: string, exact: boolean = false): Promise<AxiosResponse<UsersInfoById>> {
 
-        return $api.post('/getUserConnections', name);
-    }
+    //     return $api.post('/getUsers', {login, exact});
+    // }
 
 }

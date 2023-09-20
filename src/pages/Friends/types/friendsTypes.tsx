@@ -16,7 +16,7 @@ type UserConnections = {
     pendingOtherUsersFriendRequests : UsersInfoById,
 }
 
-type BaseUserConnectionsObjType = {
+type BaseUserConnectionsInfoType = {
     [key: string]: string[],
     friends : string[],
     pendingOtherUsersFriendRequests : string[],
@@ -26,6 +26,6 @@ type BaseUserConnectionsObjType = {
 export {
     type UsersInfoById,
     type FriendBlockUserInfo,
-    type BaseUserConnectionsObjType,
+    type BaseUserConnectionsInfoType,
     type UserConnections,
 }

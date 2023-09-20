@@ -33,6 +33,16 @@ export default class Store {
         this.isLoading = bool;
     }
 
+    getUserId() : string {
+
+        if(this.isAuth) {
+
+            return this.user.id;
+        }
+
+        return '';
+    }
+
     async login(email: string, password: string) {
         
         try {

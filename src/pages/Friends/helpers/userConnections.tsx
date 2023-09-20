@@ -1,6 +1,6 @@
 
 import {UsersInfoById} from '../types/friendsTypes'
-import {BaseUserConnectionsObjType} from '../types/friendsTypes';
+import {BaseUserConnectionsInfoType} from '../types/friendsTypes';
 
 
 function addIdsToList(baseIdsArray : string[], idsToAddArray : string[]) : string[] {
@@ -69,7 +69,7 @@ function getUpdatedUserConntectionsOnRemoveFriend(friendsIds : string[], idsArra
 
 
 
-function getBaseUserConnectionsObj(friends: UsersInfoById, pendingOtherUsersFriendRequests: UsersInfoById, pendingThisUserFriendRequests: UsersInfoById) : BaseUserConnectionsObjType {
+function getBaseUserConnectionsObj(friends: UsersInfoById, pendingOtherUsersFriendRequests: UsersInfoById, pendingThisUserFriendRequests: UsersInfoById) : BaseUserConnectionsInfoType {
 
     return {
         friends: Object.keys(friends),
@@ -78,7 +78,7 @@ function getBaseUserConnectionsObj(friends: UsersInfoById, pendingOtherUsersFrie
     }
 }
 
-function updateUserConectionsObj(baseUserConnectionsObj : BaseUserConnectionsObjType, updatedUserConnectionsFieldsObj: updatedUserConnectionsFieldsObjType) : void {
+function updateUserConectionsObj(baseUserConnectionsObj : BaseUserConnectionsInfoType, updatedUserConnectionsFieldsObj: updatedUserConnectionsFieldsObjType) : void {
 
     const fieldNames = Object.keys(updatedUserConnectionsFieldsObj);
 

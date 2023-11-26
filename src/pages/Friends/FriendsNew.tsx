@@ -2,79 +2,104 @@ import { useState, useEffect, useContext } from "react";
 import FriendBlockListNew from "./components/FriendBlocksListNew/FriendBlocksListNew";
 import {UsersInfoById} from './types/friendsTypes'
 import {removeItemFromObjById, transferItemFromObjToObj} from '../../helpers/common';
-import {
-  getUpdatedUserConntectionsOnThisUserFriendRequest,
-  getUpdatedUserConntectionsOnThisUserCancelFriendRequest,
-  getUpdatedUserConntectionsOnThisUserApproveFriendRequest,
-  getUpdatedUserConntectionsOnThisUserDisapproveFriendRequest,
-  getUpdatedUserConntectionsOnRemoveFriend,
-  getBaseUserConnectionsObj,
-  updateUserConectionsObj
-} from './helpers/userConnections';
 
 import {filterByLogin} from './helpers/userFrontEndFilters';
 import UserService from "../../services/UserService";
 import UserConnectionsService from "../../services/UserConnectionsService";
 import { AxiosResponse } from "axios";
-import { Context } from '../../index';
+// import { Context } from '../../index';
 
 
 
 export default function FriendsNew() {
 
-  const {store} = useContext(Context);
+  // const {store} = useContext(Context);
+  // console.log('user:', store.user.login)
 
   const [search, setSearch] = useState <UsersInfoById> ({});
   const [friends, setFriends] = useState <UsersInfoById> ({});
   const [pendingOtherUsersFriendRequests, setPendingOtherUsersFriendRequests] = useState <UsersInfoById> ({});
   const [pendingThisUserFriendRequests, setPendingThisUserFriendRequests] = useState <UsersInfoById> ({});
 
-  function onThisUserFriendRequest(idsArray : string[]) {
+  async function onThisUserFriendRequest(idsArray : string[]) {
 
-    const updatedUserConnections = getUpdatedUserConntectionsOnThisUserFriendRequest(Object.keys(pendingThisUserFriendRequests), idsArray);
+    try {
 
-    const userConnectionsObj = getBaseUserConnectionsObj(friends, pendingOtherUsersFriendRequests, pendingThisUserFriendRequests);
+      const result = UserConnectionsService.friendRequest(idsArray);
 
-    updateUserConectionsObj(userConnectionsObj, updatedUserConnections);
+      const pendingThisUserFriendRequestsCopy = transferItemFromObjToObj(idsArray, search, pendingThisUserFriendRequests);
+      setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
+
+      const searchCopy = removeItemFromObjById(idsArray, search);
+      setSearch(searchCopy);
+      
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }
+  async function onThisUserCancelFriendRequest(idsArray : string[]) {
+
+    try {
+
+      const result = UserConnectionsService.cancelFriendRequest(idsArray);
+
+      const pendingThisUserFriendRequestsCopy = removeItemFromObjById(idsArray, pendingThisUserFriendRequests);
+      setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
+      
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }
+  async function onThisUserApproveFriendRequest(idsArray : string[]) {
     
-  }
-  function onThisUserCancelFriendRequest(idsArray : string[]) {
+    try {
 
-    const updatedUserConnections = getUpdatedUserConntectionsOnThisUserCancelFriendRequest(Object.keys(pendingThisUserFriendRequests), idsArray)
+      const result = UserConnectionsService.approveFriendRequest(idsArray);
 
-    const userConnectionsObj = getBaseUserConnectionsObj(friends, pendingOtherUsersFriendRequests, pendingThisUserFriendRequests);
+      const friendsCopy = transferItemFromObjToObj(idsArray, pendingOtherUsersFriendRequests, friends);
+      setFriends(friendsCopy);
 
-    updateUserConectionsObj(userConnectionsObj, updatedUserConnections);
-    
-  }
-  function onThisUserApproveFriendRequest(idsArray : string[]) {
-
-    const updatedUserConnections = getUpdatedUserConntectionsOnThisUserApproveFriendRequest(Object.keys(friends), Object.keys(pendingOtherUsersFriendRequests), idsArray);
-
-    const userConnectionsObj = getBaseUserConnectionsObj(friends, pendingOtherUsersFriendRequests, pendingThisUserFriendRequests);
-
-    updateUserConectionsObj(userConnectionsObj, updatedUserConnections);
+      const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(idsArray, pendingOtherUsersFriendRequests);
+      setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
+      
+    } catch (error) {
+      
+      console.log(error)
+    }
 
   }
 
-  function onThisUserDisapproveFriendRequest(idsArray : string[]) {
+  async function onThisUserDisapproveFriendRequest(idsArray : string[]) {
 
-    const updatedUserConnections = getUpdatedUserConntectionsOnThisUserDisapproveFriendRequest(Object.keys(pendingOtherUsersFriendRequests), idsArray);
+    try {
 
-    const userConnectionsObj = getBaseUserConnectionsObj(friends, pendingOtherUsersFriendRequests, pendingThisUserFriendRequests);
+      const result = await UserConnectionsService.disapproveFriendRequest(idsArray);
 
-    updateUserConectionsObj(userConnectionsObj, updatedUserConnections);
-    
+      const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(idsArray, pendingOtherUsersFriendRequests);
+      setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
+
+    } catch (error) {
+      
+      console.log(error)
+    }
+
   }
 
-  function onThisUserRemoveFriend(idsArray : string[]) {
+  async function onThisUserRemoveFriendRequest(idsArray : string[]) {
 
-    const updatedUserConnections = getUpdatedUserConntectionsOnRemoveFriend(Object.keys(friends), idsArray);
+    try {
 
-    const userConnectionsObj = getBaseUserConnectionsObj(friends, pendingOtherUsersFriendRequests, pendingThisUserFriendRequests);
+      const result = UserConnectionsService.removeFriendRequest(idsArray);
 
-    updateUserConectionsObj(userConnectionsObj, updatedUserConnections);
-
+      const friendsCopy = removeItemFromObjById(idsArray, friends);
+      setFriends(friendsCopy);
+      
+    } catch (error) {
+      
+      console.log(error)
+    }
   }
     
   useEffect(() => {
@@ -83,7 +108,7 @@ export default function FriendsNew() {
 
       try {
 
-        const userConnectionsRes = await UserConnectionsService.getUserConnections(store.getUserId());
+        const userConnectionsRes = await UserConnectionsService.getUserConnections();
 
         const userConnections = userConnectionsRes.data;
 
@@ -102,54 +127,6 @@ export default function FriendsNew() {
     fetchUserConncections();
 
   }, []);
-
-  const sendFriendRequest = (ids: string[]) => {
-
-    fetch('http://localhost:3000/fakeData/usersFakeData.json')
-    .then((response) => response.json())
-    .then((users) => {
-
-      const pendingThisUserFriendRequestsCopy = transferItemFromObjToObj(ids, users, pendingThisUserFriendRequests);
-      setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
-
-      const searchCopy = removeItemFromObjById(ids, search);
-      setSearch(searchCopy);
-    })
-    .catch((error) => console.log(error))
-  }
-
-  const approveFriendRequest = (ids: string[]) => {
-
-    fetch('http://localhost:3000/fakeData/usersFakeData.json')
-    .then((response) => response.json())
-    .then((users) => {
-
-      const friendsCopy = transferItemFromObjToObj(ids, users, friends);
-      setFriends(friendsCopy);
-
-      const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(ids, pendingOtherUsersFriendRequests);
-      setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
-    })
-    .catch((error) => console.log(error))
-  }
-
-  const disapproveFriendRequest = (ids:string[]) => {
-
-    const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(ids, pendingOtherUsersFriendRequests);
-    setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
-  }
-    
-  const deleteFriend = (ids:string[]) => {
-  
-    const friendsCopy = removeItemFromObjById(ids, friends);
-    setFriends(friendsCopy);
-  }
-    
-  const cancelFriendRequest = (ids:string[]) => {
-  
-    const pendingThisUserFriendRequestsCopy = removeItemFromObjById(ids, pendingThisUserFriendRequests);
-    setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
-  }
 
   const onSearch = async (userInput: string) => {
 
@@ -187,7 +164,7 @@ export default function FriendsNew() {
     
   const searchProps = {
     usersInfosList:structuredClone(Object.values(search)),
-    buttonsInfosList: [{action: sendFriendRequest, text: "Add", color: 'green'}],
+    buttonsInfosList: [{action: onThisUserFriendRequest, text: "Add", color: 'green'}],
     friendBlockInfo: {
       type: 'search',
       color: 'blue'
@@ -195,7 +172,7 @@ export default function FriendsNew() {
   }
   const friendsProps = {
     usersInfosList:structuredClone(Object.values(friends)),
-    buttonsInfosList: [{action: deleteFriend, text: "Remove", color: 'red'}],
+    buttonsInfosList: [{action: onThisUserRemoveFriendRequest, text: "Remove", color: 'red'}],
     friendBlockInfo: {
       type: 'friends',
       color: 'green'
@@ -203,7 +180,7 @@ export default function FriendsNew() {
   }
   const pendingOtherUsersProps = {
     usersInfosList:structuredClone(Object.values(pendingOtherUsersFriendRequests)),
-    buttonsInfosList: [{action: approveFriendRequest, text: "Approve", color: 'green'}, {action: disapproveFriendRequest, text: "Disapprove", color: 'red'}],
+    buttonsInfosList: [{action: onThisUserApproveFriendRequest, text: "Approve", color: 'green'}, {action: onThisUserDisapproveFriendRequest, text: "Disapprove", color: 'red'}],
     friendBlockInfo: {
       type: 'pendingOtherUsers',
       color: 'yellow'
@@ -211,7 +188,7 @@ export default function FriendsNew() {
   }
   const pendingThisUserProps = {
     usersInfosList:structuredClone(Object.values(pendingThisUserFriendRequests)),
-    buttonsInfosList: [{action: cancelFriendRequest, text: "Cancel", color: 'red'}],
+    buttonsInfosList: [{action: onThisUserCancelFriendRequest, text: "Cancel", color: 'red'}],
     friendBlockInfo: {
       type: 'pendingThisUser',
       color: 'grey'

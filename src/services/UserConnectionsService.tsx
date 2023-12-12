@@ -3,11 +3,17 @@ import $api from "../http";
 import {BaseUserConnectionsInfoType, UserConnections, UsersInfoById} from '../pages/Friends/types/friendsTypes';
 import { IUser } from "../models/response/IUser";
 
+
+
 export default class UserConnectionsService {
     
     static async getUserConnections(): Promise<AxiosResponse<UserConnections>> {
 
         return $api.post('/getUserConnections');
+    }
+    static async getPossibleTrainingSquadUsers(): Promise<AxiosResponse<UsersInfoById>> {
+
+        return $api.post('/getTrainingSquadList');
     }
 
     static async friendRequest(ids: string[]): Promise<AxiosResponse> {

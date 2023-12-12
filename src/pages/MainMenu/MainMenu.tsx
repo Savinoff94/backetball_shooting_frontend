@@ -21,10 +21,12 @@ export default function MainMenu() : JSX.Element {
         }
     }
 
+    const friendsLink = "/friends/" + store.user.login;
 
     return (
         <>
-            <Link to="/friends">Friends</Link>
+            <Link to={friendsLink}>Friends</Link>
+            <Link to="/trainingPage">Training</Link>
             <button onClick={logOutClickHandler}>Log out</button>
         </>
     )

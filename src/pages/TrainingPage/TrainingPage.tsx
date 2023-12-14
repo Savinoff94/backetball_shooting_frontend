@@ -3,6 +3,8 @@ import { Context } from '../../index';
 import ChooseSquad from './components/ChooseSquad/ChooseSquad';
 import {observer} from 'mobx-react-lite';
 import {TrainingStageType} from './types/trainingPageTypes'
+import ChooseSquad from './components/ChooseSquad/ChooseSquad';
+import ChooseShooter from "./components/ChooseShooter/ChooseShooter";
 
 
 
@@ -16,8 +18,8 @@ function TrainingPage() {
             case 'chooseSquad':
                 return <ChooseSquad/>
 
-            // case 'chooseShooter':
-            //     return <ChooseShooter/>
+            case 'chooseShooter':
+                return <ChooseShooter/>
 
             // case 'chooseSpot':
             //     return <ChooseSpot/>

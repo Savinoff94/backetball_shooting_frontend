@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import Store from './store/store';
 import SelectTrainingSquadStore from './store/selectTrainingSquadStore';
 import TrainingStagesStore from './store/trainingStagesStore'
+import TrainingBoardStore from './store/trainingBoardStore';
 import { createContext } from 'react';
 
 
@@ -14,18 +15,21 @@ interface State {
 
   store: Store,
   selectTrainingSquadStoreInstance: SelectTrainingSquadStore,
-  trainingStagesStore: TrainingStagesStore
+  trainingStagesStore: TrainingStagesStore,
+  trainingBoardStore: TrainingBoardStore
 }
 
 
 const store = new Store();
 const selectTrainingSquadStoreInstance = SelectTrainingSquadStore.getInstance();
 const trainingStagesStore = TrainingStagesStore.getInstance();
+const trainingBoardStore = TrainingBoardStore.getInstance();
 
 export const Context = createContext<State>({
   store,
   selectTrainingSquadStoreInstance,
-  trainingStagesStore
+  trainingStagesStore,
+  trainingBoardStore
 })
 
 const root = ReactDOM.createRoot(
@@ -33,7 +37,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Context.Provider value={{store, selectTrainingSquadStoreInstance, trainingStagesStore}}>
+    <Context.Provider value={{store, selectTrainingSquadStoreInstance, trainingStagesStore, trainingBoardStore}}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

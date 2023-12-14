@@ -1,20 +1,23 @@
 import { useContext, useEffect } from "react";
 import { Context } from '../../../../index';
 import ChooseSquadUserButton from "./ChooseSquadUserButton";
+import ChooseSquadChangeStageButton from "./ChooseSquadChangeStageButton";
 import {UsersInfoById} from '../../../Friends/types/friendsTypes';
+import {observer} from 'mobx-react-lite';
 
 
 
-export default function ChooseSquad() : JSX.Element  {
+
+function ChooseSquad() : JSX.Element  {
 
     const {selectTrainingSquadStoreInstance} = useContext(Context);
 
     useEffect(() => {
 
-        async function fetchData() {
+        const fetchData = async () => {
 
             await selectTrainingSquadStoreInstance.fetchPossibleTrainingSquadUsers();
-        }
+        };
 
         fetchData();
 
@@ -34,7 +37,7 @@ export default function ChooseSquad() : JSX.Element  {
         }
 
     }
-
+    
     return (
         <>
         <div>
@@ -52,6 +55,9 @@ export default function ChooseSquad() : JSX.Element  {
             }
         )}
         </div>
+        <ChooseSquadChangeStageButton/>
         </>
     )
-} 
+}
+
+export default observer(ChooseSquad);

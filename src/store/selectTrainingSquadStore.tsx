@@ -25,7 +25,7 @@ export default class SelectTrainingSquadStore {
         }
 
         return SelectTrainingSquadStore.instance;
-      }
+    }
 
     addToTrainingSquadIds = (idToAdd : string) => {
 
@@ -47,7 +47,7 @@ export default class SelectTrainingSquadStore {
         return Object.keys(toJS(this.possibleTrainingSquadUsers)).length !== 0;
     }
 
-    getTrainingSquadIds = () => [...toJS(this.trainingSquadIds)];//!
+    getTrainingSquadIds = () => [...toJS(this.trainingSquadIds)];
 
     getPossibleTrainingSquadUsers = () => {
 

@@ -1,5 +1,5 @@
 import {FriendBlockUserInfo} from '../../../Friends/types/friendsTypes'
-import UserButton from '../UserButton/UserButton';
+import UserButton from '../commonComponents/UserButton/UserButton';
 
 import { useState, useContext } from 'react';
 import { Context } from '../../../../index';

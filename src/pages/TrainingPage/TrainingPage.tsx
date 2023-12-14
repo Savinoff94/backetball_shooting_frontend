@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { Context } from '../../index';
 import ChooseSquad from './components/ChooseSquad/ChooseSquad';
+import {observer} from 'mobx-react-lite';
+import {TrainingStageType} from './types/trainingPageTypes'
 
 
-const trainingSteps = ['chooseSquad', 'chooseShooter', 'chooseSpot', 'shooting'];
 
-export default function TrainingPage() {
+function TrainingPage() {
+
+    const {trainingStagesStore} = useContext(Context);
     
-    const [currentTrainingStep, setCurrentTrainingStep] = useState<string>('chooseSquad');
-
-
-    const getConditionalTrainingStep = (page:string) => {
+    const getConditionalTrainingStep = (page: TrainingStageType) => {
         
         switch (page) {
             case 'chooseSquad':
@@ -24,14 +25,17 @@ export default function TrainingPage() {
             // case 'shooting':    
             //     return <Shooting/>
             
-            // default:
-            //     return <ChooseSquad/>
+            default:
+        
+                return <ChooseSquad/>
         }
     }
 
     return (
         <>
-        {getConditionalTrainingStep(currentTrainingStep)}
+        {getConditionalTrainingStep(trainingStagesStore.getCurrentStage())}
         </>
     )
 }
+
+export default observer(TrainingPage)

@@ -11,6 +11,8 @@ import {observer} from 'mobx-react-lite';
 import WithAuth from './commonComponents/withAuth/WithAuth';
 import FriendsNew from './pages/Friends/FriendsNew';
 import TrainingPage from './pages/TrainingPage/TrainingPage';
+import MyStatisticsMenu from './pages/MyStatistics/MyStatisticsMenu';
+import ManageMyShootingSetsTable from './pages/ManageMyShootingSetsTable/ManageMyShootingSetsTable';
 
 // import { Sign } from 'crypto';
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/mainMenu" element = {WithAuth('/', <MainMenu/>)} />
         <Route path="/friends" element = {WithAuth('/', <FriendsNew/>)} />
         <Route path="/trainingPage" element = {WithAuth('/', <TrainingPage/>)} />
+        <Route path="/myStatisics" element = {WithAuth('/', <MyStatisticsMenu/>)} />
+        <Route path="/manageMyStatistics" element = {WithAuth('/', <ManageMyShootingSetsTable/>)} />
       </Routes>
     </div>
   );

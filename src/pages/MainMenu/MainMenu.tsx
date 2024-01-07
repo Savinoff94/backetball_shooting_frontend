@@ -27,6 +27,7 @@ export default function MainMenu() : JSX.Element {
         <>
             <Link to={friendsLink}>Friends</Link>
             <Link to="/trainingPage">Training</Link>
+            <Link to="/myStatisics">My statistics</Link>
             <button onClick={logOutClickHandler}>Log out</button>
         </>
     )

@@ -51,7 +51,7 @@ export default class SelectTrainingSquadStore {
 
     getPossibleTrainingSquadUsers = () => {
 
-        return structuredClone(toJS(this.possibleTrainingSquadUsers))
+        return toJS(this.possibleTrainingSquadUsers)
     };
 
     fetchPossibleTrainingSquadUsers = async() => {

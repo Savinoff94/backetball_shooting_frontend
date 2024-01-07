@@ -5,6 +5,7 @@ import {TrainingStageType} from './types/trainingPageTypes'
 import ChooseSquad from './components/ChooseSquad/ChooseSquad';
 import ChooseShooter from "./components/ChooseShooter/ChooseShooter";
 import ChooseSpot from "./components/ChooseSpot/ChooseSpot";
+import Shooting from "./components/Shooting/Shooting";
 
 
 
@@ -24,8 +25,8 @@ function TrainingPage() {
             case 'chooseSpot':
                 return <ChooseSpot/>
 
-            // case 'shooting':    
-            //     return <Shooting/>
+            case 'shooting':    
+                return <Shooting/>
             
             default:
         

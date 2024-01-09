@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
 import { Context } from '../../../../index';
-import ChooseSquadUserButton from "./ChooseSquadUserButton";
 import ChooseSquadChangeStageButton from "./ChooseSquadChangeStageButton";
 import {UsersInfoById} from '../../../Friends/types/friendsTypes';
 import {observer} from 'mobx-react-lite';
+import ChooseUsersTemplate from "../../../../commonComponents/ChooseUsersTemplate/ChooseUsersTemplate";
+import ChooseSquadUserButton from '../ChooseSquad/ChooseSquadUserButton';
 
 
 
@@ -40,21 +41,13 @@ function ChooseSquad() : JSX.Element  {
     
     return (
         <>
-        <div>
-        {Object.keys(possibleTrainingSquadUsers).map((id:string) => 
-            
-            {
-                return (
-                    <ChooseSquadUserButton 
-                        key = {possibleTrainingSquadUsers[id]['id']}
-                        userInfo={possibleTrainingSquadUsers[id]}
-                        isClicked={selectTrainingSquadStoreInstance.isIdInTrainingSquadIds(id)}
-                        handlerOnClick={handleUserButtonClick}
-                    />
-                )
-            }
-        )}
-        </div>
+        <ChooseUsersTemplate
+        usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
+        usersInfos={possibleTrainingSquadUsers}
+        UserButtonComponentType={ChooseSquadUserButton}
+        isUserSelectedChecker={selectTrainingSquadStoreInstance.isIdInTrainingSquadIds}
+        handleClickUser={handleUserButtonClick}
+        />
         <ChooseSquadChangeStageButton/>
         </>
     )

@@ -1,20 +1,20 @@
-import UserButton from '../commonComponents/UserButton/UserButton';
-import {UserButtonProps} from '../../../../types/friendsTypes'
-
+import UserButton from "../commonComponents/UserButton/UserButton";
 import { useState, useContext } from 'react';
 import { Context } from '../../../../index';
+import {UserButtonProps} from '../../../../types/friendsTypes'
 
-export default function ChooseSquadUserButton({userInfo, isClicked, handlerOnClick}: UserButtonProps) : JSX.Element {
 
-    const {selectTrainingSquadStoreInstance} = useContext(Context);
+export default function ChooseShooterUserButton({userInfo, isClicked, handlerOnClick}: UserButtonProps) : JSX.Element {
 
+    const {trainingBoardStore} = useContext(Context);
+    
     const [isUserClicked, setIsUserClicked] = useState<boolean>(isClicked);
 
     const handlerClick = (id:string) => {
         
         handlerOnClick(id);
         
-        setIsUserClicked(selectTrainingSquadStoreInstance.isIdInTrainingSquadIds(id));
+        setIsUserClicked(trainingBoardStore.isCurrentShooter(id));
     }
 
     return (

@@ -37,11 +37,14 @@ type UserIdLoginMapType = {
 
 type ShootingSetIdRecordMapType = Map<string, ShootingSetRecord>;
 
+type MyTeamIdsListType = 'trainingSquadIds' | 'representInChartUsersIds';
+
 
 export {
     type LocalTrainingData,
     type UserIdLoginMapType,
     type ShootingSetIdRecordResponseType,
     type ShootingSetIdRecordMapType,
-    type ShootingSetRecord
+    type ShootingSetRecord,
+    type MyTeamIdsListType
 }

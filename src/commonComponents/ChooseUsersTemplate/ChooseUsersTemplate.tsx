@@ -1,16 +1,16 @@
 import {UsersInfoById} from '../../pages/Friends/types/friendsTypes';
 import {observer} from 'mobx-react-lite';
-import UserButton from '../../pages/TrainingPage/components/commonComponents/UserButton/UserButton'
+import {MyTeamIdsListType} from '../../store/types'
+import ChooseSquadUserButton from '../../pages/TrainingPage/components/ChooseSquad/ChooseSquadUserButton';
 
 type ChooseUserType = {
-    handleClickUser: (id:string) => void,
+    usersListType: MyTeamIdsListType,
     usersIdsToShow: string[]
     usersInfos : UsersInfoById,
-    isUserSelectedChecker: (userId:string) => boolean,
-    UserButtonComponentType: typeof UserButton
+    UserButtonComponentType: typeof ChooseSquadUserButton,
 }
 
-function ChooseUsersTemplate({handleClickUser, usersInfos, isUserSelectedChecker, UserButtonComponentType, usersIdsToShow} :  ChooseUserType) : JSX.Element  {
+function ChooseUsersTemplate({usersInfos, UserButtonComponentType, usersIdsToShow, usersListType} :  ChooseUserType) : JSX.Element  {
     
     return (
         <div>
@@ -18,11 +18,10 @@ function ChooseUsersTemplate({handleClickUser, usersInfos, isUserSelectedChecker
             
             {
                 return (
-                    <UserButtonComponentType 
+                    <UserButtonComponentType
+                        usersListType = {usersListType}
                         key = {id}
                         userInfo={usersInfos[id]}
-                        isClicked={isUserSelectedChecker(id)}
-                        handlerOnClick={handleClickUser}
                     />
                 )
             }

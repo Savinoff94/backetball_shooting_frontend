@@ -5,35 +5,39 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import Store from './store/store';
-import SelectTrainingSquadStore from './store/selectTrainingSquadStore';
+import MyTeamStore from './store/MyTeamStore';
 import TrainingStagesStore from './store/trainingStagesStore'
 import TrainingBoardStore from './store/trainingBoardStore';
 import ManageTrainingDataStore from './store/ManageTrainingDataStore'
+import WatchMyStatiscicsStore from './store/WatchMyStatisticsStore';
 import { createContext } from 'react';
 
 
 interface State {
 
   store: Store,
-  selectTrainingSquadStoreInstance: SelectTrainingSquadStore,
+  myTeamStoreInstance: MyTeamStore,
   trainingStagesStore: TrainingStagesStore,
   trainingBoardStore: TrainingBoardStore,
-  manageTrainingDataStore: ManageTrainingDataStore
+  manageTrainingDataStore: ManageTrainingDataStore,
+  watchMyStatiscicsStore: WatchMyStatiscicsStore,
 }
 
 
 const store = new Store();
-const selectTrainingSquadStoreInstance = SelectTrainingSquadStore.getInstance();
+const myTeamStoreInstance = MyTeamStore.getInstance();
 const trainingStagesStore = TrainingStagesStore.getInstance();
 const trainingBoardStore = TrainingBoardStore.getInstance();
 const manageTrainingDataStore = ManageTrainingDataStore.getInstance();
+const watchMyStatiscicsStore = WatchMyStatiscicsStore.getInstance();
 
 export const Context = createContext<State>({
   store,
-  selectTrainingSquadStoreInstance,
+  myTeamStoreInstance,
   trainingStagesStore,
   trainingBoardStore,
-  manageTrainingDataStore
+  manageTrainingDataStore,
+  watchMyStatiscicsStore
 })
 
 const root = ReactDOM.createRoot(
@@ -41,7 +45,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Context.Provider value={{store, selectTrainingSquadStoreInstance, trainingStagesStore, trainingBoardStore, manageTrainingDataStore}}>
+    <Context.Provider value={{store, myTeamStoreInstance, trainingStagesStore, trainingBoardStore, manageTrainingDataStore, watchMyStatiscicsStore}}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

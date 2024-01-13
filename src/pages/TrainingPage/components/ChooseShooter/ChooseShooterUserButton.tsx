@@ -1,18 +1,19 @@
 import UserButton from "../commonComponents/UserButton/UserButton";
 import { useState, useContext } from 'react';
 import { Context } from '../../../../index';
-import {UserButtonProps} from '../../../../types/friendsTypes'
+import {ChooseShooterUserButtonProps} from '../../types/trainingPageTypes';
 
 
-export default function ChooseShooterUserButton({userInfo, isClicked, handlerOnClick}: UserButtonProps) : JSX.Element {
+
+export default function ChooseShooterUserButton({userInfo}: ChooseShooterUserButtonProps) : JSX.Element {
 
     const {trainingBoardStore} = useContext(Context);
     
-    const [isUserClicked, setIsUserClicked] = useState<boolean>(isClicked);
+    const [isUserClicked, setIsUserClicked] = useState<boolean>(trainingBoardStore.isCurrentShooter(userInfo['id']));
 
     const handlerClick = (id:string) => {
         
-        handlerOnClick(id);
+        trainingBoardStore.setCurrentShooter(id);
         
         setIsUserClicked(trainingBoardStore.isCurrentShooter(id));
     }
@@ -21,7 +22,7 @@ export default function ChooseShooterUserButton({userInfo, isClicked, handlerOnC
         <UserButton
         userInfo = {userInfo}
         isClicked = {isUserClicked}
-        handlerOnClick = {handlerClick}
+        handlerOnClick = {() => handlerClick(userInfo['id'])}
         />
     )
 }

@@ -8,9 +8,9 @@ import {observer} from 'mobx-react-lite';
 
 function ChooseSquadChangeStageButton() : JSX.Element {
 
-    const {selectTrainingSquadStoreInstance, trainingStagesStore} = useContext(Context);
+    const {myTeamStoreInstance, trainingStagesStore} = useContext(Context);
 
-    const isSubmitButtonDisabled = selectTrainingSquadStoreInstance.getTrainingSquadIds().length === 0;
+    const isSubmitButtonDisabled = myTeamStoreInstance.getUsersIdsListByKey('trainingSquadIds').length === 0;
 
     const submitHandler = () => {
         

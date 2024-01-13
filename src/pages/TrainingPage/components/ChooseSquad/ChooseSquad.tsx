@@ -11,42 +11,28 @@ import ChooseSquadUserButton from '../ChooseSquad/ChooseSquadUserButton';
 
 function ChooseSquad() : JSX.Element  {
 
-    const {selectTrainingSquadStoreInstance} = useContext(Context);
+    const {myTeamStoreInstance} = useContext(Context);
 
     useEffect(() => {
 
         const fetchData = async () => {
 
-            await selectTrainingSquadStoreInstance.fetchPossibleTrainingSquadUsers();
+            await myTeamStoreInstance.fetchPossibleTrainingSquadUsers();
         };
 
         fetchData();
 
     }, []);
 
-    const possibleTrainingSquadUsers : UsersInfoById = selectTrainingSquadStoreInstance.getPossibleTrainingSquadUsers();
-
-    const handleUserButtonClick = (id: string) => {
-
-        if(selectTrainingSquadStoreInstance.isIdInTrainingSquadIds(id)) {
-
-            selectTrainingSquadStoreInstance.removeFromTrainingSquadIds(id);
-        }
-        else {
-
-            selectTrainingSquadStoreInstance.addToTrainingSquadIds(id);
-        }
-
-    }
+    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getPossibleTrainingSquadUsers();
     
     return (
         <>
         <ChooseUsersTemplate
+        usersListType={"trainingSquadIds"}
         usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
         usersInfos={possibleTrainingSquadUsers}
         UserButtonComponentType={ChooseSquadUserButton}
-        isUserSelectedChecker={selectTrainingSquadStoreInstance.isIdInTrainingSquadIds}
-        handleClickUser={handleUserButtonClick}
         />
         <ChooseSquadChangeStageButton/>
         </>

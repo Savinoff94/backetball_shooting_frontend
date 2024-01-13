@@ -9,21 +9,20 @@ import ChooseShooterUserButton from "./ChooseShooterUserButton";
 
 function ChooseShooter() : JSX.Element {
 
-    const {selectTrainingSquadStoreInstance, trainingBoardStore} = useContext(Context);
+    const {myTeamStoreInstance} = useContext(Context);
 
-    const possibleTrainingSquadUsers : UsersInfoById = selectTrainingSquadStoreInstance.getPossibleTrainingSquadUsers();
+    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getPossibleTrainingSquadUsers();
 
-    const trainingSquadIds = selectTrainingSquadStoreInstance.getTrainingSquadIds();
+    const trainingSquadIds = myTeamStoreInstance.getUsersIdsListByKey('trainingSquadIds');
 
     return (
         <>
             <div>
                 <ChooseUsersTemplate
+                usersListType={'trainingSquadIds'}
                 usersIdsToShow={trainingSquadIds}
                 usersInfos={possibleTrainingSquadUsers}
                 UserButtonComponentType={ChooseShooterUserButton}
-                isUserSelectedChecker={trainingBoardStore.isCurrentShooter}
-                handleClickUser={trainingBoardStore.setCurrentShooter}
                 />
             </div>
             <div>

@@ -1,27 +1,28 @@
 import UserButton from '../commonComponents/UserButton/UserButton';
-import {UserButtonProps} from '../../../../types/friendsTypes'
-
 import { useState, useContext } from 'react';
 import { Context } from '../../../../index';
+import {MyTeamIdsListType} from '../../../../store/types'
+import {ChooseSquadUserButtonProps} from '../../types/trainingPageTypes'
 
-export default function ChooseSquadUserButton({userInfo, isClicked, handlerOnClick}: UserButtonProps) : JSX.Element {
 
-    const {selectTrainingSquadStoreInstance} = useContext(Context);
+export default function ChooseSquadUserButton({userInfo, usersListType} : ChooseSquadUserButtonProps) : JSX.Element {
 
-    const [isUserClicked, setIsUserClicked] = useState<boolean>(isClicked);
+    const {myTeamStoreInstance} = useContext(Context);
 
-    const handlerClick = (id:string) => {
+    const [isUserClicked, setIsUserClicked] = useState<boolean>(myTeamStoreInstance.isIdInUsersIdsList(userInfo['id'], usersListType));
+
+    const handlerClick = (id:string, usersListType: MyTeamIdsListType) => {
         
-        handlerOnClick(id);
+        myTeamStoreInstance.handleOnUserClick(id, usersListType);
         
-        setIsUserClicked(selectTrainingSquadStoreInstance.isIdInTrainingSquadIds(id));
+        setIsUserClicked(myTeamStoreInstance.isIdInUsersIdsList(id, usersListType));
     }
 
     return (
         <UserButton
         userInfo = {userInfo}
         isClicked = {isUserClicked}
-        handlerOnClick = {handlerClick}
+        handlerOnClick = {() => {handlerClick(userInfo['id'], usersListType)}}
         />
     )
 }

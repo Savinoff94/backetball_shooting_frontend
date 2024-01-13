@@ -1,4 +1,6 @@
 import {FriendsButtons} from '../constants/constants';
+import {FriendBlockUserInfo} from '../pages/Friends/types/friendsTypes'
+import {MyTeamIdsListType} from '../store/types'
 
 //used in FriendBlock
 type UserBasicInfo = {
@@ -28,9 +30,16 @@ type friendsButtonsActionsMap = {
     [FriendsButtons.CANCEL_FRIEND_REQUEST]: (ids:string[])=> void
 }
 
+type UserButtonProps = {
+    userInfo: FriendBlockUserInfo,
+    isClicked: boolean,
+    handlerOnClick: () => void,
+}
+
 export {
     type FriendBlockProps,
     type SimpleStats,
     type UserBasicInfo,
     type friendsButtonsActionsMap,
+    type UserButtonProps
 }

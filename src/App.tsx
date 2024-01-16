@@ -6,7 +6,6 @@ import EntranceMenu from './pages/EntranceMenu/EntranceMenu'
 import SignUpPage from './pages/SignUp/SignUp_New'
 import MainMenu from './pages/MainMenu/MainMenu';
 import SignInPage from './pages/SignIn/SignIn'
-import { Context } from '.';
 import {observer} from 'mobx-react-lite';
 import WithAuth from './commonComponents/withAuth/WithAuth';
 import FriendsNew from './pages/Friends/FriendsNew';

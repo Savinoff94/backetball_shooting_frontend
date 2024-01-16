@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import Store from './store/store';
 import MyTeamStore from './store/MyTeamStore';
-import TrainingStagesStore from './store/trainingStagesStore'
+import MultiStageFormsStore from './store/MultiStageFormsStore';
 import TrainingBoardStore from './store/trainingBoardStore';
 import ManageTrainingDataStore from './store/ManageTrainingDataStore'
 import WatchMyStatiscicsStore from './store/WatchMyStatisticsStore';
@@ -17,7 +17,7 @@ interface State {
 
   store: Store,
   myTeamStoreInstance: MyTeamStore,
-  trainingStagesStore: TrainingStagesStore,
+  multiStageFormsStore: MultiStageFormsStore,
   trainingBoardStore: TrainingBoardStore,
   manageTrainingDataStore: ManageTrainingDataStore,
   watchMyStatiscicsStore: WatchMyStatiscicsStore,
@@ -26,7 +26,7 @@ interface State {
 
 const store = new Store();
 const myTeamStoreInstance = MyTeamStore.getInstance();
-const trainingStagesStore = TrainingStagesStore.getInstance();
+const multiStageFormsStore = MultiStageFormsStore.getInstance();
 const trainingBoardStore = TrainingBoardStore.getInstance();
 const manageTrainingDataStore = ManageTrainingDataStore.getInstance();
 const watchMyStatiscicsStore = WatchMyStatiscicsStore.getInstance();
@@ -34,7 +34,7 @@ const watchMyStatiscicsStore = WatchMyStatiscicsStore.getInstance();
 export const Context = createContext<State>({
   store,
   myTeamStoreInstance,
-  trainingStagesStore,
+  multiStageFormsStore,
   trainingBoardStore,
   manageTrainingDataStore,
   watchMyStatiscicsStore
@@ -45,7 +45,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Context.Provider value={{store, myTeamStoreInstance, trainingStagesStore, trainingBoardStore, manageTrainingDataStore, watchMyStatiscicsStore}}>
+    <Context.Provider value={{store, myTeamStoreInstance, multiStageFormsStore, trainingBoardStore, manageTrainingDataStore, watchMyStatiscicsStore}}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

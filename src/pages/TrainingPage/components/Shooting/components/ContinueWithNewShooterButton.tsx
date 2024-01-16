@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 
 function ContinueWithNewShooterButton() : JSX.Element {
 
-    const {trainingBoardStore, trainingStagesStore} = useContext(Context);
+    const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
 
     const isSubmitButtonDisabled = !trainingBoardStore.isShootingSetValid();
 
@@ -23,7 +23,7 @@ function ContinueWithNewShooterButton() : JSX.Element {
 
         trainingBoardStore.setCurrentShooter('');
         
-        trainingStagesStore.submitStage(!isSubmitButtonDisabled, 'chooseShooter');
+        multiStageFormsStore.submitTrainingStage(!isSubmitButtonDisabled, 'chooseShooter');
     }
 
     return (

@@ -7,7 +7,7 @@ export default class MyTeamStore {
 
     private static instance: MyTeamStore | null = null;
  
-    private possibleTrainingSquadUsers = {} as UsersInfoById;
+    private myTeamUsers = {} as UsersInfoById;
 
     private trainingSquadIds = [] as string [];
     private representInChartUsersIds = [] as string[];
@@ -44,28 +44,28 @@ export default class MyTeamStore {
         return this.getUsersIdsListByKey(key).includes(id)
     }
 
-    isPossibleTrainingSquadUsersFetched = () => {
+    isMyTeamUsersFetched = () => {
 
-        return Object.keys(toJS(this.possibleTrainingSquadUsers)).length !== 0;
+        return Object.keys(toJS(this.myTeamUsers)).length !== 0;
     }
 
-    getPossibleTrainingSquadUsers = () => {
+    getMyTeamUsers = () => {
 
-        return toJS(this.possibleTrainingSquadUsers)
+        return toJS(this.myTeamUsers)
     };
 
-    fetchPossibleTrainingSquadUsers = async() => {
+    fetchMyTeamUsers = async() => {
 
-        if(this.isPossibleTrainingSquadUsersFetched()) {
+        if(this.isMyTeamUsersFetched()) {
 
             return;
         }
   
         try {
 
-            const possibleTrainingSquadUsersRes = await UserConnectionsService.getPossibleTrainingSquadUsers();
+            const myTeamUsersRes = await UserConnectionsService.getMyTeamUsers();
             
-            this.possibleTrainingSquadUsers = structuredClone(possibleTrainingSquadUsersRes.data);
+            this.myTeamUsers = structuredClone(myTeamUsersRes.data);
 
         } catch (error) {
         

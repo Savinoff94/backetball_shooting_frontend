@@ -11,7 +11,7 @@ import Shooting from "./components/Shooting/Shooting";
 
 function TrainingPage() {
 
-    const {trainingStagesStore} = useContext(Context);
+    const {multiStageFormsStore} = useContext(Context);
     
     const getConditionalTrainingStep = (page: TrainingStageType) => {
         
@@ -29,14 +29,13 @@ function TrainingPage() {
                 return <Shooting/>
             
             default:
-        
                 return <ChooseSquad/>
         }
     }
 
     return (
         <>
-        {getConditionalTrainingStep(trainingStagesStore.getCurrentStage())}
+        {getConditionalTrainingStep(multiStageFormsStore.getCurrentTrainingStage())}
         </>
     )
 }

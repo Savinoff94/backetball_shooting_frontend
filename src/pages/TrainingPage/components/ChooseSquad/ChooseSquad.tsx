@@ -17,14 +17,14 @@ function ChooseSquad() : JSX.Element  {
 
         const fetchData = async () => {
 
-            await myTeamStoreInstance.fetchPossibleTrainingSquadUsers();
+            await myTeamStoreInstance.fetchMyTeamUsers();
         };
 
         fetchData();
 
     }, []);
 
-    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getPossibleTrainingSquadUsers();
+    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getMyTeamUsers();
     
     return (
         <>

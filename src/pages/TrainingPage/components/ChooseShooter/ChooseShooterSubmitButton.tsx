@@ -5,13 +5,13 @@ import {observer} from 'mobx-react-lite';
 
 function ChooseShooterSubmitButton() : JSX.Element {
 
-    const {trainingBoardStore, trainingStagesStore} = useContext(Context);
+    const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
 
     const isSubmitButtonDisabled = trainingBoardStore.isCurrentShooterSet()
 
     const submitHandler = () => {
         
-        trainingStagesStore.submitStage(!isSubmitButtonDisabled, 'chooseSpot');
+        multiStageFormsStore.submitTrainingStage(!isSubmitButtonDisabled, 'chooseSpot');
     }
 
     return (

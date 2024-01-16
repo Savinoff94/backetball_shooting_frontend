@@ -11,7 +11,7 @@ function ChooseShooter() : JSX.Element {
 
     const {myTeamStoreInstance} = useContext(Context);
 
-    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getPossibleTrainingSquadUsers();
+    const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getMyTeamUsers();
 
     const trainingSquadIds = myTeamStoreInstance.getUsersIdsListByKey('trainingSquadIds');
 

@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import $api from "../http";
-import {BaseUserConnectionsInfoType, UserConnections, UsersInfoById} from '../pages/Friends/types/friendsTypes';
-import { IUser } from "../models/response/IUser";
+import {UserConnections, UsersInfoById} from '../pages/Friends/types/friendsTypes';
+
 
 
 
@@ -11,7 +11,7 @@ export default class UserConnectionsService {
 
         return $api.post('/getUserConnections');
     }
-    static async getPossibleTrainingSquadUsers(): Promise<AxiosResponse<UsersInfoById>> {
+    static async getMyTeamUsers(): Promise<AxiosResponse<UsersInfoById>> {
 
         return $api.post('/getTrainingSquadList');
     }

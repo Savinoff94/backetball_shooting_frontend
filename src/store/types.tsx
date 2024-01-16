@@ -39,6 +39,7 @@ type ShootingSetIdRecordMapType = Map<string, ShootingSetRecord>;
 
 type MyTeamIdsListType = 'trainingSquadIds' | 'representInChartUsersIds';
 
+type MultiStageFormType = 'trainingStage' | 'chartStage'
 
 export {
     type LocalTrainingData,
@@ -46,5 +47,6 @@ export {
     type ShootingSetIdRecordResponseType,
     type ShootingSetIdRecordMapType,
     type ShootingSetRecord,
-    type MyTeamIdsListType
+    type MyTeamIdsListType,
+    type MultiStageFormType,
 }

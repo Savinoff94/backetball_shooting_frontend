@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import {getSessionStorageData, setSessionStorageData} from './helpers';
 import {LocalTrainingData} from './types';

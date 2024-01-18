@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import {UserIdLoginMapType, ShootingSetRecord} from './types';
 import manageTrainingDataService from '../services/ManageTrainingDataService';
 

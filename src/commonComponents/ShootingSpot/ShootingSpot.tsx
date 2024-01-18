@@ -1,12 +1,17 @@
+import {chartSpotKeyType} from '../../pages/WathchMyStatistics/WatchMyStatisticsPageTypes'
+import { observer } from "mobx-react-lite";
+
+
+
 type ShootingSpotProps = {
-    isClicked: boolean,
-    handlerOnClick: (id: string) => void,
-    spotIndex: string
+    isClickedFunction: (key: chartSpotKeyType) => boolean,
+    handlerOnClick: (key: chartSpotKeyType) => void,
+    spotIndex: chartSpotKeyType
 }
 
-export default function ShootingSpot({isClicked, handlerOnClick, spotIndex} : ShootingSpotProps) {
+function ShootingSpot({isClickedFunction, handlerOnClick, spotIndex} : ShootingSpotProps) {
 
-    const borderColor = isClicked ? 'green' : 'red';
+    const borderColor = isClickedFunction(spotIndex) ? 'green' : 'red';
 
     return (
         <button style={{borderColor}} onClick={() => {handlerOnClick(spotIndex)}}>
@@ -14,3 +19,5 @@ export default function ShootingSpot({isClicked, handlerOnClick, spotIndex} : Sh
         </button>
     )
 }
+
+export default observer(ShootingSpot);

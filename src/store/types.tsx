@@ -41,6 +41,14 @@ type MyTeamIdsListType = 'trainingSquadIds' | 'representInChartUsersIds';
 
 type MultiStageFormType = 'trainingStage' | 'chartStage'
 
+type MyStatisticsPageStageType =    'selectUsersState' |
+                                    'selectChartTypeState' |
+                                    'selectSpotTypeState' |
+                                    'selectRepresentedTimeState' |
+                                    'chartRepresentationState'
+
+
+
 export {
     type LocalTrainingData,
     type UserIdLoginMapType,
@@ -49,4 +57,5 @@ export {
     type ShootingSetRecord,
     type MyTeamIdsListType,
     type MultiStageFormType,
+    type MyStatisticsPageStageType,
 }

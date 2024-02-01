@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Context } from '../../../../index';
 import ChooseSpotToRepresentNextStageButton from "./ChooseSpotToRepresentNextStageButton";
 import ChooseSpotToRepresentPreviousStageButton from "./ChooseSpotToRepresentPreviousStageButton";
+import ShotsTypesButtons from '../../../../commonComponents/ShotsTypesButtons/ShotsTypesButtons';
 
 function ChooseSpotToRepresent() {
 
@@ -11,6 +12,7 @@ function ChooseSpotToRepresent() {
 
 return (
     <>
+    <ShotsTypesButtons onButtonClickHandle={watchMyStatiscicsStore.setSpotKey} isClickedChecker={watchMyStatiscicsStore.isSpotKey}/>
     <BasketballCourt ifCheckedFunction={watchMyStatiscicsStore.isSpotKey} handleClickFunction={watchMyStatiscicsStore.setSpotKey}/>
     <ChooseSpotToRepresentNextStageButton/>
     <ChooseSpotToRepresentPreviousStageButton/>

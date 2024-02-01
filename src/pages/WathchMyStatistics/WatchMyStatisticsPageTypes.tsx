@@ -27,15 +27,16 @@ type ChartRepresentationType = typeof chartTypesArray[number];
 //                                'shotsPersentageChart' |
 //                                'shotsAmountChart'
 
+const shotsTypesArray = ['all', 'threes', 'freethrows', 'midRange', 'shortMidRange', 'shortRange']
 
-
-type spotCategoryKeyType = 'all'|'threes'|'freethrows'|'midRange'|'shortMidRange'|'shortRange' 
+type spotCategoryKeyType = typeof shotsTypesArray[number];
 type shortRangeSpotKeyType = 'sh1'|'sh2'|'sh3'|'sh4'  
 type freethrowSpotKeyType = 'fr1'
 type threeSpotKeyType = 'th1'|'th2'|'th3'|'th4'|'th4'|'th5'|'th6'|'th7'
 type midRangeSpotKeyType = 'mi1'|'mi2'|'mi3'|'mi4'|'mi5'|'mi6'|'mi7'|'mi8'|'mi9'    
+type shortMidRangeKeyType = 'shm1'|'shm2'|'shm3'|'shm4'
 
-type chartSpotKeyType = spotCategoryKeyType | shortRangeSpotKeyType | freethrowSpotKeyType | threeSpotKeyType | midRangeSpotKeyType;
+type chartSpotKeyType = spotCategoryKeyType | shortRangeSpotKeyType | freethrowSpotKeyType | threeSpotKeyType | midRangeSpotKeyType| shortMidRangeKeyType;
 
 export {
     type ChartRepresentedTimeType,
@@ -49,5 +50,6 @@ export {
     chartTypesArray,
     chartsNamesDict,
     chartRepresentedTimesArray,
-    chartRepresentedTimesNamesDict
+    chartRepresentedTimesNamesDict,
+    shotsTypesArray
 }

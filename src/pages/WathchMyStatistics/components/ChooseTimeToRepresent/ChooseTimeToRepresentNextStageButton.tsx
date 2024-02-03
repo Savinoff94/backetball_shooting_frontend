@@ -8,12 +8,19 @@ import {observer} from 'mobx-react-lite';
 
 function ChooseTimeToRepresentNextStageButton() : JSX.Element {
 
-    const {multiStageFormsStore} = useContext(Context);
+    const {multiStageFormsStore, watchMyStatiscicsStore} = useContext(Context);
 
     const isSubmitButtonDisabled = false;
 
     const submitHandler = () => {
-        
+
+        if(!watchMyStatiscicsStore.isChartRepresentationDependsOnSpotType(watchMyStatiscicsStore.getChartType())) {
+
+            multiStageFormsStore.submitChartStage(!isSubmitButtonDisabled, "chartRepresentationState");
+
+            return;
+        }
+
         multiStageFormsStore.submitChartStage(!isSubmitButtonDisabled, 'selectSpotTypeState');
     }
 

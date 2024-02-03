@@ -8,7 +8,7 @@ import {
 
 export default class ChartsServise {
 
-    static async getChartsData(usersIds: string[], spotKey: chartSpotKeyType, timeKey: ChartRepresentedTimeType, chartType: ChartRepresentationType): Promise<AxiosResponse> {
+    static async getChartsData(usersIds: string[], spotKey: chartSpotKeyType|null = null, timeKey: ChartRepresentedTimeType, chartType: ChartRepresentationType): Promise<AxiosResponse> {
 
         return $api.post('/getChartsData', {usersIds, spotKey, timeKey, chartType});
     }

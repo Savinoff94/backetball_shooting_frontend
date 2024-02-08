@@ -38,6 +38,56 @@ type shortMidRangeKeyType = 'shm1'|'shm2'|'shm3'|'shm4'
 
 type chartSpotKeyType = spotCategoryKeyType | shortRangeSpotKeyType | freethrowSpotKeyType | threeSpotKeyType | midRangeSpotKeyType| shortMidRangeKeyType;
 
+
+type ShotsDispersionChartDataType = {
+    [userId: string] : {
+        [spotKey: chartSpotKeyType] : number
+    }
+}
+
+type ShotsLineChartNotGroupedBySpotData = {
+    [userId: string] : {
+        [date: string] : {
+            tries: number
+            makes: number
+            percent: number
+        }
+    }
+}
+
+type ShotsLineChartGroupedBySpotData = {
+    [userId: string] : {
+        [spotKey: chartSpotKeyType]: {
+            [date: string] : ShotsDescripshonType
+        }
+    }
+}
+
+type ShotsDescripshonType = {
+    tries: number
+    makes: number
+    percent: number
+}
+
+type LineChartDataSetType = {
+    data: LineChartPointCoordinatesType[],
+    label: string
+}
+
+type LineChartPointCoordinatesType = {
+    x: number,
+    y: number
+}
+
+type LineChartDataSets = {
+    datasets: LineChartDataSetType[]
+}
+
+
+const linearChartValuesKeys = ['tries','percent','makes'] as const;
+type LineChartValueKey = typeof linearChartValuesKeys[number];
+
+
 export {
     type ChartRepresentedTimeType,
     type ChartRepresentationType,
@@ -51,5 +101,13 @@ export {
     chartsNamesDict,
     chartRepresentedTimesArray,
     chartRepresentedTimesNamesDict,
-    shotsTypesArray
+    shotsTypesArray,
+    type ShotsDispersionChartDataType,
+    type ShotsLineChartNotGroupedBySpotData,
+    type ShotsLineChartGroupedBySpotData,
+    type LineChartDataSetType,
+    type LineChartDataSets,
+    type LineChartValueKey,
+    type LineChartPointCoordinatesType,
+    type ShotsDescripshonType,
 }

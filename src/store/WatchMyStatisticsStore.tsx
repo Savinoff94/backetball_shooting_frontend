@@ -2,7 +2,10 @@ import { makeAutoObservable, toJS } from "mobx";
 import {
         ChartRepresentedTimeType,
         ChartRepresentationType,
-        chartSpotKeyType
+        chartSpotKeyType,
+        ShotsDispersionChartDataType,
+        ShotsLineChartNotGroupedBySpotData,
+        ShotsLineChartGroupedBySpotData,
        } from '../pages/WathchMyStatistics/WatchMyStatisticsPageTypes'
 
 
@@ -11,7 +14,7 @@ export default class WatchMyStatiscicsStore {
 
     private static instance: WatchMyStatiscicsStore | null = null;
 
-    private chartData: any = {};
+    private chartData: ShotsDispersionChartDataType|ShotsLineChartNotGroupedBySpotData|ShotsLineChartGroupedBySpotData = {};
 
     private representedUsersIds = [] as string [];
 
@@ -64,10 +67,16 @@ export default class WatchMyStatiscicsStore {
         try {
             
             const data = await ChartsServise.getChartsData(usersIds, spotKey, timeKey, chartType);
+            this.chartData = data?.data?.chartData
             console.log(data)
         } catch (error) {
             console.log(error)
         }
 
+    }
+
+    getChartData = () => {
+
+        return toJS(this.chartData);
     }
 }

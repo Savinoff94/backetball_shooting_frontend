@@ -10,7 +10,7 @@ import ChooseChartTypePreviousStageButton from './ChooseChartTypePreviousStageBu
 
 function ChooseChartType() {
 
-    const {watchMyStatiscicsStore, } = useContext(Context);
+    const {watchMyStatiscicsStore} = useContext(Context);
 
 
     const handleOnClick = (chartType: ChartRepresentationType) => {

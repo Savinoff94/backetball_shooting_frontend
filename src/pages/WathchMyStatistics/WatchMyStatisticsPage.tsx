@@ -6,7 +6,7 @@ import ChooseChartType from "./components/ChooseChartType/ChooseChartType";
 import ChooseSpotToRepresent from "./components/ChooseSpotToRepresent/ChooseSpotToRepresent";
 import ChooseTimeToRepresent from "./components/ChooseTimeToRepresent/ChooseTimeToRepresent";
 import ChooseUsersToRepresentStatistics from "./components/ChooseUsersToRepresentStatistics/ChooseUsersToRepresentStatistics";
-import Charts from "./components/Charts/Charts";
+import ChartsPage from "./components/ChartsPage/ChartsPage";
 
 
 function WatchMyStatisticsPage() {
@@ -25,7 +25,7 @@ function WatchMyStatisticsPage() {
             case 'selectRepresentedTimeState':
                 return <ChooseTimeToRepresent/>
             case 'chartRepresentationState':
-                return <Charts/>
+                return <ChartsPage/>
         }
     }
 

@@ -5,15 +5,21 @@ import { Context } from '../../../../index';
 import ChooseSpotToRepresentNextStageButton from "./ChooseSpotToRepresentNextStageButton";
 import ChooseSpotToRepresentPreviousStageButton from "./ChooseSpotToRepresentPreviousStageButton";
 import ShotsTypesButtons from '../../../../commonComponents/ShotsTypesButtons/ShotsTypesButtons';
+import BasketballCourtSVG from "../../../../commonComponents/BasketballCourt/BasketballCourtSVG";
 
 function ChooseSpotToRepresent() {
 
     const {watchMyStatiscicsStore} = useContext(Context)
 
+    const ifCheckedForSpotFunction = (spotKey: string) => {
+
+        return !watchMyStatiscicsStore.isSpotKey(spotKey);
+    }
+
 return (
     <>
     <ShotsTypesButtons onButtonClickHandle={watchMyStatiscicsStore.setSpotKey} isClickedChecker={watchMyStatiscicsStore.isSpotKey}/>
-    <BasketballCourt ifCheckedFunction={watchMyStatiscicsStore.isSpotKey} handleClickFunction={watchMyStatiscicsStore.setSpotKey}/>
+    <BasketballCourtSVG ifCheckedFunction={ifCheckedForSpotFunction} onClickFunction={watchMyStatiscicsStore.setSpotKey}/>
     <ChooseSpotToRepresentNextStageButton/>
     <ChooseSpotToRepresentPreviousStageButton/>
     </>

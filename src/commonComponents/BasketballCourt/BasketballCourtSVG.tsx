@@ -1,10 +1,13 @@
 import React from "react";
 import EllipseSVG from './EllipseSVG';
+import { observer } from "mobx-react-lite"; 
 
-function Icon() {
+type BasketballCourtProps = {
+  ifCheckedFunction: (id:string) => boolean,
+  onClickFunction: (id:string) => void
+}
 
-  const isSelected = (id:string) => {return true}
-  const onClick = (id:string) => console.log('click: ' + id)
+function BasketballCourtSVG({ifCheckedFunction, onClickFunction}: BasketballCourtProps) {
 
   return (
     <svg
@@ -1077,8 +1080,8 @@ function Icon() {
             defaultFill={"url(#linearGradient272)"}
             defaultStroke={"url(#linearGradient273)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g id="POLYLINE_54_">
@@ -1312,8 +1315,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274)"}
             defaultStroke={"url(#linearGradient279)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1327,8 +1330,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2)"}
             defaultStroke={"url(#linearGradient276)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1342,8 +1345,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7)"}
             defaultStroke={"url(#linearGradient281)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1357,8 +1360,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3)"}
             defaultStroke={"url(#linearGradient284)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
           
         </g>
@@ -1373,8 +1376,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7)"}
             defaultStroke={"url(#linearGradient287)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
           
         </g>
@@ -1389,8 +1392,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3)"}
             defaultStroke={"url(#linearGradient290)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1404,8 +1407,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3)"}
             defaultStroke={"url(#linearGradient333)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1419,8 +1422,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-5-2)"}
             defaultStroke={"url(#linearGradient345)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1434,8 +1437,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-5-2-8)"}
             defaultStroke={"url(#linearGradient348)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1449,8 +1452,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-5-1)"}
             defaultStroke={"url(#linearGradient336)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1469,8 +1472,8 @@ function Icon() {
             cy="348.26"
             rx="15.007"
             ry="15.731"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
           <EllipseSVG
             svgButtonId={"sh2"}
@@ -1482,8 +1485,8 @@ function Icon() {
             cy="348.933"
             rx="15.007"
             ry="15.731"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
           <EllipseSVG
             svgButtonId={"sh1"}
@@ -1495,8 +1498,8 @@ function Icon() {
             cy="393.736"
             rx="15.007"
             ry="15.731"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
           <EllipseSVG
             svgButtonId={"sh3"}
@@ -1508,8 +1511,8 @@ function Icon() {
             cy="304.933"
             rx="15.007"
             ry="15.731"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1523,8 +1526,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-3)"}
             defaultStroke={"url(#linearGradient294)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1538,8 +1541,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-3-2)"}
             defaultStroke={"url(#linearGradient302)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1553,8 +1556,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-3-2-6)"}
             defaultStroke={"url(#linearGradient307)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1567,8 +1570,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6)"}
             defaultStroke={"url(#linearGradient310)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1582,8 +1585,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9)"}
             defaultStroke={"url(#linearGradient314)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1597,8 +1600,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9-8)"}
             defaultStroke={"url(#linearGradient317)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1612,8 +1615,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9-8-9)"}
             defaultStroke={"url(#linearGradient320)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1627,8 +1630,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9-8-9-4)"}
             defaultStroke={"url(#linearGradient322)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1642,8 +1645,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9-8-9-4-9)"}
             defaultStroke={"url(#linearGradient327)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
         <g
@@ -1657,8 +1660,8 @@ function Icon() {
             defaultFill={"url(#linearGradient274-2-7-3-7-3-6-9-8-9-4-9-8"}
             defaultStroke={"url(#linearGradient330)"}
             ifSelectedFill="red"
-            isSelected={isSelected}
-            onClick={onClick}
+            isSelected={ifCheckedFunction}
+            onClick={onClickFunction}
           />
         </g>
       </g>
@@ -1666,4 +1669,4 @@ function Icon() {
   );
 }
 
-export default Icon;
+export default observer(BasketballCourtSVG);

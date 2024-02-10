@@ -5,14 +5,20 @@ import ChooseSpotSubmitButton from "./ChooseSpotSubmitButton";
 import BasketballCourt from "../../../../commonComponents/BasketballCourt/BasketballCourt";
 import { useContext } from "react";
 import { Context } from '../../../../index';
+import BasketballCourtSVG from '../../../../commonComponents/BasketballCourt/BasketballCourtSVG'
 
 function ChooseSpot() {
 
     const {trainingBoardStore} = useContext(Context);
 
+    const ifCheckedFunction = (id: string) => {
+
+        return !trainingBoardStore.isCurrentSpot(id)
+    }
+
     return (
         <>
-            <BasketballCourt ifCheckedFunction={trainingBoardStore.isCurrentSpot} handleClickFunction={trainingBoardStore.setCurrentSpot}/>
+            <BasketballCourtSVG ifCheckedFunction={ifCheckedFunction} onClickFunction={trainingBoardStore.setCurrentSpot}/>
             <div>
                 <ChooseSpotPreviousStageButton/>
                 <ChooseSpotSubmitButton/>

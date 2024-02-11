@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import BasketballCourt from "../../../../commonComponents/BasketballCourt/BasketballCourt";
 import { useContext } from "react";
 import { Context } from '../../../../index';
 import ChooseSpotToRepresentNextStageButton from "./ChooseSpotToRepresentNextStageButton";

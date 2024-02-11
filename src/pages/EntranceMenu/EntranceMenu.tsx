@@ -15,11 +15,10 @@ export default function EntranceMenu() :JSX.Element {
 
         if(localStorage.getItem('token')) {
 
-        store.checkAuth()
+            store.checkAuth()
         }
     },[]);
 
-    console.log(store.isAuth)
 
     if(store.isAuth) {
 

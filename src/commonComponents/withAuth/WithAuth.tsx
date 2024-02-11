@@ -12,14 +12,6 @@ function WithAuth (redirectPath: string, componentToProtect: JSX.Element) : JSX.
  
   const {store} = useContext(Context);
 
-  useEffect(() => {
-
-    if(localStorage.getItem('token')) {
-
-      store.checkAuth()
-    }
-  },[]);
-
   if(store.isAuth) {
 
     return componentToProtect;

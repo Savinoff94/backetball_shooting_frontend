@@ -4,6 +4,12 @@ import {observer} from 'mobx-react-lite';
 import ShotsDispersionChart from './Charts/ShotsDispersionChart'
 import HumansComparisonChart from "./Charts/HumansComparisonChart";
 import SpotsTrackingChart from "./Charts/SpotsTrackingChart";
+import ChartsPagePreviousStageButton from "./ChartsPagePreviousStageButton";
+import ChartsPageToBeginningButton from "./ChartsPageToBeginningButton";
+
+import {
+    ChartRepresentationType,
+   } from '../../WatchMyStatisticsPageTypes'
 
 function ChartsPage() {
 
@@ -14,26 +20,36 @@ function ChartsPage() {
         watchMyStatiscicsStore.fetchChartsData(watchMyStatiscicsStore.getRepresentedUsersIds(), watchMyStatiscicsStore.getSpotKey(), watchMyStatiscicsStore.getTimeKey(), watchMyStatiscicsStore.getChartType())
         
     }, [])
-    
-    switch (watchMyStatiscicsStore.getChartType()) {
-        case 'shotsDispersionByCategory':
-            return <ShotsDispersionChart/>
-            
-        case 'shotsDispersionBySpot':
-            return <ShotsDispersionChart/>
-            
-        case 'shotsPersentageChart':
-            return <HumansComparisonChart valueKey={'percent'}/>
-            
-        case 'shotsAmountChart':
-            return <HumansComparisonChart valueKey={'tries'}/>
-            
-        case 'shotsAmountAndPercentageChart':
-            return <SpotsTrackingChart/>
-            
-        default:
-            return <div>Wrong chart type: {watchMyStatiscicsStore.getChartType()}</div>
+
+    function getChart(chartType:ChartRepresentationType) {
+        switch (chartType) {
+            case 'shotsDispersionByCategory':
+                return <ShotsDispersionChart/>
+                
+            case 'shotsDispersionBySpot':
+                return <ShotsDispersionChart/>
+                
+            case 'shotsPersentageChart':
+                return <HumansComparisonChart valueKey={'percent'}/>
+                
+            case 'shotsAmountChart':
+                return <HumansComparisonChart valueKey={'tries'}/>
+                
+            case 'shotsAmountAndPercentageChart':
+                return <SpotsTrackingChart/>
+                
+            default:
+                return <div>Wrong chart type: {watchMyStatiscicsStore.getChartType()}</div>
+        }
     }
+
+    return (
+    <>
+    {getChart(watchMyStatiscicsStore.getChartType())}
+    <ChartsPagePreviousStageButton/>
+    <ChartsPageToBeginningButton/>
+    </>
+    )
 
 }
 

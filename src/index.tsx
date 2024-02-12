@@ -10,6 +10,7 @@ import MultiStageFormsStore from './store/MultiStageFormsStore';
 import TrainingBoardStore from './store/trainingBoardStore';
 import ManageTrainingDataStore from './store/ManageTrainingDataStore'
 import WatchMyStatiscicsStore from './store/WatchMyStatisticsStore';
+import UserConnectionsStore from './store/UserConnectionsStore';
 import { createContext } from 'react';
 
 
@@ -21,6 +22,7 @@ interface State {
   trainingBoardStore: TrainingBoardStore,
   manageTrainingDataStore: ManageTrainingDataStore,
   watchMyStatiscicsStore: WatchMyStatiscicsStore,
+  userConnectionsStore: UserConnectionsStore,
 }
 
 
@@ -30,6 +32,7 @@ const multiStageFormsStore = MultiStageFormsStore.getInstance();
 const trainingBoardStore = TrainingBoardStore.getInstance();
 const manageTrainingDataStore = ManageTrainingDataStore.getInstance();
 const watchMyStatiscicsStore = WatchMyStatiscicsStore.getInstance();
+const userConnectionsStore = UserConnectionsStore.getInstance();
 
 export const Context = createContext<State>({
   store,
@@ -37,7 +40,8 @@ export const Context = createContext<State>({
   multiStageFormsStore,
   trainingBoardStore,
   manageTrainingDataStore,
-  watchMyStatiscicsStore
+  watchMyStatiscicsStore,
+  userConnectionsStore
 })
 
 const root = ReactDOM.createRoot(
@@ -45,7 +49,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Context.Provider value={{store, myTeamStoreInstance, multiStageFormsStore, trainingBoardStore, manageTrainingDataStore, watchMyStatiscicsStore}}>
+    <Context.Provider value={{store, myTeamStoreInstance, multiStageFormsStore, trainingBoardStore, manageTrainingDataStore, watchMyStatiscicsStore, userConnectionsStore}}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

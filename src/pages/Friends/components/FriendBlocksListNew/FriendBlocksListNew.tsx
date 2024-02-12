@@ -1,34 +1,25 @@
-import FriendBlockNew from '../FriendBlockNew/FriendBlockNew';
-import {FriendBlockUserInfo} from '../../types/friendsTypes';
-import {FriendActionButtonInfo} from '../FriendBlockNew/types/FriendBlockNewTypes'
+import React, { ReactNode } from "react";
+import {observer} from 'mobx-react-lite';
 
-type FriendBlockListNewType = {
-
-    usersInfosList: FriendBlockUserInfo[],
-    buttonsInfosList: FriendActionButtonInfo[],
-    friendBlockInfo: {
-        type: string,
-        color: string
-    }
+type UsersListProps = {
+    children: ReactNode,
+    borderColor:string
 }
 
-export default function FriendBlockListNew(friendBlockPropsList: FriendBlockListNewType):JSX.Element {
-
-    const {usersInfosList, buttonsInfosList, friendBlockInfo} = friendBlockPropsList;
+function UsersList({children, borderColor}: UsersListProps) {
 
     const ulStyle = {
-        borderColor:friendBlockInfo['color'],
-        borderStyle: usersInfosList.length === 0 ? 'hidden' : 'solid'
+        borderColor:borderColor,
+        borderStyle: React.Children.count(children) === 0 ? 'hidden' : 'solid'
     }
 
     return (
-        <ul key={friendBlockInfo['type']} style={ulStyle}>
+        <ul style={ulStyle}>
             {
-                usersInfosList.map((friendBlockPropsList: FriendBlockUserInfo) : JSX.Element => {
-
-                    return <FriendBlockNew {...friendBlockPropsList} buttonsInfosList={buttonsInfosList}/>
-                })
+                children
             }
         </ul>
-    );
+    )
 }
+
+export default observer(UsersList);

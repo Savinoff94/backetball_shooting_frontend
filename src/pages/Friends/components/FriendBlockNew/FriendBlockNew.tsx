@@ -2,11 +2,10 @@ import {FriendActionButtonInfo} from './types/FriendBlockNewTypes';
 import {FriendBlockUserInfo} from '../../types/friendsTypes';
 
 
-type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]}
+
+type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]} & {isLoading: boolean}
 
 export default function FriendBlock(friendBlockProps: FriendBlockProps): JSX.Element {
-
-    
 
     return (
 
@@ -21,7 +20,11 @@ export default function FriendBlock(friendBlockProps: FriendBlockProps): JSX.Ele
             {
                 friendBlockProps['buttonsInfosList'].map((buttonInfo: FriendActionButtonInfo): JSX.Element => {
 
-                    return <button key={buttonInfo['text'].split(' ').join('') + friendBlockProps['id']} style={{color:buttonInfo['color']}} onClick={()=>(buttonInfo.action([friendBlockProps['id']]))}>{buttonInfo['text']}</button>
+                    return (
+                    <button disabled={friendBlockProps['isLoading']} key={buttonInfo['text'].split(' ').join('') + friendBlockProps['id']} style={{color:buttonInfo['color']}} onClick={()=>(buttonInfo.action([friendBlockProps['id']]))}> 
+                    {buttonInfo['text']}
+                    </button>
+                    )
                 })
             }
         </li>

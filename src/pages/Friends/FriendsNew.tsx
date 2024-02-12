@@ -1,213 +1,51 @@
-import { useState, useEffect, useContext } from "react";
-import FriendBlockListNew from "./components/FriendBlocksListNew/FriendBlocksListNew";
-import {UsersInfoById} from './types/friendsTypes'
-import {removeItemFromObjById, transferItemFromObjToObj} from '../../helpers/common';
-
-import {filterByLogin} from './helpers/userFrontEndFilters';
-import UserService from "../../services/UserService";
-import UserConnectionsService from "../../services/UserConnectionsService";
-import { AxiosResponse } from "axios";
-// import { Context } from '../../index';
+import { useContext, useEffect, useRef } from "react";
+import {observer} from 'mobx-react-lite';
+import { Context } from '../../index';
+import SearchFriendBlock from "./components/EnhancedFriendBlocks/SearchFriendBlock";
+import SubmitedFriendBlock from "./components/EnhancedFriendBlocks/SubmitedFriendBlock";
+import PendingOtherUserFriendRequest from "./components/EnhancedFriendBlocks/PendingOtherUserFriendRequest";
+import PendingThisUserFriendRequestBlock from "./components/EnhancedFriendBlocks/PendingThisUserFriendRequestBlock";
+import UsersList from './components/FriendBlocksListNew/FriendBlocksListNew'
 
 
+function FriendsNew() {
 
-export default function FriendsNew() {
-
-  // const {store} = useContext(Context);
-  // console.log('user:', store.user.login)
-
-  const [search, setSearch] = useState <UsersInfoById> ({});
-  const [friends, setFriends] = useState <UsersInfoById> ({});
-  const [pendingOtherUsersFriendRequests, setPendingOtherUsersFriendRequests] = useState <UsersInfoById> ({});
-  const [pendingThisUserFriendRequests, setPendingThisUserFriendRequests] = useState <UsersInfoById> ({});
-
-  async function onThisUserFriendRequest(idsArray : string[]) {
-
-    try {
-
-      const result = UserConnectionsService.friendRequest(idsArray);
-
-      const pendingThisUserFriendRequestsCopy = transferItemFromObjToObj(idsArray, search, pendingThisUserFriendRequests);
-      setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
-
-      const searchCopy = removeItemFromObjById(idsArray, search);
-      setSearch(searchCopy);
-      
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }
-  async function onThisUserCancelFriendRequest(idsArray : string[]) {
-
-    try {
-
-      const result = UserConnectionsService.cancelFriendRequest(idsArray);
-
-      const pendingThisUserFriendRequestsCopy = removeItemFromObjById(idsArray, pendingThisUserFriendRequests);
-      setPendingThisUserFriendRequests(pendingThisUserFriendRequestsCopy);
-      
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }
-  async function onThisUserApproveFriendRequest(idsArray : string[]) {
-    
-    try {
-
-      const result = UserConnectionsService.approveFriendRequest(idsArray);
-
-      const friendsCopy = transferItemFromObjToObj(idsArray, pendingOtherUsersFriendRequests, friends);
-      setFriends(friendsCopy);
-
-      const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(idsArray, pendingOtherUsersFriendRequests);
-      setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
-      
-    } catch (error) {
-      
-      console.log(error)
-    }
-
-  }
-
-  async function onThisUserDisapproveFriendRequest(idsArray : string[]) {
-
-    try {
-
-      const result = await UserConnectionsService.disapproveFriendRequest(idsArray);
-
-      const pendingOtherUsersFriendRequestsCopy = removeItemFromObjById(idsArray, pendingOtherUsersFriendRequests);
-      setPendingOtherUsersFriendRequests(pendingOtherUsersFriendRequestsCopy);
-
-    } catch (error) {
-      
-      console.log(error)
-    }
-
-  }
-
-  async function onThisUserRemoveFriendRequest(idsArray : string[]) {
-
-    try {
-
-      const result = UserConnectionsService.removeFriendRequest(idsArray);
-
-      const friendsCopy = removeItemFromObjById(idsArray, friends);
-      setFriends(friendsCopy);
-      
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }
+  const {userConnectionsStore} = useContext(Context);
+  const initialized = useRef(false)
     
   useEffect(() => {
 
-    async function fetchUserConncections() {
-
-      try {
-
-        const userConnectionsRes = await UserConnectionsService.getUserConnections();
-
-        const userConnections = userConnectionsRes.data;
-
-        setFriends(userConnections['friends']);
-
-        setPendingThisUserFriendRequests(userConnections['pendingThisUsersFriendRequests']);
-      
-        setPendingOtherUsersFriendRequests(userConnections['pendingOtherUsersFriendRequests']);
-
-      } catch (error) {
+    if (!initialized.current) {
+      initialized.current = true
   
-        console.log(error)
-      } 
+      userConnectionsStore.fetchUserConncections();
     }
-
-    fetchUserConncections();
-
   }, []);
-
-  const onSearch = async (userInput: string) => {
-
-    userInput = userInput.toLowerCase();
-
-    if(userInput.length !== 1 && ((userInput.length % 3) !== 0)) {
-
-      const filteredSearch = filterByLogin(search, userInput);
-
-      setSearch(filteredSearch);
-      
-      return;
-    }
-
-    try {
-
-      const usersResponse : AxiosResponse<UsersInfoById> = await UserService.searchUsers(userInput, false);
-
-      const users : UsersInfoById = usersResponse.data;
-
-      const displayedUsers = [...Object.keys(friends), ...Object.keys(pendingOtherUsersFriendRequests), ...Object.keys(pendingThisUserFriendRequests)];
-
-      displayedUsers.forEach((id) => {
-
-        delete users[id];
-      });
-
-      setSearch(structuredClone(users));
-      
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }
     
-  const searchProps = {
-    usersInfosList:structuredClone(Object.values(search)),
-    buttonsInfosList: [{action: onThisUserFriendRequest, text: "Add", color: 'green'}],
-    friendBlockInfo: {
-      type: 'search',
-      color: 'blue'
-    }
-  }
-  const friendsProps = {
-    usersInfosList:structuredClone(Object.values(friends)),
-    buttonsInfosList: [{action: onThisUserRemoveFriendRequest, text: "Remove", color: 'red'}],
-    friendBlockInfo: {
-      type: 'friends',
-      color: 'green'
-    }
-  }
-  const pendingOtherUsersProps = {
-    usersInfosList:structuredClone(Object.values(pendingOtherUsersFriendRequests)),
-    buttonsInfosList: [{action: onThisUserApproveFriendRequest, text: "Approve", color: 'green'}, {action: onThisUserDisapproveFriendRequest, text: "Disapprove", color: 'red'}],
-    friendBlockInfo: {
-      type: 'pendingOtherUsers',
-      color: 'yellow'
-    }
-  }
-  const pendingThisUserProps = {
-    usersInfosList:structuredClone(Object.values(pendingThisUserFriendRequests)),
-    buttonsInfosList: [{action: onThisUserCancelFriendRequest, text: "Cancel", color: 'red'}],
-    friendBlockInfo: {
-      type: 'pendingThisUser',
-      color: 'grey'
-    }
-  }
-
-    
-
   return (
     <div key="friendsBlock">
       <label htmlFor="friendsSearchInput">Find your friends</label>
-      <input id="friendsSearchInput" onChange={(e) => {onSearch(e.target.value)}}></input>
+      <input id="friendsSearchInput" onChange={(e) => {userConnectionsStore.onSearch(e.target.value)}}></input>
       <>
-      <FriendBlockListNew {...searchProps}/>
-      <FriendBlockListNew {...friendsProps}/>
-      <FriendBlockListNew {...pendingOtherUsersProps}/>
-      <FriendBlockListNew {...pendingThisUserProps}/>
+      <UsersList key='search' borderColor='blue'>
+      {Object.values(userConnectionsStore.getSearchList()).map((listItem) => <SearchFriendBlock key={listItem['id']} {...listItem}/>)}
+      </UsersList>
+      
+      <UsersList key='friends' borderColor='green'>
+      {Object.values(userConnectionsStore.getFriends()).map((listItem) => <SubmitedFriendBlock key={listItem['id']} {...listItem}/>)}
+      </UsersList>
+      
+      <UsersList key='pendingOtherUsers' borderColor='yellow'>
+      {Object.values(userConnectionsStore.getPendingOtherUsersFriendRequests()).map((listItem) => <PendingOtherUserFriendRequest key={listItem['id']} {...listItem}/>)}
+      </UsersList>
+    
+      <UsersList key='pendingThisUser' borderColor='grey'>
+      {Object.values(userConnectionsStore.getPendingThisUserFriendRequests()).map((listItem) => <PendingThisUserFriendRequestBlock key={listItem['id']} {...listItem}/>)}
+      </UsersList>
       </>
     </div>
       
   );
 }
+
+export default observer(FriendsNew);

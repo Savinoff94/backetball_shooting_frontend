@@ -125,6 +125,8 @@ export default class Store {
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
+
+            this.setAuth(false);
             
             if(axios.isAxiosError(error)) {
 

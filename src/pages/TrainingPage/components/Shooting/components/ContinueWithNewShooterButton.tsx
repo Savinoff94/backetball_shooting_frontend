@@ -17,7 +17,8 @@ function ContinueWithNewShooterButton() : JSX.Element {
         const currentMakes = trainingBoardStore.getCurrentMakes();
 
         await trainingBoardStore.saveCurrentShooterDataDb(currentShooter, currentSpot, currentTries, currentMakes);
-        trainingBoardStore.updateTrainingDataLocally();
+        trainingBoardStore.updateTrainingDataLocally();// in session
+
 
         trainingBoardStore.setCurrentSpot('');
 

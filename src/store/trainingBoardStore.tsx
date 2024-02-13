@@ -3,6 +3,7 @@ import axios from "axios";
 import {getSessionStorageData, setSessionStorageData} from './helpers';
 import {LocalTrainingData} from './types';
 import ShootingTrainingService from "../services/ShootingTrainingService";
+import SimpleStatsServise from "../services/SimpleStatsServise";
 
 
 export default class TrainingBoardStore {
@@ -76,6 +77,8 @@ export default class TrainingBoardStore {
         try {
 
             await ShootingTrainingService.saveShootingSet(currentShooter, currentSpot, currentTries, currentMakes);
+
+            SimpleStatsServise.updateUsersSimpleStats(currentShooter, currentSpot)
             
         } catch (error) {
             

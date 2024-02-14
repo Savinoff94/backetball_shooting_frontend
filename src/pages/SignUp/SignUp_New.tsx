@@ -101,11 +101,13 @@ function SignUpPage() : JSX.Element {
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="login">First name: </label>
                 <input value={login} onChange={handleLoginChange} type="text" name="login"  required/>
-                <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.loginServerErrors}/>
+                <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.getLoginServerErrors()}/>
+                {/* <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.loginServerErrors}/> */}
                 <br/>
                 <label htmlFor="email">email: </label>
                 <input value={email} onChange={handleEmailChange} type="email" name="email"  required/>
-                <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.emailServerErrors}/>
+                <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.getEmailServerErrors()}/>
+                {/* <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.emailServerErrors}/> */}
                 <br/>
                 <label htmlFor="password">password: </label>
                 <input value={password} onChange={handlePasswordChange} type="password" name="password"  required/>

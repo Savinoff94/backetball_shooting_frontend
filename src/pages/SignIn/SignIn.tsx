@@ -1,9 +1,11 @@
 import { useState, useContext } from "react"
 import { Context } from '../../index';
 import { useNavigate } from 'react-router-dom';
+import ErrorsListNew from "../SignUp/components/ErrorsListNew/ErrorsListNew";
+import {observer} from 'mobx-react-lite';
 
 
-export default function SignInPage() : JSX.Element {
+function SignInPage() : JSX.Element {
 
     const navigate = useNavigate();
 
@@ -40,11 +42,13 @@ export default function SignInPage() : JSX.Element {
         <>
         <form onSubmit={handleFormSubmit}>
                 <label htmlFor="login">Login: </label>
-                <input  value={login} onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value)}} type="text" name="login"  required/>
+                <input  value={login} onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value); store.setLoginServerErrors([])}} type="text" name="login"  required/>
+                <ErrorsListNew errorInfosList={[]} serverErrors={store.getLoginServerErrors()}/>
                 
                 <br/>
                 <label htmlFor="password">password: </label>
-                <input value={password} onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value)}} type="password" name="password"  required/>
+                <input value={password} onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value); store.setPasswordServerErrors([])}} type="password" name="password"  required/>
+                <ErrorsListNew errorInfosList={[]} serverErrors={store.getPasswordServerErrors()}/>
                 
                 <br/>
                 <button disabled={isDisabled} type="submit" value="Login"/>
@@ -54,3 +58,5 @@ export default function SignInPage() : JSX.Element {
         </>
     )
 }
+
+export default observer(SignInPage)

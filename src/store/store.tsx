@@ -15,7 +15,7 @@ export default class Store {
 
     loginServerErrors: string[] = []
     emailServerErrors: string[] = []
-
+    passwordServerErrors: string[] = []
     constructor() {
 
         makeAutoObservable(this)
@@ -48,8 +48,10 @@ export default class Store {
 
     setLoginServerErrors = (errors: string[]) => {this.loginServerErrors = errors}
     setEmailServerErrors = (errors: string[]) => {this.emailServerErrors = errors}
+    setPasswordServerErrors = (errors: string[]) => {this.passwordServerErrors = errors}
     getLoginServerErrors = () => this.loginServerErrors;
     getEmailServerErrors = () => this.emailServerErrors;
+    getPasswordServerErrors = () => this.passwordServerErrors;
 
     async login(email: string, password: string) {
         
@@ -63,6 +65,8 @@ export default class Store {
         } catch (error) {
 
             if(axios.isAxiosError(error)) {
+
+                this.setErrors(error)
 
                 console.log(error.response?.data?.message);
             
@@ -87,24 +91,37 @@ export default class Store {
 
             if(axios.isAxiosError(error)) {
 
-                const loginError = error.response?.data?.errors?.[0].login;
-                const emailError = error.response?.data?.errors?.[0].email;
-
-                if(loginError) {
-                    
-                    this.setLoginServerErrors([loginError])
-                }
-
-                if(emailError) {
-                    
-                    this.setEmailServerErrors([emailError])
-                }
+                this.setErrors(error)
 
                 console.log(error.response?.data?.message);
             
             } else {
 
                 console.error(error);
+            }
+        }
+    }
+
+    setErrors = (error:any) => {
+        if(axios.isAxiosError(error)) {
+
+            const loginError = error.response?.data?.errors?.[0].login;
+            const emailError = error.response?.data?.errors?.[0].email;
+            const passwordError = error.response?.data?.errors?.[0].password;
+
+            if(loginError) {
+                
+                this.setLoginServerErrors([loginError])
+            }
+
+            if(emailError) {
+                
+                this.setEmailServerErrors([emailError])
+            }
+            
+            if(passwordError) {
+                
+                this.setPasswordServerErrors([passwordError])
             }
         }
     }

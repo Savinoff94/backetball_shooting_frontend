@@ -3,7 +3,7 @@ import {SignUpLoginRulesList, SignUpEmailRulesList, SignUpPasswordRulesList} fro
 import ErrorsListNew from './components/ErrorsListNew/ErrorsListNew';
 import {RuleInfo} from './components/ErrorsListNew/types/ErrorsList_NewTypes';
 import { Context } from '../../index';
-// import {observer} from 'mobx-react-lite';
+import {observer} from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,24 +16,22 @@ function SignUpPage() : JSX.Element {
     const [login,setLogin] = useState <string> ('')
     const [email, setEmail] = useState <string> ('')
     const [password,setPassword] = useState <string> ('')
-    const [loginServerErrors,setLoginServerErrors] = useState <string[]> ([])
-    const [emailServerErrors, setEmailServerErrors] = useState <string[]> ([])
     const [passwordServerErrors,setPasswordServerErrors] = useState <string[]> ([])
 
     const handleLoginChange = (e: React.FormEvent<HTMLInputElement>): void => {
         
         setLogin(e.currentTarget.value);
-        setLoginServerErrors([]);
+        store.setLoginServerErrors([]);
     };
     const handlePasswordChange = (e: React.FormEvent<HTMLInputElement>): void => {
         
         setPassword(e.currentTarget.value);
-        setEmailServerErrors([]);
+        setPasswordServerErrors([]);
     };
     const handleEmailChange = (e: React.FormEvent<HTMLInputElement>): void => {
         
         setEmail(e.currentTarget.value);
-        setPasswordServerErrors([]);
+        store.setEmailServerErrors([]);
     };
     
 
@@ -42,7 +40,7 @@ function SignUpPage() : JSX.Element {
         event.preventDefault();
 
         await store.registration(login, password, email);
-
+        
         if(store.isAuth) {
             navigate('/mainMenu');
         }
@@ -56,8 +54,8 @@ function SignUpPage() : JSX.Element {
         setLogin('');
         setEmail('');
         setPassword('');
-        setLoginServerErrors([]);
-        setEmailServerErrors([]);
+        store.setLoginServerErrors([]);
+        store.setEmailServerErrors([]);
         setPasswordServerErrors([]);
     }
 
@@ -103,11 +101,11 @@ function SignUpPage() : JSX.Element {
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="login">First name: </label>
                 <input value={login} onChange={handleLoginChange} type="text" name="login"  required/>
-                <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={loginServerErrors}/>
+                <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.loginServerErrors}/>
                 <br/>
                 <label htmlFor="email">email: </label>
                 <input value={email} onChange={handleEmailChange} type="email" name="email"  required/>
-                <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={emailServerErrors}/>
+                <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.emailServerErrors}/>
                 <br/>
                 <label htmlFor="password">password: </label>
                 <input value={password} onChange={handlePasswordChange} type="password" name="password"  required/>
@@ -121,5 +119,5 @@ function SignUpPage() : JSX.Element {
     );
 }
 
-export default SignUpPage;
-// export default observer(SignUpPage);
+// export default SignUpPage;
+export default observer(SignUpPage);

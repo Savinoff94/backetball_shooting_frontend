@@ -13,6 +13,9 @@ export default class Store {
 
     isLoading = false;
 
+    loginServerErrors: string[] = []
+    emailServerErrors: string[] = []
+
     constructor() {
 
         makeAutoObservable(this)
@@ -43,6 +46,11 @@ export default class Store {
         return '';
     }
 
+    setLoginServerErrors = (errors: string[]) => {this.loginServerErrors = errors}
+    setEmailServerErrors = (errors: string[]) => {this.emailServerErrors = errors}
+    getLoginServerErrors = () => this.loginServerErrors;
+    getEmailServerErrors = () => this.emailServerErrors;
+
     async login(email: string, password: string) {
         
         try {
@@ -56,14 +64,8 @@ export default class Store {
 
             if(axios.isAxiosError(error)) {
 
-                if(axios.isAxiosError(error)) {
-
                 console.log(error.response?.data?.message);
             
-                } else {
-
-                    console.error(error);
-                }
             } else {
 
                 console.error(error);
@@ -84,6 +86,19 @@ export default class Store {
         } catch (error) {
 
             if(axios.isAxiosError(error)) {
+
+                const loginError = error.response?.data?.errors?.[0].login;
+                const emailError = error.response?.data?.errors?.[0].email;
+
+                if(loginError) {
+                    
+                    this.setLoginServerErrors([loginError])
+                }
+
+                if(emailError) {
+                    
+                    this.setEmailServerErrors([emailError])
+                }
 
                 console.log(error.response?.data?.message);
             

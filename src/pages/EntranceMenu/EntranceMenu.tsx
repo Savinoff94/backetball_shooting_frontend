@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from 'react';
 import { Context } from '../../index';
 import { useNavigate } from 'react-router-dom';
-import { func } from "prop-types";
+import PageStyled from "../../StyledComponents/PageStyled";
+import StyledLink from "../../StyledComponents/StyledLink";
+import MenuWrapper from "../../StyledComponents/MenuWrapper";
+// import BackgroundImage from '../../../public/backgroundImages/lone_basket.jpg'
 
 
 
@@ -30,15 +33,12 @@ export default function EntranceMenu() :JSX.Element {
         }
     }
 
-
-    if(store.isAuth) {
-
-        navigate('/mainMenu');
-    }
-
     return (
-    <>
-    <Link to="/signup">Sign up</Link>
-    <Link to="/signin">Sign in</Link>
-    </>);
+        <PageStyled>
+            <MenuWrapper>
+                <StyledLink to="/signin" text="Sign in"/>
+                <StyledLink to="/signup" text="Sign up"/>
+            </MenuWrapper>
+        </PageStyled>
+    );
 }

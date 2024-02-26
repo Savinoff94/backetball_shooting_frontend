@@ -3,7 +3,10 @@ import { Context } from '../../index';
 import { useNavigate } from 'react-router-dom';
 import ErrorsListNew from "../SignUp/components/ErrorsListNew/ErrorsListNew";
 import {observer} from 'mobx-react-lite';
-
+import PageStyled from "../../StyledComponents/PageStyled";
+import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
+import ButtonStyled from "../../StyledComponents/ButtonStyled";
+import Header1Styled from "../../StyledComponents/Header1Styled";
 
 function SignInPage() : JSX.Element {
 
@@ -39,23 +42,27 @@ function SignInPage() : JSX.Element {
 
 
     return (
-        <>
-        <form onSubmit={handleFormSubmit}>
-                <label htmlFor="login">Login: </label>
-                <input  value={login} onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value); store.setLoginServerErrors([])}} type="text" name="login"  required/>
-                <ErrorsListNew errorInfosList={[]} serverErrors={store.getLoginServerErrors()}/>
-                
-                <br/>
-                <label htmlFor="password">password: </label>
-                <input value={password} onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value); store.setPasswordServerErrors([])}} type="password" name="password"  required/>
-                <ErrorsListNew errorInfosList={[]} serverErrors={store.getPasswordServerErrors()}/>
-                
-                <br/>
-                <button disabled={isDisabled} type="submit" value="Login"/>
-                
-                <button onClick={handleReset} type="reset" value="Reset"/>
-            </form>
-        </>
+        <PageStyled>
+            <div className="flex flex-col justify-center gap-8 w-full h-screen sm:h-96 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
+                <Header1Styled>Sign In</Header1Styled>
+                <form className="flex flex-col content-between h-4/5" onSubmit={handleFormSubmit}>
+
+                    <InputFieldStyled inputVal={login} htmlFor="login" labelText="Login" onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value); store.setLoginServerErrors([])}}/>
+                    <ErrorsListNew errorInfosList={[]} serverErrors={store.getLoginServerErrors()}/>
+                    <br/>
+
+                    <InputFieldStyled type="password" inputVal={password} htmlFor="password" labelText="Password" onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value); store.setPasswordServerErrors([])}}/>
+                    <ErrorsListNew errorInfosList={[]} serverErrors={store.getPasswordServerErrors()}/>
+                    <br/>
+
+                    <div className="flex flex-col gap-2">
+                        <ButtonStyled type="submit" value="Login" text="Login" isDisabled={isDisabled} isPrimary={true}/> 
+                        <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
+                    </div>
+                    
+                </form>
+            </div>
+        </PageStyled>
     )
 }
 

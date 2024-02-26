@@ -23,7 +23,7 @@ function FriendsNew() {
   }, []);
     
   return (
-    <div key="friendsBlock">
+    <div id="friendsBlock">
       <label htmlFor="friendsSearchInput">Find your friends</label>
       <input id="friendsSearchInput" onChange={(e) => {userConnectionsStore.onSearch(e.target.value)}}></input>
       <>

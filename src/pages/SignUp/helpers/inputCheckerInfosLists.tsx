@@ -79,21 +79,21 @@ const SignUpLoginRulesList = [
         key: 'SignUpPasswordRulesList6',
     },
     {
-        textRule: 'Should not contain any spaces',
-        ruleCheckerFunction: function(valueToCheck: any): boolean {
-
-            return valueToCheck.split('').includes(' ');
-        },
-        key: 'SignUpPasswordRulesList7',
-    },  
-    {
         textRule: 'Should be longer than 5 symbols',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             return valueToCheck.length <= 5;
         },
         key: 'SignUpPasswordRulesList8',
-    },  
+    }, 
+    {
+        textRule: 'Should not contain any spaces',
+        ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+            return valueToCheck.split('').includes(' ');
+        },
+        key: 'SignUpPasswordRulesList7',
+    },   
 ];
 const SignUpEmailRulesList = [
     {
@@ -117,21 +117,21 @@ const SignUpEmailRulesList = [
         key: 'SignEmailRulesList6',
     },
     {
-        textRule: 'Should not contain any spaces',
-        ruleCheckerFunction: function(valueToCheck: any): boolean {
-
-            return valueToCheck.split('').includes(' ');
-        },
-        key: 'SignEmailRulesList7',
-    },  
-    {
         textRule: 'Should be longer than 5 symbols',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             return valueToCheck.length <= 5;
         },
         key: 'SignEmailRulesList8',
-    },  
+    },
+    {
+        textRule: 'Should not contain any spaces',
+        ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+            return valueToCheck.split('').includes(' ');
+        },
+        key: 'SignEmailRulesList7',
+    },   
 ];
 
 export {

@@ -5,6 +5,10 @@ import {RuleInfo} from './components/ErrorsListNew/types/ErrorsList_NewTypes';
 import { Context } from '../../index';
 import {observer} from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
+import PageStyled from "../../StyledComponents/PageStyled";
+import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
+import ButtonStyled from "../../StyledComponents/ButtonStyled";
+import Header1Styled from "../../StyledComponents/Header1Styled";
 
 
 function SignUpPage() : JSX.Element {
@@ -97,27 +101,32 @@ function SignUpPage() : JSX.Element {
     })
     // added value to input, should check
     return (
-        <>
-            <form onSubmit={handleFormSubmit}>
-                <label htmlFor="login">First name: </label>
-                <input value={login} onChange={handleLoginChange} type="text" name="login"  required/>
-                <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.getLoginServerErrors()}/>
-                {/* <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.loginServerErrors}/> */}
-                <br/>
-                <label htmlFor="email">email: </label>
-                <input value={email} onChange={handleEmailChange} type="email" name="email"  required/>
-                <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.getEmailServerErrors()}/>
-                {/* <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.emailServerErrors}/> */}
-                <br/>
-                <label htmlFor="password">password: </label>
-                <input value={password} onChange={handlePasswordChange} type="password" name="password"  required/>
-                <ErrorsListNew errorInfosList={passwordErrorInfoList} serverErrors={passwordServerErrors}/>
-                <br/>
-                <button disabled={isSubmitFormDisabled} type="submit" value="Login"/>
-                
-                <button onClick={handleReset} type="reset" value="Reset"/>
-            </form>
-        </>
+        <PageStyled>
+            <div className="flex flex-col gap-6 w-full h-screen sm:h-3/5 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
+                <Header1Styled>Sign Up</Header1Styled>
+                <form className="flex flex-col content-between" onSubmit={handleFormSubmit}>
+
+                    <InputFieldStyled type="text" inputVal={login} htmlFor="login" labelText="Login" onChange={(event: React.FormEvent<HTMLInputElement>) => {handleLoginChange(event)}}/>
+                    <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.getLoginServerErrors()}/> 
+                    <br/>
+
+                    <InputFieldStyled type="email" inputVal={email} htmlFor="email" labelText="Email" onChange={(event: React.FormEvent<HTMLInputElement>) => {handleEmailChange(event)}}/>
+                    <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.getEmailServerErrors()}/>
+                    <br/>
+
+                    <InputFieldStyled type="password" inputVal={password} htmlFor="password" labelText="Password" onChange={(event: React.FormEvent<HTMLInputElement>) => {handlePasswordChange(event)}}/>
+                    <ErrorsListNew errorInfosList={passwordErrorInfoList} serverErrors={passwordServerErrors}/>
+                    <br/>
+                    
+                    <div className="flex flex-col gap-2">
+                        <ButtonStyled type="submit" value="Login" text="Login" isDisabled={isSubmitFormDisabled} isPrimary={true}/>
+                        <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
+                    </div>
+
+                </form>
+            </div>
+
+        </PageStyled>
     );
 }
 

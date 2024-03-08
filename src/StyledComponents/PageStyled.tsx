@@ -8,7 +8,7 @@ type PageStyledProps = {
 function PageStyled({children}:PageStyledProps) {
 
     return (
-        <div className="flex min-h-screen max-h-screen max-w-full min-w-full bg-white justify-center items-start">
+        <div className="flex min-h-screen max-h-screen max-w-full min-w-full bg-white justify-center items-start overflow-hidden">
             {children}
         </div>
     )

@@ -15,11 +15,13 @@ function ChooseSpot() {
     }
 
     return (
-        <>
-            <BasketballCourtSVG ifCheckedFunction={ifCheckedFunction} onClickFunction={trainingBoardStore.setCurrentSpot}/>
+        <>  
+            <div className="w-full flex h-4/6 justify-center">
+                <BasketballCourtSVG ifCheckedFunction={ifCheckedFunction} onClickFunction={trainingBoardStore.setCurrentSpot}/>
+            </div>
             <div>
-                <ChooseSpotPreviousStageButton/>
                 <ChooseSpotSubmitButton/>
+                <ChooseSpotPreviousStageButton/>
             </div>
         </>
     )

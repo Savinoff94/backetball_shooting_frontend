@@ -10,7 +10,7 @@ function SubmitedFriendBlock(friendBlockProps: FriendBlockUserInfo) {
 
     const {userConnectionsStore} = useContext(Context);
 
-    const buttonsInfosList = [{action: function(ids:string[]){userConnectionsStore.onThisUserRemoveFriendRequest(ids)}, text: "Remove", color: 'red'}];
+    const buttonsInfosList = [{action: function(ids:string[]){userConnectionsStore.onThisUserRemoveFriendRequest(ids)}, text: "Remove", isPrimary: false}];
 
     return (
         <>

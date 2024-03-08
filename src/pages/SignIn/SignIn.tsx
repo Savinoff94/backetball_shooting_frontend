@@ -7,6 +7,8 @@ import PageStyled from "../../StyledComponents/PageStyled";
 import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
 import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
+import {shouldDisplayErrorInInput} from '../../helpers/common'
+
 
 function SignInPage() : JSX.Element {
 
@@ -43,16 +45,33 @@ function SignInPage() : JSX.Element {
 
     return (
         <PageStyled>
-            <div className="flex flex-col justify-center gap-8 w-full h-screen sm:h-96 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
+            <div className="flex flex-col gap-6 w-full h-screen sm:h-fit sm:pb-5 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
                 <Header1Styled>Sign In</Header1Styled>
                 <form className="flex flex-col content-between h-4/5" onSubmit={handleFormSubmit}>
 
-                    <InputFieldStyled inputVal={login} htmlFor="login" labelText="Login" onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value); store.setLoginServerErrors([])}}/>
-                    <ErrorsListNew errorInfosList={[]} serverErrors={store.getLoginServerErrors()}/>
+                    <InputFieldStyled
+                        inputVal={login}
+                        htmlFor="login"
+                        labelText="Login"onChange={(event: React.FormEvent<HTMLInputElement>) => {setLogin(event.currentTarget.value); store.setLoginServerErrors([])}}
+                        isError={shouldDisplayErrorInInput(login, [], store.getLoginServerErrors())}
+                    />
+                    <ErrorsListNew
+                        errorInfosList={[]}
+                        serverErrors={store.getLoginServerErrors()}
+                    />
                     <br/>
 
-                    <InputFieldStyled type="password" inputVal={password} htmlFor="password" labelText="Password" onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value); store.setPasswordServerErrors([])}}/>
-                    <ErrorsListNew errorInfosList={[]} serverErrors={store.getPasswordServerErrors()}/>
+                    <InputFieldStyled
+                        type="password"
+                        inputVal={password}
+                        htmlFor="password"
+                        labelText="Password"onChange={(event: React.FormEvent<HTMLInputElement>) : void => {setPassword(event.currentTarget.value); store.setPasswordServerErrors([])}}
+                        isError={shouldDisplayErrorInInput(password, [], store.getPasswordServerErrors())}
+                    />
+                    <ErrorsListNew 
+                        errorInfosList={[]} 
+                        serverErrors={store.getPasswordServerErrors()}
+                    />
                     <br/>
 
                     <div className="flex flex-col gap-2">

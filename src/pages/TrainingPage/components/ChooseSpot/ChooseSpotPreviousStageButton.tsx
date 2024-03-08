@@ -21,6 +21,7 @@ function ChooseSpotPreviousStageButton() : JSX.Element {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}
+        isPrimary = {false}
         />
     )
 }

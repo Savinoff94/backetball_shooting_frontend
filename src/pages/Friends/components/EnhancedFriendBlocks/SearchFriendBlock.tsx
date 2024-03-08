@@ -9,7 +9,7 @@ const SearchFriendBlock = (friendBlockProps: FriendBlockUserInfo) => {
 
     const {userConnectionsStore} = useContext(Context);
 
-    const buttonsInfosList = [{action: function(ids:string[]){userConnectionsStore.onThisUserFriendRequest(ids)}, text: "Add", color: 'green'}];
+    const buttonsInfosList = [{action: function(ids:string[]){userConnectionsStore.onThisUserFriendRequest(ids)}, text: "Add", isPrimary:true}];
 
     return (
         <>

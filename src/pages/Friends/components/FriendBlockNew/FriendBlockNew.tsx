@@ -1,33 +1,43 @@
 import {FriendActionButtonInfo} from './types/FriendBlockNewTypes';
 import {FriendBlockUserInfo} from '../../types/friendsTypes';
-
+import BasketballIcon from '../../../../commonComponents/BasketballIcon/BasketballIcon';
+import ButtonStyled from '../../../../StyledComponents/ButtonStyled';
 
 
 type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]} & {isLoading: boolean}
 
-export default function FriendBlock(friendBlockProps: FriendBlockProps): JSX.Element {
+export default function FriendBlock({simpleStats, login, id, buttonsInfosList, isLoading }: FriendBlockProps): JSX.Element {
 
     return (
 
-        <li key={friendBlockProps['id']} id={friendBlockProps['id']}>
-            <a href={'http://localhost:5000/api/charts/:'+friendBlockProps['id']}>
-                <img alt='profile' src={friendBlockProps['imageSrc']}/>
-                <span className='name'> | {friendBlockProps['login']}</span>
-                <span className='freethrows'> | freethrows: {friendBlockProps['simpleStats']['freethrows']}</span>
-                <span className='threePointers'> | threePointers: {friendBlockProps['simpleStats']['threePointers']}</span>
-                <span className='twoPointers'> | twoPointers: {friendBlockProps['simpleStats']['twoPointers']}</span>
+        <li className='flex justify-between border-b border-purple-200 pb-1 pt-1'  key={id} id={id}>
+            <a className='flex justify-evenly items-center w-2/3' href={'http://localhost:5000/api/charts/:'+id}>
+                <div className='flex-col'>
+                    <BasketballIcon/>
+                    {/* <img alt='profile' src={friendBlockProps['imageSrc']}/> */}
+                    <div className='flex font-sofia'>{login}</div>
+                </div>
+                <div className='flex font-sofia'>1pt: {simpleStats['freethrows']}%</div>
+                <div className='flex font-sofia'>2pt: {simpleStats['twoPointers']}%</div>
+                <div className='flex font-sofia'>3pt: {simpleStats['threePointers']}%</div>
             </a>
+            <div className='flex gap-1 flex-col sm:flex-row items-center'>
             {
-                friendBlockProps['buttonsInfosList'].map((buttonInfo: FriendActionButtonInfo): JSX.Element => {
+                buttonsInfosList.map((buttonInfo: FriendActionButtonInfo): JSX.Element => {
 
                     return (
-                    <button disabled={friendBlockProps['isLoading']} key={buttonInfo['text'].split(' ').join('') + friendBlockProps['id']} style={{color:buttonInfo['color']}} onClick={()=>(buttonInfo.action([friendBlockProps['id']]))}> 
-                    {buttonInfo['text']}
-                    </button>
+                    <ButtonStyled
+                        isPrimary={buttonInfo['isPrimary']}
+                        text={buttonInfo['text']}
+                        onClick={()=>(buttonInfo.action([id]))}
+                        type="button"
+                        isDisabled={isLoading}
+                        key={buttonInfo['text'].split(' ').join('') + id}
+                    />
                     )
                 })
             }
+            </div>
         </li>
-
     );
 }

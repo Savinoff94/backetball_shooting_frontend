@@ -5,19 +5,20 @@ import MakesInput from "./components/MakesInput";
 import TriesInput from "./components/TriesInput";
 import ContinueWithNewShooterButton from "./components/ContinueWithNewShooterButton";
 import ContinueWithNewSpotButton from "./components/ContinueWithNewSpotButton";
+import ChangeStageButton from "../commonComponents/ChangeStageButton/ChangeStageButton";
 
 function Shooting() {
 
-    const {trainingBoardStore} = useContext(Context);
+    const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
 
     trainingBoardStore.resetCurrentMakes();
     trainingBoardStore.resetCurrentTries();
 
     return (
         <>
-            <div>
+            <div className="flex">
                 <MakesInput/>
-                <span>/</span>
+                <span> / </span>
                 <TriesInput/>
             </div>
             <div>
@@ -27,6 +28,12 @@ function Shooting() {
             <div>
                 <div>
                     <ContinueWithNewShooterButton/>
+                    <ChangeStageButton
+                    handleClick = {() => {multiStageFormsStore.submitTrainingStage(true, 'chooseSpot');}}
+                    isDisabled = {false}
+                    buttonText = {'Back'}
+                    isPrimary = {false}
+                    />
                     <ContinueWithNewSpotButton/>
                 </div>
                 <div>

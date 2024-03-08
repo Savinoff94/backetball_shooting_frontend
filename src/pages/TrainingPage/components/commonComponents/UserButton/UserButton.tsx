@@ -1,4 +1,5 @@
-import {UserButtonProps} from '../../../../../types/friendsTypes'
+import {UserButtonProps} from '../../../../../types/friendsTypes';
+import BasketballIcon from '../../../../../commonComponents/BasketballIcon/BasketballIcon';
 
 
 
@@ -7,10 +8,11 @@ export default function UserButton({userInfo, isClicked, handlerOnClick}: UserBu
     const borderColor = isClicked ? 'green' : 'red';
     
     return (
-        <button  style={{borderColor}} onClick={() => {handlerOnClick()}}>
+        <button className='border rounded-xl p-2'  style={{borderColor}} onClick={() => {handlerOnClick()}}>
             <figure>
-                <img src={userInfo.imageSrc} alt="userPic"/>
-                <figcaption>{userInfo.login}</figcaption>
+                {/* <img src={userInfo.imageSrc} alt="userPic"/> */}
+                <BasketballIcon/>
+                <figcaption className='flex font-sofia'>{userInfo.login}</figcaption>
             </figure>
         </button>
     )

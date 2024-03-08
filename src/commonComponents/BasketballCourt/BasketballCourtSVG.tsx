@@ -11,6 +11,7 @@ function BasketballCourtSVG({ifCheckedFunction, onClickFunction}: BasketballCour
 
   return (
     <svg
+      className="w-5/6 flex  content-center justify-evenly items-center sm:w-1/2 sm:h-fit"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       id="svg262"

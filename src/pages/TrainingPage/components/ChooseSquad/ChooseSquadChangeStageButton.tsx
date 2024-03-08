@@ -23,6 +23,7 @@ function ChooseSquadChangeStageButton() : JSX.Element {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}
+        isPrimary = {true}
         />
     )
 }

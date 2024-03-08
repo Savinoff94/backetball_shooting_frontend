@@ -16,7 +16,7 @@ type UserBasicBasketballStats = {
 type FriendActionButtonInfo = {
     action: (ids:string[]) => void,
     text: string,
-    color: string,
+    isPrimary: boolean
 }
 
 export {

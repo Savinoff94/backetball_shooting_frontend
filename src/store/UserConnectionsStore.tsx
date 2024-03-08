@@ -31,7 +31,8 @@ export default class UserConnectionsStore {
     friends = {} as UsersInfoById;
     pendingOtherUsersFriendRequests = {} as UsersInfoById;
     pendingThisUserFriendRequests = {} as UsersInfoById;
-    isLoading = false
+    isLoading = false;
+    searchStr: string = ''; 
     
     setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
     getIsLoading = () => this.isLoading
@@ -201,7 +202,11 @@ export default class UserConnectionsStore {
         }
     }
 
+    getSearchStr = () => this.searchStr;
+
     onSearch = async (userInput: string) => {
+
+        this.searchStr = userInput;
 
         userInput = userInput.toLowerCase();
     

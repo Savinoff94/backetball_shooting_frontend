@@ -13,7 +13,7 @@ type ChooseUserType = {
 function ChooseUsersTemplate({usersInfos, UserButtonComponentType, usersIdsToShow, usersListType} :  ChooseUserType) : JSX.Element  {
     
     return (
-        <div>
+        <div className='flex justify-center m-2 gap-2 w-fit sm:w-3/6'>
         {usersIdsToShow.map((id:string) => 
             
             {

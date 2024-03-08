@@ -9,9 +9,9 @@ type ControlledScoresInputProps = {
 function ControlledScoresInput({text, inputControl} : ControlledScoresInputProps) {
 
     return (
-        <div>
+        <div className="flex">
             <span>{text}</span>
-            <input readOnly type="number" value={inputControl()} />
+            <input className="w-16" readOnly type="number" value={inputControl()} />
         </div>
     )
 }

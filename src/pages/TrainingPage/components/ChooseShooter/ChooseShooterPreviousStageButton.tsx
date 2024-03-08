@@ -21,6 +21,7 @@ function ChooseShooterPreviousStageButton() : JSX.Element {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}
+        isPrimary = {false}
         />
     )
 }

@@ -11,8 +11,8 @@ function PendingOtherUserFriendRequest(friendBlockProps: FriendBlockUserInfo) {
     const {userConnectionsStore} = useContext(Context);
 
     const buttonsInfosList = [
-        {action: function(ids:string[]){userConnectionsStore.onThisUserApproveFriendRequest(ids)}, text: "Approve", color: 'green'},
-        {action: function(ids:string[]){userConnectionsStore.onThisUserDisapproveFriendRequest(ids)}, text: "Disapprove", color: 'red'}
+        {action: function(ids:string[]){userConnectionsStore.onThisUserApproveFriendRequest(ids)}, text: "Approve", isPrimary: true},
+        {action: function(ids:string[]){userConnectionsStore.onThisUserDisapproveFriendRequest(ids)}, text: "Disapprove", isPrimary: false}
     ];
 
     return (

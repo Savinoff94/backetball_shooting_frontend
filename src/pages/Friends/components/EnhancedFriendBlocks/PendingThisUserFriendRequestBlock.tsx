@@ -10,7 +10,7 @@ const PendingThisUserFriendRequestBlock = (friendBlockProps: FriendBlockUserInfo
 
     const {userConnectionsStore} = useContext(Context);
 
-    const buttonsInfosList = [{action: function(ids: string[]){userConnectionsStore.onThisUserCancelFriendRequest(ids)}, text: "Cancel", color: 'red'}];
+    const buttonsInfosList = [{action: function(ids: string[]){userConnectionsStore.onThisUserCancelFriendRequest(ids)}, text: "Cancel", isPrimary: false}];
 
     return (
         <>

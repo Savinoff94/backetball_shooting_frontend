@@ -19,6 +19,7 @@ function ChooseSpotSubmitButton() : JSX.Element {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}
+        isPrimary = {true}
         />
     )
 }

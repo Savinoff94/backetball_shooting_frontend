@@ -9,6 +9,8 @@ import PageStyled from "../../StyledComponents/PageStyled";
 import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
 import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
+import {shouldDisplayErrorInInput} from '../../helpers/common'
+
 
 
 function SignUpPage() : JSX.Element {
@@ -99,23 +101,54 @@ function SignUpPage() : JSX.Element {
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
     })
-    // added value to input, should check
+    
+    
     return (
         <PageStyled>
             <div className="flex flex-col gap-6 w-full h-screen sm:h-3/5 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
                 <Header1Styled>Sign Up</Header1Styled>
                 <form className="flex flex-col content-between" onSubmit={handleFormSubmit}>
 
-                    <InputFieldStyled type="text" inputVal={login} htmlFor="login" labelText="Login" onChange={(event: React.FormEvent<HTMLInputElement>) => {handleLoginChange(event)}}/>
-                    <ErrorsListNew errorInfosList={loginErrorInfoList} serverErrors={store.getLoginServerErrors()}/> 
+                    <InputFieldStyled
+                        type="text"
+                        inputVal={login}
+                        htmlFor="login"
+                        labelText="Login"
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {handleLoginChange(event)}}
+                        isError={shouldDisplayErrorInInput(login, loginErrorInfoList, store.getLoginServerErrors())}
+                    />
+                    <ErrorsListNew
+                        errorInfosList={loginErrorInfoList}
+                        serverErrors={store.getLoginServerErrors()}
+                    /> 
                     <br/>
 
-                    <InputFieldStyled type="email" inputVal={email} htmlFor="email" labelText="Email" onChange={(event: React.FormEvent<HTMLInputElement>) => {handleEmailChange(event)}}/>
-                    <ErrorsListNew errorInfosList={emailErrorInfoList} serverErrors={store.getEmailServerErrors()}/>
+                    <InputFieldStyled
+                        type="email"
+                        inputVal={email}
+                        htmlFor="email"
+                        labelText="Email"
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {handleEmailChange(event)}}
+                        isError={shouldDisplayErrorInInput(email, emailErrorInfoList, store.getEmailServerErrors())}
+                    />
+                    <ErrorsListNew 
+                        errorInfosList={emailErrorInfoList}
+                        serverErrors={store.getEmailServerErrors()}
+                    />
                     <br/>
 
-                    <InputFieldStyled type="password" inputVal={password} htmlFor="password" labelText="Password" onChange={(event: React.FormEvent<HTMLInputElement>) => {handlePasswordChange(event)}}/>
-                    <ErrorsListNew errorInfosList={passwordErrorInfoList} serverErrors={passwordServerErrors}/>
+                    <InputFieldStyled 
+                        type="password"
+                        inputVal={password}
+                        htmlFor="password"
+                        labelText="Password"
+                        onChange={(event: React.FormEvent<HTMLInputElement>) => {handlePasswordChange(event)}}
+                        isError={shouldDisplayErrorInInput(password, passwordErrorInfoList, store.getPasswordServerErrors())}
+                    />
+                    <ErrorsListNew 
+                        errorInfosList={passwordErrorInfoList}
+                        serverErrors={store.getPasswordServerErrors()}
+                    />
                     <br/>
                     
                     <div className="flex flex-col gap-2">
@@ -130,5 +163,4 @@ function SignUpPage() : JSX.Element {
     );
 }
 
-// export default SignUpPage;
 export default observer(SignUpPage);

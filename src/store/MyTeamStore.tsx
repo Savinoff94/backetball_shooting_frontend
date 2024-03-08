@@ -1,5 +1,5 @@
 import {UsersInfoById} from '../pages/Friends/types/friendsTypes';
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable, toJS, runInAction } from "mobx";
 import UserConnectionsService from "../services/UserConnectionsService";
 import {MyTeamIdsListType} from './types'
 
@@ -64,8 +64,12 @@ export default class MyTeamStore {
         try {
 
             const myTeamUsersRes = await UserConnectionsService.getMyTeamUsers();
+
+            runInAction(() => {
+
+                this.myTeamUsers = structuredClone(myTeamUsersRes.data);
+            })
             
-            this.myTeamUsers = structuredClone(myTeamUsersRes.data);
 
         } catch (error) {
         

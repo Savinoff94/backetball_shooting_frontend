@@ -4,14 +4,15 @@ import {UserIdLoginMapType, ShootingSetIdRecordResponseType} from '../store/type
 
 type ShootingSetsResponse = {
     sets: ShootingSetIdRecordResponseType,
-    userIdLoginMap: UserIdLoginMapType
+    userIdLoginMap: UserIdLoginMapType,
+    pages: number
 }
 
 export default class ManageTrainingDataService {
 
-    static async getCurrentUsersShootingSets(): Promise<AxiosResponse<ShootingSetsResponse>> {
+    static async getCurrentUsersShootingSets(page: number): Promise<AxiosResponse<ShootingSetsResponse>> {
 
-        return $api.post('/getCurrentUserShootingSets');
+        return $api.post('/getCurrentUserShootingSets', {page});
     }
 
     static async removeSet(setId: string): Promise<AxiosResponse> {

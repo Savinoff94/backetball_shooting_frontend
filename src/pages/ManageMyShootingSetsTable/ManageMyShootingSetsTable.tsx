@@ -1,15 +1,18 @@
 import { Context } from '../../index';
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {observer} from 'mobx-react-lite';
 import PageStyled from '../../StyledComponents/PageStyled';
+import ButtonStyled from '../../StyledComponents/ButtonStyled';
 
 
 
 function ManageMyShootingSetsTable() : JSX.Element {
 
+    const [currentPage, setCurrentPage] = useState(0)
+
     const {manageTrainingDataStore, store} = useContext(Context);
 
-    const initialized = useRef(false)
+    const initialized = useRef(false);
     
     useEffect(() => {
 
@@ -17,7 +20,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
 
             initialized.current = true
         
-            manageTrainingDataStore.fetchUsersShootingSets(store.getUserId());
+            manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), currentPage);
         }
 
     }, []);
@@ -27,7 +30,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
 
     return (
         <PageStyled>
-            <div>
+            <div className='flex-col gap-5'>
                 <table className="m-1 border-collapse border border-purple-200">
                     <tr>
                         <th className='border-purple-200 border font-sofia p-1'>Shooter</th>
@@ -60,6 +63,35 @@ function ManageMyShootingSetsTable() : JSX.Element {
                     }
                     {setsIds.length === 0 && <tr>No data</tr>}
                 </table>
+                <div>
+                    <ButtonStyled
+                        text='Next page'
+                        isPrimary={true}
+                        isDisabled={!manageTrainingDataStore.isNextPageAvilable(currentPage)}
+                        onClick={() => {
+
+                            if(manageTrainingDataStore.isNextPageAvilable(currentPage)) {
+                                const page = currentPage + 1
+                                setCurrentPage(page);
+                                manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
+                            }
+                        }}
+                    />
+                    
+                    <ButtonStyled
+                        text='Previous page'
+                        isPrimary={true}
+                        isDisabled={!manageTrainingDataStore.isPreviousPageAvilable(currentPage)}
+                        onClick={() => {
+                            
+                            if(manageTrainingDataStore.isPreviousPageAvilable(currentPage)) {
+                                const page = currentPage - 1
+                                setCurrentPage(page)
+                                manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
+                            }
+                        }}
+                    />
+                </div>
             </div>
         </PageStyled>
     )

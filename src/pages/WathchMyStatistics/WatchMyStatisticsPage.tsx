@@ -7,11 +7,18 @@ import ChooseSpotToRepresent from "./components/ChooseSpotToRepresent/ChooseSpot
 import ChooseTimeToRepresent from "./components/ChooseTimeToRepresent/ChooseTimeToRepresent";
 import ChooseUsersToRepresentStatistics from "./components/ChooseUsersToRepresentStatistics/ChooseUsersToRepresentStatistics";
 import ChartsPage from "./components/ChartsPage/ChartsPage";
+import { useEffect } from "react";
 
 
 function WatchMyStatisticsPage() {
-
+    
     const {multiStageFormsStore} = useContext(Context);
+    
+    useEffect(() => {
+        
+        multiStageFormsStore.setCurrentChartStage('selectUsersState')
+    }, [])
+
 
     const getConditionalTrainingStep = (page: MyStatisticsPageStageType) => {
         

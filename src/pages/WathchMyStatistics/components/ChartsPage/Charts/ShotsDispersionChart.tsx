@@ -59,7 +59,9 @@ function ShotsDispersionChart() {
             colors: {
             forceOverride: true
             }
-        }
+        },
+        responsive:true
+
     }}/>
     <div>
         {userIds.map((userId,index) => {

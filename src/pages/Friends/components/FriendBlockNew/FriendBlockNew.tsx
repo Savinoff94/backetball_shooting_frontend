@@ -4,13 +4,13 @@ import BasketballIcon from '../../../../commonComponents/BasketballIcon/Basketba
 import ButtonStyled from '../../../../StyledComponents/ButtonStyled';
 
 
-type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]} & {isLoading: boolean}
+type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]} & {isLoading: boolean, isAlone:boolean}
 
-export default function FriendBlock({simpleStats, login, id, buttonsInfosList, isLoading }: FriendBlockProps): JSX.Element {
+export default function FriendBlock({simpleStats, login, id, buttonsInfosList, isLoading, isAlone }: FriendBlockProps): JSX.Element {
 
     return (
 
-        <li className='flex justify-between border-b border-purple-200 pb-1 pt-1'  key={id} id={id}>
+        <li data-isalone={isAlone} className='flex justify-between pb-1 pt-1 data-[isalone=false]:border-b data-[isalone=false]:border-purple-200'  key={id} id={id}>
             <a className='flex justify-evenly items-center w-2/3' href={'http://localhost:5000/api/charts/:'+id}>
                 <div className='flex-col'>
                     <BasketballIcon/>

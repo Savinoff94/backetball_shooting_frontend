@@ -21,7 +21,8 @@ function ChartsPageToBegginingButton() : JSX.Element {
         <ChangeStageButton
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
-        buttonText = {'Submit'}
+        buttonText = {'To the begining'}
+        isPrimary = {false}
         />
     )
 }

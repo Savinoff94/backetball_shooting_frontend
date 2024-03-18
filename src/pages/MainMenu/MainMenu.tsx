@@ -31,7 +31,7 @@ export default function MainMenu() : JSX.Element {
                 <StyledLink text="Friends" to='/friends'/>
                 <StyledLink text="Training" to="/trainingPage"/>
                 <StyledLink text="My statistics" to="/myStatisics"/>
-                <button className="flex items-center justify-center h-24 sm:h-16 w-5/6 sm:w-3/5 p-3 text-white border-2 bg-gray-800 border-gray-1000 rounded-md opacity-25 " onClick={logOutClickHandler}>Log out</button>
+                <button className="flex items-center font-sofia justify-center h-24 sm:h-16 w-5/6 sm:w-3/5 p-3 text-white border-2 bg-gray-800 border-gray-1000 rounded-md opacity-25 mb-4 sm:mb-0 " onClick={logOutClickHandler}>Log out</button>
             </MenuWrapper>
         </PageStyled>
     )

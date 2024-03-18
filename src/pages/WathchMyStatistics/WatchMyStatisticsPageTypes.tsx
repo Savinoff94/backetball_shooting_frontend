@@ -13,11 +13,11 @@ type ChartRepresentedTimeType = typeof chartRepresentedTimesArray[number];
 
 const chartTypesArray = ['shotsDispersionByCategory', 'shotsDispersionBySpot', 'shotsPersentageChart', 'shotsAmountChart', 'shotsAmountAndPercentageChart'] as const
 const chartsNamesDict = {
-    shotsDispersionByCategory: 'shotsDispersionByCategory',
-    shotsDispersionBySpot: 'shotsDispersionBySpot',
-    shotsPersentageChart: 'shotsPersentageChart',
-    shotsAmountChart: 'shotsAmountChart',
-    shotsAmountAndPercentageChart: 'shotsAmountAndPercentageChart',
+    shotsDispersionByCategory: 'Shots dispersion by category',
+    shotsDispersionBySpot: 'Shots dispersion by spot',
+    shotsPersentageChart: 'Shots persentage chart',
+    shotsAmountChart: 'Shots amount chart',
+    shotsAmountAndPercentageChart: 'Shots amount and percentage chart',
 }
 
 type ChartRepresentationType = typeof chartTypesArray[number];

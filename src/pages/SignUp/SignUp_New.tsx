@@ -10,6 +10,7 @@ import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
 import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import {shouldDisplayErrorInInput} from '../../helpers/common'
+import SignFormWrapper from '../../StyledComponents/SignFormWrapper';
 
 
 
@@ -105,10 +106,9 @@ function SignUpPage() : JSX.Element {
     
     return (
         <PageStyled>
-            <div className="flex flex-col gap-6 w-full h-screen sm:h-3/5 sm:w-96 sm:justify-start sm:rounded sm:shadow-lg">
+            <SignFormWrapper>
                 <Header1Styled>Sign Up</Header1Styled>
                 <form className="flex flex-col content-between" onSubmit={handleFormSubmit}>
-
                     <InputFieldStyled
                         type="text"
                         inputVal={login}
@@ -155,10 +155,8 @@ function SignUpPage() : JSX.Element {
                         <ButtonStyled type="submit" value="Login" text="Login" isDisabled={isSubmitFormDisabled} isPrimary={true}/>
                         <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
                     </div>
-
                 </form>
-            </div>
-
+            </SignFormWrapper>
         </PageStyled>
     );
 }

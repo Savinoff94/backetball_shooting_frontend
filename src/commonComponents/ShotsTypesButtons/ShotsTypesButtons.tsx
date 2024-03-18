@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import {shotsTypesArray, spotCategoryKeyType} from '../../pages/WathchMyStatistics/WatchMyStatisticsPageTypes';
+import LiButton from "../LiButton/Libutton";
 
 type ShotsTypesButtonsProps = {
 
@@ -11,20 +12,19 @@ type ShotsTypesButtonsProps = {
 function ShotsTypesButtons({onButtonClickHandle, isClickedChecker}: ShotsTypesButtonsProps) {
 
     return (
-        <div>
+        <ul className="flex gap-1 flex-wrap justify-center">
             {
                 shotsTypesArray.map((shotType) => {
 
                     const isClicked = isClickedChecker(shotType);
 
-                    const color = isClicked ? 'green' : 'grey'
                     return (
 
-                        <button style={{color}} onClick={() => onButtonClickHandle(shotType)}>{shotType}</button>
+                        <LiButton isClicked={isClicked} handleClick={() => onButtonClickHandle(shotType)}>{shotType}</LiButton>
                     )
                 })
             }
-        </div>
+        </ul>
     )
 }
 

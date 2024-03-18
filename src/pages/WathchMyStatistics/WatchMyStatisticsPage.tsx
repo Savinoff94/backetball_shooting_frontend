@@ -8,11 +8,13 @@ import ChooseTimeToRepresent from "./components/ChooseTimeToRepresent/ChooseTime
 import ChooseUsersToRepresentStatistics from "./components/ChooseUsersToRepresentStatistics/ChooseUsersToRepresentStatistics";
 import ChartsPage from "./components/ChartsPage/ChartsPage";
 import { useEffect } from "react";
+import PageStyled from "../../StyledComponents/PageStyled";
+import MultiStepPageWrapper from "../../StyledComponents/MultiStepPageWrapper";
 
 
 function WatchMyStatisticsPage() {
     
-    const {multiStageFormsStore} = useContext(Context);
+    const {multiStageFormsStore, watchMyStatiscicsStore} = useContext(Context);
     
     useEffect(() => {
         
@@ -36,10 +38,15 @@ function WatchMyStatisticsPage() {
         }
     }
 
+    const isWideScreenNeeded = ((watchMyStatiscicsStore.getChartType() !== 'shotsDispersionByCategory') && (watchMyStatiscicsStore.getChartType() !== 'shotsDispersionBySpot')) && (multiStageFormsStore.getCurrentChartStage() === 'chartRepresentationState')
+    const isFlexRowNeeded = multiStageFormsStore.getCurrentChartStage() === 'selectSpotTypeState';
+
     return (
-        <>
-        {getConditionalTrainingStep(multiStageFormsStore.getCurrentChartStage())}
-        </>
+        <PageStyled>
+            <MultiStepPageWrapper isWideScreenNeeded={isWideScreenNeeded} isFlexRowNeeded={isFlexRowNeeded}>
+                {getConditionalTrainingStep(multiStageFormsStore.getCurrentChartStage())}
+            </MultiStepPageWrapper>
+        </PageStyled>
     )
 
 }

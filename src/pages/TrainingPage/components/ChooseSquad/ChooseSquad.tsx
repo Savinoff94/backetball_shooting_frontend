@@ -5,8 +5,8 @@ import {UsersInfoById} from '../../../Friends/types/friendsTypes';
 import {observer} from 'mobx-react-lite';
 import ChooseUsersTemplate from "../../../../commonComponents/ChooseUsersTemplate/ChooseUsersTemplate";
 import ChooseSquadUserButton from '../ChooseSquad/ChooseSquadUserButton';
-
-
+import Header1Styled from "../../../../StyledComponents/Header1Styled";
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 
 
 function ChooseSquad() : JSX.Element  {
@@ -28,13 +28,16 @@ function ChooseSquad() : JSX.Element  {
     
     return (
         <>
+        <Header1Styled>Choose your squad</Header1Styled>
         <ChooseUsersTemplate
         usersListType={"trainingSquadIds"}
         usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
         usersInfos={possibleTrainingSquadUsers}
         UserButtonComponentType={ChooseSquadUserButton}
         />
-        <ChooseSquadChangeStageButton/>
+        <FlexWrapper isColumn={true}>
+            <ChooseSquadChangeStageButton/>
+        </FlexWrapper>
         </>
     )
 }

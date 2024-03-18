@@ -5,6 +5,8 @@ import LiButton from '../../../../commonComponents/LiButton/Libutton';
 import {ChartRepresentedTimeType, chartRepresentedTimesArray, chartRepresentedTimesNamesDict } from '../../WatchMyStatisticsPageTypes';
 import ChooseTimeToRepresentNextStageButton from './ChooseTimeToRepresentNextStageButton';
 import ChooseTimeToRepresentPreviousStageButton from './ChooseTimeToRepresentPreviousStageButton';
+import Header1Styled from '../../../../StyledComponents/Header1Styled';
+import FlexWrapper from '../../../../StyledComponents/FlexWrapper';
 
 function ChooseTimeToRepresent() {
 
@@ -18,21 +20,24 @@ function ChooseTimeToRepresent() {
 
     return (
         <>
-        <ul>
-            {chartRepresentedTimesArray.map((timeKey) => {
+            <Header1Styled>Choose represented time</Header1Styled>
+            <ul className='flex flex-col gap-2 pb-2'>
+                {chartRepresentedTimesArray.map((timeKey) => {
 
-                return (
-                    <LiButton 
-                    handleClick={() => handleOnClick(timeKey)}
-                    isClicked={watchMyStatiscicsStore.isSelectedTimeType(timeKey)}>
-                        {chartRepresentedTimesNamesDict[timeKey]}
-                    </LiButton>
+                    return (
+                        <LiButton 
+                        handleClick={() => handleOnClick(timeKey)}
+                        isClicked={watchMyStatiscicsStore.isSelectedTimeType(timeKey)}>
+                            {chartRepresentedTimesNamesDict[timeKey]}
+                        </LiButton>
 
-                )
-            })}
-        </ul>
-        <ChooseTimeToRepresentNextStageButton/>
-        <ChooseTimeToRepresentPreviousStageButton/>
+                    )
+                })}
+            </ul>
+            <FlexWrapper isColumn={true}>
+                <ChooseTimeToRepresentNextStageButton/>
+                <ChooseTimeToRepresentPreviousStageButton/>
+            </FlexWrapper>
         </>
     )
 }

@@ -4,6 +4,8 @@ import ChooseSpotSubmitButton from "./ChooseSpotSubmitButton";
 import { useContext } from "react";
 import { Context } from '../../../../index';
 import BasketballCourtSVG from '../../../../commonComponents/BasketballCourt/BasketballCourtSVG'
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
+import Header1Styled from "../../../../StyledComponents/Header1Styled";
 
 function ChooseSpot() {
 
@@ -16,13 +18,14 @@ function ChooseSpot() {
 
     return (
         <>  
+            <Header1Styled>Choose spot</Header1Styled>
             <div className="w-full flex h-4/6 justify-center">
                 <BasketballCourtSVG ifCheckedFunction={ifCheckedFunction} onClickFunction={trainingBoardStore.setCurrentSpot}/>
             </div>
-            <div>
+            <FlexWrapper isColumn={true}>
                 <ChooseSpotSubmitButton/>
                 <ChooseSpotPreviousStageButton/>
-            </div>
+            </FlexWrapper>
         </>
     )
 

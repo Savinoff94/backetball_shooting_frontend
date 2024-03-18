@@ -6,6 +6,7 @@ import HumansComparisonChart from "./Charts/HumansComparisonChart";
 import SpotsTrackingChart from "./Charts/SpotsTrackingChart";
 import ChartsPagePreviousStageButton from "./ChartsPagePreviousStageButton";
 import ChartsPageToBeginningButton from "./ChartsPageToBeginningButton";
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 
 import {
     ChartRepresentationType,
@@ -46,8 +47,10 @@ function ChartsPage() {
     return (
     <>
     {getChart(watchMyStatiscicsStore.getChartType())}
-    <ChartsPagePreviousStageButton/>
-    <ChartsPageToBeginningButton/>
+    <FlexWrapper isColumn={true}>
+        <ChartsPagePreviousStageButton/>
+        <ChartsPageToBeginningButton/>
+    </FlexWrapper>
     </>
     )
 

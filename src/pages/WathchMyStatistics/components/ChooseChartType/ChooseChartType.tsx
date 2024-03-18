@@ -3,10 +3,10 @@ import {ChartRepresentationType, chartTypesArray, chartsNamesDict } from '../../
 import {Context} from '../../../../index'
 import { useContext } from "react";
 import LiButton from '../../../../commonComponents/LiButton/Libutton';
-import {ChartRepresentedTimeType} from '../../WatchMyStatisticsPageTypes'
 import ChooseChartTypeNextStageButton from './ChooseChartTypeNextStageButton';
 import ChooseChartTypePreviousStageButton from './ChooseChartTypePreviousStageButton';
-
+import Header1Styled from '../../../../StyledComponents/Header1Styled';
+import FlexWrapper from '../../../../StyledComponents/FlexWrapper';
 
 function ChooseChartType() {
 
@@ -20,7 +20,8 @@ function ChooseChartType() {
 
     return (
         <>
-        <ul>
+        <Header1Styled>Choose chart type</Header1Styled>
+        <ul className='flex flex-col gap-2 pb-2'>
             {chartTypesArray.map((chartType) => {
 
                 if(chartType === 'shotsAmountAndPercentageChart' && watchMyStatiscicsStore.getRepresentedUsersIds().length > 1) {
@@ -38,8 +39,10 @@ function ChooseChartType() {
                 )
             })}
         </ul>
-        <ChooseChartTypeNextStageButton/>
-        <ChooseChartTypePreviousStageButton/>
+        <FlexWrapper isColumn={true}>
+            <ChooseChartTypeNextStageButton/>
+            <ChooseChartTypePreviousStageButton/>
+        </FlexWrapper>
         </>
     )
     

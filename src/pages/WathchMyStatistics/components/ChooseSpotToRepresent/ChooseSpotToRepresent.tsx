@@ -5,6 +5,7 @@ import ChooseSpotToRepresentNextStageButton from "./ChooseSpotToRepresentNextSta
 import ChooseSpotToRepresentPreviousStageButton from "./ChooseSpotToRepresentPreviousStageButton";
 import ShotsTypesButtons from '../../../../commonComponents/ShotsTypesButtons/ShotsTypesButtons';
 import BasketballCourtSVG from "../../../../commonComponents/BasketballCourt/BasketballCourtSVG";
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 
 function ChooseSpotToRepresent() {
 
@@ -18,9 +19,14 @@ function ChooseSpotToRepresent() {
 return (
     <>
     <ShotsTypesButtons onButtonClickHandle={watchMyStatiscicsStore.setSpotKey} isClickedChecker={watchMyStatiscicsStore.isSpotKey}/>
-    <BasketballCourtSVG ifCheckedFunction={ifCheckedForSpotFunction} onClickFunction={watchMyStatiscicsStore.setSpotKey}/>
-    <ChooseSpotToRepresentNextStageButton/>
-    <ChooseSpotToRepresentPreviousStageButton/>
+    <div className="flex justify-center">
+        <BasketballCourtSVG ifCheckedFunction={ifCheckedForSpotFunction} onClickFunction={watchMyStatiscicsStore.setSpotKey}/>
+    </div>
+    
+    <FlexWrapper isColumn={true}>
+        <ChooseSpotToRepresentNextStageButton/>
+        <ChooseSpotToRepresentPreviousStageButton/>
+    </FlexWrapper>
     </>
 )
 

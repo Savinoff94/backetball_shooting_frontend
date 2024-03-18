@@ -5,6 +5,8 @@ import {UsersInfoById} from '../../../Friends/types/friendsTypes';
 import ChooseUsersTemplate from '../../../../commonComponents/ChooseUsersTemplate/ChooseUsersTemplate';
 import ChooseUsersToRepresentUserButton from './ChooseUsersToRepresentUserButton';
 import ChooseUsersToRepresentChangeStageButton from './ChooseUsersToRepresentChangeStageButton';
+import Header1Styled from '../../../../StyledComponents/Header1Styled';
+import FlexWrapper from '../../../../StyledComponents/FlexWrapper';
 
 
 function ChooseUsersToRepresentStatistics() {
@@ -26,13 +28,16 @@ function ChooseUsersToRepresentStatistics() {
 
     return (
         <>
+        <Header1Styled>Select users</Header1Styled>
         <ChooseUsersTemplate
         usersListType={"representInChartUsersIds"}
         usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
         usersInfos={possibleTrainingSquadUsers}
         UserButtonComponentType={ChooseUsersToRepresentUserButton}
         />
-        <ChooseUsersToRepresentChangeStageButton/>
+        <FlexWrapper isColumn={true}>
+            <ChooseUsersToRepresentChangeStageButton/>
+        </FlexWrapper>
         </>
     )
 

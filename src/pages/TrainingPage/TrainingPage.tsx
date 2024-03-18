@@ -7,6 +7,7 @@ import ChooseShooter from "./components/ChooseShooter/ChooseShooter";
 import ChooseSpot from "./components/ChooseSpot/ChooseSpot";
 import Shooting from "./components/Shooting/Shooting";
 import PageStyled from "../../StyledComponents/PageStyled";
+import MultiStepPageWrapper from "../../StyledComponents/MultiStepPageWrapper";
 
 
 
@@ -36,9 +37,9 @@ function TrainingPage() {
 
     return (
         <PageStyled>
-            <div className='flex flex-col w-full h-screen sm:h-fit sm:pb-5 sm:w-2/3 items-center'>
-                {getConditionalTrainingStep(multiStageFormsStore.getCurrentTrainingStage())}
-            </div>
+            <MultiStepPageWrapper>
+                {getConditionalTrainingStep(multiStageFormsStore.getCurrentTrainingStage())}          
+            </MultiStepPageWrapper>
         </PageStyled>
     )
 }

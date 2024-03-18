@@ -20,6 +20,7 @@ function ChooseSpotToRepresentPreviousStageButton() {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}
+        isPrimary = {false}
         />
     )
 }

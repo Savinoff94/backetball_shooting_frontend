@@ -20,6 +20,7 @@ function ChooseChartTypePreviousStageButton() {
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}
+        isPrimary = {false}
         />
     )
 }

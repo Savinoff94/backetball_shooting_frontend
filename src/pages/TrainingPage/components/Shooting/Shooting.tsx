@@ -6,6 +6,7 @@ import TriesInput from "./components/TriesInput";
 import ContinueWithNewShooterButton from "./components/ContinueWithNewShooterButton";
 import ContinueWithNewSpotButton from "./components/ContinueWithNewSpotButton";
 import ChangeStageButton from "../commonComponents/ChangeStageButton/ChangeStageButton";
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 
 function Shooting() {
 
@@ -16,17 +17,16 @@ function Shooting() {
 
     return (
         <>
-            <div className="flex">
+            <FlexWrapper>
                 <MakesInput/>
-                <span> / </span>
                 <TriesInput/>
+            </FlexWrapper>
+            <div className="m-4 flex gap-4 mt-8 mb-8">
+                <button className="bg-green-800 rounded-full text-white font-sofia w-1/2 h-16" onClick={() => trainingBoardStore.shotMade()}>Make</button>
+                <button className="bg-orange-600 rounded-full text-white font-sofia w-1/2 h-16" onClick={() => trainingBoardStore.shotMissed()}>Miss</button>
             </div>
             <div>
-                <button onClick={() => trainingBoardStore.shotMade()}>Make</button>
-                <button onClick={() => trainingBoardStore.shotMissed()}>Miss</button>
-            </div>
-            <div>
-                <div>
+                <FlexWrapper isColumn={true}>
                     <ContinueWithNewShooterButton/>
                     <ChangeStageButton
                     handleClick = {() => {multiStageFormsStore.submitTrainingStage(true, 'chooseSpot');}}
@@ -35,10 +35,7 @@ function Shooting() {
                     isPrimary = {false}
                     />
                     <ContinueWithNewSpotButton/>
-                </div>
-                <div>
-
-                </div>
+                </FlexWrapper>
             </div>
         </>
     )

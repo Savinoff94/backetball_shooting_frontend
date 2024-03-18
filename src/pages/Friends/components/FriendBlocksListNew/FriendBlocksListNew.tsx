@@ -9,10 +9,6 @@ type UsersListProps = {
 
 function UsersList({children, borderColor, listHeader = ''}: UsersListProps) {
 
-    const ulStyle = {
-        borderColor:borderColor,
-    }
-
     if(!React.Children.count(children)) {
 
         return null
@@ -21,7 +17,8 @@ function UsersList({children, borderColor, listHeader = ''}: UsersListProps) {
     return (
         <div>
             {listHeader && <h3 className="ml-4 mr-4 font-sofia flex justify-start items-center">{listHeader}:</h3>}
-            <ul className="border-solid rounded-lg border-2 p-2 ml-4 mr-4" style={ulStyle}>
+
+            <ul data-bordercolor={borderColor} className={`border-solid rounded-lg border p-2 ml-4 mr-4 bg-white ${borderColor === 'blue' ? 'border-blue-200' : borderColor === 'yellow' ? 'border-yellow-200' : borderColor === 'gray' ? 'border-gray-200' : borderColor === 'green' ? 'border-green-200' : ''}`}>
                 {
                     children
                 }

@@ -1,9 +1,11 @@
 
+import { type } from 'os';
 import {UserBasicInfo, UserBasicBasketballStats} from '../components/FriendBlockNew/types/FriendBlockNewTypes';
 
 
 type FriendBlockUserInfo = UserBasicInfo & {simpleStats: UserBasicBasketballStats};
 
+type SpecificFriendBlockProps = FriendBlockUserInfo & {isAlone: boolean}
 
 
 type UsersInfoById = {
@@ -28,4 +30,5 @@ export {
     type FriendBlockUserInfo,
     type BaseUserConnectionsInfoType,
     type UserConnections,
+    type SpecificFriendBlockProps,
 }

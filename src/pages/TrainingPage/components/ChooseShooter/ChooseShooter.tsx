@@ -6,6 +6,8 @@ import ChooseShooterSubmitButton from "./ChooseShooterSubmitButton";
 import ChooseShooterPreviousStageButton from "./ChooseShooterPreviousStageButton";
 import ChooseUsersTemplate from "../../../../commonComponents/ChooseUsersTemplate/ChooseUsersTemplate";
 import ChooseShooterUserButton from "./ChooseShooterUserButton";
+import Header1Styled from "../../../../StyledComponents/Header1Styled";
+import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 
 function ChooseShooter() : JSX.Element {
 
@@ -17,6 +19,7 @@ function ChooseShooter() : JSX.Element {
 
     return (
         <>
+            <Header1Styled>Choose shooter</Header1Styled>
             <div>
                 <ChooseUsersTemplate
                 usersListType={'trainingSquadIds'}
@@ -25,10 +28,10 @@ function ChooseShooter() : JSX.Element {
                 UserButtonComponentType={ChooseShooterUserButton}
                 />
             </div>
-            <div>
+            <FlexWrapper isColumn={true}>
                 <ChooseShooterSubmitButton/>
                 <ChooseShooterPreviousStageButton/>
-            </div>
+            </FlexWrapper>
         </>
     )
 }

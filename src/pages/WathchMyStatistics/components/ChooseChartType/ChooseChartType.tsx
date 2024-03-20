@@ -31,6 +31,7 @@ function ChooseChartType() {
                 
                 return (
                     <LiButton 
+                    key={chartsNamesDict[chartType]}
                     handleClick={() => handleOnClick(chartType)}
                     isClicked={watchMyStatiscicsStore.isSelectedChartType(chartType)}>
                         {chartsNamesDict[chartType]}

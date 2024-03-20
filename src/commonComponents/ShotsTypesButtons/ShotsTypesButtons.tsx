@@ -20,7 +20,7 @@ function ShotsTypesButtons({onButtonClickHandle, isClickedChecker}: ShotsTypesBu
 
                     return (
 
-                        <LiButton isClicked={isClicked} handleClick={() => onButtonClickHandle(shotType)}>{shotType}</LiButton>
+                        <LiButton key={shotType} isClicked={isClicked} handleClick={() => onButtonClickHandle(shotType)}>{shotType}</LiButton>
                     )
                 })
             }

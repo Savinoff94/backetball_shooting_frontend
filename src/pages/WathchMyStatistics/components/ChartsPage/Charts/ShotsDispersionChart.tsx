@@ -5,6 +5,7 @@ import {ShotsDispersionChartDataType} from '../../../WatchMyStatisticsPageTypes'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import LiButton from "../../../../../commonComponents/LiButton/Libutton";
 
 function ShotsDispersionChart() {
 
@@ -63,13 +64,14 @@ function ShotsDispersionChart() {
         responsive:true
 
     }}/>
-    <div>
+    <ul className="flex justify-center m-2 gap-1">
         {userIds.map((userId,index) => {
             return (
-                <button onClick={() => setDisplayedUserIndex(index)}>{myTeam[userId].login}</button>
+                
+                <LiButton isClicked={userId === displayedUserId} handleClick={() => setDisplayedUserIndex(index)}>{myTeam[userId].login}</LiButton>
             )
         })}
-    </div>
+    </ul>
     </>
     )
 }

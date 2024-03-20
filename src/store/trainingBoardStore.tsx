@@ -1,4 +1,4 @@
-import { makeAutoObservable, } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
 import {getSessionStorageData, setSessionStorageData} from './helpers';
 import {LocalTrainingData} from './types';
@@ -46,10 +46,10 @@ export default class TrainingBoardStore {
 
     getCurrentTries = () => this.currentTries;
     getCurrentMakes = () => this.currentMakes;
-    resetCurrentTries = () => this.currentTries = 0; 
-    resetCurrentMakes = () => this.currentMakes = 0; 
-    appendCurrentTries = () => ++this.currentTries;
-    appendCurrentMakes = () => ++this.currentMakes;
+    resetCurrentTries = () => runInAction(() => {this.currentTries = 0;}) 
+    resetCurrentMakes = () => runInAction(() => {this.currentMakes = 0;}) 
+    appendCurrentTries = () => runInAction(() => {++this.currentTries});
+    appendCurrentMakes = () => runInAction(() => {++this.currentMakes});
 
     isShootingSetValid = () => {
 

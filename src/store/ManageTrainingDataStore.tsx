@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable, toJS, runInAction } from "mobx";
 import {UserIdLoginMapType, ShootingSetRecord} from './types';
 import manageTrainingDataService from '../services/ManageTrainingDataService';
 
@@ -60,9 +60,9 @@ export default class ManageTrainingDataStore {
 
             const {sets, userIdLoginMap, pages} = currentUsersShootingSetsResponse.data;
             
-            this.setsData = new Map(Object.entries(sets))
-            this.userIdLoginMap = userIdLoginMap;
-            this.pagesAmount = pages;
+            runInAction(()=>{this.setsData = new Map(Object.entries(sets))})
+            runInAction(()=>{this.userIdLoginMap = userIdLoginMap});
+            runInAction(()=>{this.pagesAmount = pages});
             
         } catch (error) {
 

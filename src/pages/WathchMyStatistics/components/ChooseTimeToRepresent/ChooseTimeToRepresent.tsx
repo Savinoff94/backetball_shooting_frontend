@@ -26,6 +26,7 @@ function ChooseTimeToRepresent() {
 
                     return (
                         <LiButton 
+                        key={chartRepresentedTimesNamesDict[timeKey]}
                         handleClick={() => handleOnClick(timeKey)}
                         isClicked={watchMyStatiscicsStore.isSelectedTimeType(timeKey)}>
                             {chartRepresentedTimesNamesDict[timeKey]}

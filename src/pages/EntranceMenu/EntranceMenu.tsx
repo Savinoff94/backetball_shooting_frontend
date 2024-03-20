@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import PageStyled from "../../StyledComponents/PageStyled";
 import StyledLink from "../../StyledComponents/StyledLink";
 import MenuWrapper from "../../StyledComponents/MenuWrapper";
+import {observer} from 'mobx-react-lite';
 // import BackgroundImage from '../../../public/backgroundImages/lone_basket.jpg'
 
 
 
-export default function EntranceMenu() :JSX.Element {
+function EntranceMenu() :JSX.Element {
 
     const {store} = useContext(Context);
 
@@ -27,8 +28,8 @@ export default function EntranceMenu() :JSX.Element {
             await store.checkAuth()
         }
 
-        if(store.isAuth) {
-
+        if(store.isAuth && store.isLoading === false) {
+            
             navigate('/mainMenu');
         }
     }
@@ -42,3 +43,5 @@ export default function EntranceMenu() :JSX.Element {
         </PageStyled>
     );
 }
+
+export default observer(EntranceMenu)

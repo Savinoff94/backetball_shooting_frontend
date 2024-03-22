@@ -7,6 +7,7 @@ import ChooseUsersTemplate from "../../../../commonComponents/ChooseUsersTemplat
 import ChooseSquadUserButton from '../ChooseSquad/ChooseSquadUserButton';
 import Header1Styled from "../../../../StyledComponents/Header1Styled";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
+import LoadingBar from "../../../../StyledComponents/LoadingBar";
 
 
 function ChooseSquad() : JSX.Element  {
@@ -38,6 +39,8 @@ function ChooseSquad() : JSX.Element  {
         <FlexWrapper isColumn={true}>
             <ChooseSquadChangeStageButton/>
         </FlexWrapper>
+
+        {myTeamStoreInstance.getIsLoading() ? <LoadingBar/> : null}
         </>
     )
 }

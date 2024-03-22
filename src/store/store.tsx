@@ -54,6 +54,8 @@ export default class Store {
     getPasswordServerErrors = () => this.passwordServerErrors;
 
     async login(email: string, password: string) {
+
+        this.setIsLoading(true);
         
         try {
             
@@ -75,10 +77,15 @@ export default class Store {
                 console.error(error);
             }
 
+        } finally {
+
+            this.setIsLoading(false);
         }
     }
 
     async registration(login:string, password: string,email: string) {
+
+        this.setIsLoading(true);
         
         try {
             
@@ -99,6 +106,9 @@ export default class Store {
 
                 console.error(error);
             }
+        } finally {
+
+            this.setIsLoading(false);
         }
     }
 

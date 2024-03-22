@@ -7,6 +7,7 @@ import ContinueWithNewShooterButton from "./components/ContinueWithNewShooterBut
 import ContinueWithNewSpotButton from "./components/ContinueWithNewSpotButton";
 import ChangeStageButton from "../commonComponents/ChangeStageButton/ChangeStageButton";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
+import LoadingBar from "../../../../StyledComponents/LoadingBar";
 
 function Shooting() {
 
@@ -37,6 +38,8 @@ function Shooting() {
                     <ContinueWithNewSpotButton/>
                 </FlexWrapper>
             </div>
+
+            {trainingBoardStore.getIsLoading() ? <LoadingBar/> : null}
         </>
     )
 }

@@ -9,6 +9,7 @@ import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import {shouldDisplayErrorInInput} from '../../helpers/common'
 import SignFormWrapper from "../../StyledComponents/SignFormWrapper";
+import LoadingBar from "../../StyledComponents/LoadingBar";
 
 
 function SignInPage() : JSX.Element {
@@ -46,7 +47,6 @@ function SignInPage() : JSX.Element {
 
     return (
         <PageStyled>
-            
             <SignFormWrapper>
                 <Header1Styled>Sign In</Header1Styled>
                 <form className="flex flex-col content-between h-4/5" onSubmit={handleFormSubmit}>
@@ -81,6 +81,9 @@ function SignInPage() : JSX.Element {
                         <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
                     </div>
                 </form>
+
+                {store.isLoading ? <LoadingBar/> : null}
+                
             </SignFormWrapper>
         </PageStyled>
     )

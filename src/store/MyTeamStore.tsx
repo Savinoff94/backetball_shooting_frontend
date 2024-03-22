@@ -11,6 +11,7 @@ export default class MyTeamStore {
 
     private trainingSquadIds = [] as string [];
     private representInChartUsersIds = [] as string[];
+    private isLoading = false;
 
     constructor() {
 
@@ -54,12 +55,16 @@ export default class MyTeamStore {
         return toJS(this.myTeamUsers)
     };
 
+    getIsLoading = () => { return this.isLoading}
+
     fetchMyTeamUsers = async() => {
 
         if(this.isMyTeamUsersFetched()) {
 
             return;
         }
+
+        runInAction(() =>{this.isLoading = true;})
   
         try {
 
@@ -74,7 +79,11 @@ export default class MyTeamStore {
         } catch (error) {
         
             console.log(error)
-        } 
+
+        } finally {
+
+            runInAction(() =>{this.isLoading = false;})
+        }
     }
 
     handleOnUserClick = (id: string, usersListType: MyTeamIdsListType) => {

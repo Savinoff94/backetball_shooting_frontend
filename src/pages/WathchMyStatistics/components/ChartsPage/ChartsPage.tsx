@@ -7,6 +7,7 @@ import SpotsTrackingChart from "./Charts/SpotsTrackingChart";
 import ChartsPagePreviousStageButton from "./ChartsPagePreviousStageButton";
 import ChartsPageToBeginningButton from "./ChartsPageToBeginningButton";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
+import LoadingBar from "../../../../StyledComponents/LoadingBar";
 
 import {
     ChartRepresentationType,
@@ -51,6 +52,8 @@ function ChartsPage() {
         <ChartsPagePreviousStageButton/>
         <ChartsPageToBeginningButton/>
     </FlexWrapper>
+    
+    {watchMyStatiscicsStore.getIsLoading() ? <LoadingBar/> : null}
     </>
     )
 

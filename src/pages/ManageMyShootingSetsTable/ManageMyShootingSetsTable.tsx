@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {observer} from 'mobx-react-lite';
 import PageStyled from '../../StyledComponents/PageStyled';
 import ButtonStyled from '../../StyledComponents/ButtonStyled';
+import LoadingBar from '../../StyledComponents/LoadingBar';
 
 
 
@@ -30,7 +31,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
 
     return (
         <PageStyled>
-            <div className='flex-col gap-5'>
+            <div className='relative flex-col gap-5'>
                 <table className="m-1 border-collapse border border-purple-200">
                     <tbody>
                         <tr key="tableHeaders">
@@ -94,6 +95,9 @@ function ManageMyShootingSetsTable() : JSX.Element {
                         }}
                     />
                 </div>
+                
+                {manageTrainingDataStore.getIsLoading() ? <LoadingBar/> : null}
+                
             </div>
         </PageStyled>
     )

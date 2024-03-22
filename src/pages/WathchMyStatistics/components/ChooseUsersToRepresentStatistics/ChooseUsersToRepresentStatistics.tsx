@@ -7,6 +7,7 @@ import ChooseUsersToRepresentUserButton from './ChooseUsersToRepresentUserButton
 import ChooseUsersToRepresentChangeStageButton from './ChooseUsersToRepresentChangeStageButton';
 import Header1Styled from '../../../../StyledComponents/Header1Styled';
 import FlexWrapper from '../../../../StyledComponents/FlexWrapper';
+import LoadingBar from '../../../../StyledComponents/LoadingBar';
 
 
 function ChooseUsersToRepresentStatistics() {
@@ -38,6 +39,8 @@ function ChooseUsersToRepresentStatistics() {
         <FlexWrapper isColumn={true}>
             <ChooseUsersToRepresentChangeStageButton/>
         </FlexWrapper>
+
+        {myTeamStoreInstance.getIsLoading() ? <LoadingBar/> : null}
         </>
     )
 

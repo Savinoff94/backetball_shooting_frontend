@@ -18,6 +18,8 @@ export default class TrainingBoardStore {
 
     private currentMakes = 0 as number
 
+    private isLoading = false;
+
     constructor() {
 
         makeAutoObservable(this)
@@ -32,6 +34,9 @@ export default class TrainingBoardStore {
 
         return TrainingBoardStore.instance;
     }
+
+    getIsLoading = () => this.isLoading;
+    setIsLoading = (isLoading: boolean) => {runInAction(() => {this.isLoading = isLoading})}
 
     getCurrentShooter = () => this.currentShooter; 
     setCurrentShooter = (id: string) => this.currentShooter = id;
@@ -73,6 +78,8 @@ export default class TrainingBoardStore {
     }
 
     saveCurrentShooterDataDb = async (currentShooter:string, currentSpot:string, currentTries:number, currentMakes:number) => {
+
+        this.setIsLoading(true);
         
         try {
 
@@ -96,6 +103,10 @@ export default class TrainingBoardStore {
 
                 console.error(error);
             }
+
+        } finally {
+
+            this.setIsLoading(false)
         }
     }
 

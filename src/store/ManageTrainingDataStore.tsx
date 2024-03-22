@@ -14,6 +14,8 @@ export default class ManageTrainingDataStore {
     private currentDataPage = 0;
     private pagesAmount = 1;
 
+    private isLoading = false;
+
     constructor() {
 
         makeAutoObservable(this)
@@ -42,6 +44,10 @@ export default class ManageTrainingDataStore {
         return currentPage > 0
     }
 
+    getIsLoading = () => this.isLoading
+
+    setIsLoading = (isLoading:boolean) => runInAction(() => this.isLoading = isLoading)
+
     isChartsData = () => {
 
         return this.setsData.size !== 0;
@@ -56,6 +62,8 @@ export default class ManageTrainingDataStore {
                 throw new Error('User not authenticated')
             }
 
+            this.setIsLoading(true)
+
             const currentUsersShootingSetsResponse = await manageTrainingDataService.getCurrentUsersShootingSets(currentPage);
 
             const {sets, userIdLoginMap, pages} = currentUsersShootingSetsResponse.data;
@@ -67,6 +75,10 @@ export default class ManageTrainingDataStore {
         } catch (error) {
 
             console.log(error)
+
+        } finally {
+
+            this.setIsLoading(false);
         }
     }
 

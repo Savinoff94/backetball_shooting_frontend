@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable, runInAction, toJS } from "mobx";
 import {
         ChartRepresentedTimeType,
         ChartRepresentationType,
@@ -22,6 +22,7 @@ export default class WatchMyStatiscicsStore {
     private spotKey : chartSpotKeyType = 'all';
     private timeKey : ChartRepresentedTimeType = 'all';
     private chartType : ChartRepresentationType = 'shotsPersentageChart';
+    private isLoading = false;
 
     constructor() {
 
@@ -62,15 +63,25 @@ export default class WatchMyStatiscicsStore {
     
     setRepresentedUsersIds = (usersIds: string[]) => this.representedUsersIds = usersIds;
 
+    setIsLoading = (isLoading : boolean) => {runInAction(() => this.isLoading = isLoading)}
+    getIsLoading = () => this.isLoading;
+
     fetchChartsData = async (usersIds: string[], spotKey: chartSpotKeyType, timeKey: ChartRepresentedTimeType, chartType: ChartRepresentationType) => {
+
+        this.setIsLoading(true);
 
         try {
             
             const data = await ChartsServise.getChartsData(usersIds, spotKey, timeKey, chartType);
             this.chartData = data?.data?.chartData
-            console.log(data)
+            
         } catch (error) {
+
             console.log(error)
+
+        } finally {
+
+            this.setIsLoading(false)
         }
 
     }

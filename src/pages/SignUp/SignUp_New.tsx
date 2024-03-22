@@ -11,6 +11,7 @@ import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import {shouldDisplayErrorInInput} from '../../helpers/common'
 import SignFormWrapper from '../../StyledComponents/SignFormWrapper';
+import LoadingBar from '../../StyledComponents/LoadingBar';
 
 
 
@@ -156,6 +157,9 @@ function SignUpPage() : JSX.Element {
                         <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
                     </div>
                 </form>
+
+                {store.isLoading ? <LoadingBar/> : null}
+                
             </SignFormWrapper>
         </PageStyled>
     );

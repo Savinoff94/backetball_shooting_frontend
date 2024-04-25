@@ -11,6 +11,6 @@ type ChangeStageButtonType = {
 export default function ChangeStageButton({handleClick, isDisabled, buttonText, isPrimary=true}: ChangeStageButtonType) {
 
     return (
-        <ButtonStyled isPrimary={isPrimary} text={buttonText} isDisabled={isDisabled} onClick={handleClick}/>
+        <ButtonStyled type="button" isPrimary={isPrimary ? 'primary' : 'secondary'} isDisabled={isDisabled} onClick={handleClick}>{buttonText}</ButtonStyled>
     )
 }

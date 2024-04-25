@@ -17,6 +17,7 @@ function ChooseChartTypePreviousStageButton() {
 
     return (
         <ChangeStageButton
+        key={'ChooseChartTypePreviousStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}

@@ -46,8 +46,21 @@ function shouldDisplayErrorInInput(inputVal: string, frontendErrors: ErrorInfo[]
     return false;
 }
 
+function formatISODate(dateISOString: string) {
+    const date = new Date(dateISOString);
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed
+    const year = date.getFullYear();
+
+    const formattedDate = `${day}/${month}/${year}`;
+    
+    return formattedDate;
+}
+
 export {
     removeItemFromObjById,
     transferItemFromObjToObj,
     shouldDisplayErrorInInput,
+    formatISODate
 }

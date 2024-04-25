@@ -4,6 +4,9 @@ import {observer} from 'mobx-react-lite';
 import PageStyled from '../../StyledComponents/PageStyled';
 import ButtonStyled from '../../StyledComponents/ButtonStyled';
 import LoadingBar from '../../StyledComponents/LoadingBar';
+import {AnimatedCrossIcon} from '../../commonComponents/SimpleIcons/SimpleIcons'
+import {formatISODate} from '../../helpers/common'
+
 
 
 
@@ -46,18 +49,29 @@ function ManageMyShootingSetsTable() : JSX.Element {
 
                         {
                             setsIds.map((setId) => {
+
                                 const currentSetdata = setsData.get(setId)
+
                                 if(!currentSetdata) {return null}
+                                
                                 return (
                                     <tr key={setId}>
                                         <td className='border-purple-200 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shooterId'])}</td>
                                         <td className='border-purple-200 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shootingHostUserId'])}</td>
-                                        <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['dateStr']}</td>
+                                        <td className='border-purple-200 border font-sofia p-1'>{formatISODate(currentSetdata['createdAtStr'])}</td>
                                         {/* <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['spotKey']}</td> */}
                                         <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['tries']}</td>
                                         <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['makes']}</td>
-                                        <td >
-                                            <button className='border-purple-200 border font-sofia p-1 bg-red-400 rounded-lg' onClick={() => {manageTrainingDataStore.removeSet(setId)}}>Delete</button>
+                                        <td className='border-purple-200 border font-sofia p-1'>
+                                            {/* <button className='border-purple-200 border font-sofia p-1 bg-red-400 rounded-lg' onClick={() => {manageTrainingDataStore.removeSet(setId)}}>Delete</button> */}
+                                            <ButtonStyled
+                                            isPrimary='thirdly'
+                                            onClick={() => {manageTrainingDataStore.removeSet(setId)}}
+                                            isDisabled={false}
+                                            classes='h-1/2 ml-0 mr-0 p-0'
+                                            >
+                                                <AnimatedCrossIcon width='25' height='25' isLoading={manageTrainingDataStore.getIsLoading()}/>
+                                            </ButtonStyled>
                                         </td>
                                     </tr>
                                 )
@@ -68,8 +82,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
                 </table>
                 <div>
                     <ButtonStyled
-                        text='Next page'
-                        isPrimary={true}
+                        isPrimary={'primary'}
                         isDisabled={!manageTrainingDataStore.isNextPageAvilable(currentPage)}
                         onClick={() => {
 
@@ -79,11 +92,12 @@ function ManageMyShootingSetsTable() : JSX.Element {
                                 manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
                             }
                         }}
-                    />
+                    >
+                        {'Next page'}
+                    </ButtonStyled>
                     
                     <ButtonStyled
-                        text='Previous page'
-                        isPrimary={true}
+                        isPrimary={'primary'}
                         isDisabled={!manageTrainingDataStore.isPreviousPageAvilable(currentPage)}
                         onClick={() => {
                             
@@ -93,7 +107,9 @@ function ManageMyShootingSetsTable() : JSX.Element {
                                 manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
                             }
                         }}
-                    />
+                    >
+                        {'Previous page'}
+                    </ButtonStyled>
                 </div>
                 
                 {manageTrainingDataStore.getIsLoading() ? <LoadingBar/> : null}

@@ -18,6 +18,7 @@ function ChooseShooterPreviousStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseShooterPreviousStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}

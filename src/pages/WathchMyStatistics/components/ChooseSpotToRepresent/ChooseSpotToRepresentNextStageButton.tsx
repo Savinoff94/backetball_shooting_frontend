@@ -19,6 +19,7 @@ function ChooseSpotToRepresentNextStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseSpotToRepresentNextStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

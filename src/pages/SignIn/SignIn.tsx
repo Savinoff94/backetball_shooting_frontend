@@ -77,8 +77,8 @@ function SignInPage() : JSX.Element {
                     <br/>
 
                     <div className="flex flex-col gap-2">
-                        <ButtonStyled type="submit" value="Login" text="Login" isDisabled={isDisabled} isPrimary={true}/> 
-                        <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
+                        <ButtonStyled type="submit" value="Login" isDisabled={isDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled> 
+                        <ButtonStyled onClick={handleReset} type="reset" value="Reset"  isPrimary={'secondary'}>{"Reset"}</ButtonStyled> 
                     </div>
                 </form>
 

@@ -30,6 +30,7 @@ function Shooting() {
                 <FlexWrapper isColumn={true}>
                     <ContinueWithNewShooterButton/>
                     <ChangeStageButton
+                    key={"StartWithNewSpot"}
                     handleClick = {() => {multiStageFormsStore.submitTrainingStage(true, 'chooseSpot');}}
                     isDisabled = {false}
                     buttonText = {'Back'}

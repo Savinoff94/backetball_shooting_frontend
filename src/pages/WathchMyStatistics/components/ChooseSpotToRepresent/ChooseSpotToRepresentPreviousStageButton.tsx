@@ -17,6 +17,7 @@ function ChooseSpotToRepresentPreviousStageButton() {
 
     return (
         <ChangeStageButton
+        key={'ChooseSpotToRepresentPreviousStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Back'}

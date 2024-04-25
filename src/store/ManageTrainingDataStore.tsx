@@ -104,6 +104,8 @@ export default class ManageTrainingDataStore {
 
     async removeSet(setId: string) {
 
+        this.setIsLoading(true)
+
         try {
 
             await manageTrainingDataService.removeSet(setId);
@@ -113,6 +115,10 @@ export default class ManageTrainingDataStore {
         } catch (error) {
             
             console.log(error)
+        
+        } finally {
+
+            this.setIsLoading(false)
         }
     }
 }

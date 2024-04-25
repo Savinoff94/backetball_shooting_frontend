@@ -26,6 +26,7 @@ function ChooseTimeToRepresentNextStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseTimeToRepresentNextStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

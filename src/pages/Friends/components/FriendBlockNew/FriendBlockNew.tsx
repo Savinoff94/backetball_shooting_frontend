@@ -2,6 +2,8 @@ import {FriendActionButtonInfo} from './types/FriendBlockNewTypes';
 import {FriendBlockUserInfo} from '../../types/friendsTypes';
 import BasketballIcon from '../../../../commonComponents/BasketballIcon/BasketballIcon';
 import ButtonStyled from '../../../../StyledComponents/ButtonStyled';
+import {AnimatedPlusIcon, AnimatedCrossIcon, AnimatedIconProps} from '../../../../commonComponents/SimpleIcons/SimpleIcons'
+
 
 
 type FriendBlockProps = FriendBlockUserInfo & {buttonsInfosList: FriendActionButtonInfo[]} & {isLoading: boolean, isAlone:boolean}
@@ -25,19 +27,43 @@ export default function FriendBlock({simpleStats, login, id, buttonsInfosList, i
             {
                 buttonsInfosList.map((buttonInfo: FriendActionButtonInfo): JSX.Element => {
 
+                    const ButtonIcon = getButtonInnerContent(buttonInfo['text'])
+
+
                     return (
                     <ButtonStyled
-                        isPrimary={buttonInfo['isPrimary']}
-                        text={buttonInfo['text']}
+                        isPrimary={buttonInfo['isPrimary'] ? 'primary' : 'secondary'}
                         onClick={()=>(buttonInfo.action([id]))}
                         type="button"
                         isDisabled={isLoading}
                         key={buttonInfo['text'].split(' ').join('') + id}
-                    />
+                    >
+                        {
+                            ButtonIcon ? <ButtonIcon isLoading={isLoading}/> : buttonInfo['text']
+                        }
+                    </ButtonStyled>
                     )
                 })
             }
             </div>
         </li>
     );
+}
+
+function getButtonInnerContent(key: string): React.ComponentType<AnimatedIconProps> | null {
+
+    const buttonIcons: Record<string, React.ComponentType<AnimatedIconProps>> = {
+        "Approve"    : AnimatedPlusIcon,
+        "Add"        : AnimatedPlusIcon,
+        "Cancel"     : AnimatedCrossIcon,
+        "Disapprove" : AnimatedCrossIcon,
+        "Remove"     : AnimatedCrossIcon,
+    }
+
+    if(Object.keys(buttonIcons).includes(key)) {
+
+        return buttonIcons[key];
+    }
+
+    return null;
 }

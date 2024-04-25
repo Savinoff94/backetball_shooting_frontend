@@ -1,23 +1,45 @@
 import {observer} from 'mobx-react-lite';
+import { ReactNode } from 'react';
 
 type ButtonProps = {
     type?: "button" | "submit" | "reset" | undefined
     value?: string,
-    text: string,
+    children: ReactNode,
     isDisabled?: boolean,
     onClick?: () => void,
-    isPrimary: boolean,
+    isPrimary: 'primary' | 'secondary' | 'thirdly',
+    classes?: string
 }
 
-function ButtonStyled({type='button', value='', text, isDisabled, onClick, isPrimary} : ButtonProps) {
+function ButtonStyled({type='button', value='', children, isDisabled = false, onClick, isPrimary, classes = ''} : ButtonProps) {
 
-    isDisabled = isDisabled === undefined ? false : isDisabled;
-
-    const color = isPrimary ? 'bg-indigo-500' : 'bg-slate-500'
+    const bgColor = buttonColors[isPrimary];
+    const bgHoverColor = buttonHoverColors[isPrimary]
+    const textColor = buttonTextColors[isPrimary]
 
     return (
-        <button className={`font-sofia font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 text-white ${color} ${isDisabled? 'opacity-30' : ''}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{text}</button>
+        <button className={`font-sofia transition duration-200 font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 ${textColor} ${bgColor} ${bgHoverColor} ${isDisabled? 'opacity-30' : ''} ${classes}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{children}</button>
     );
+}
+
+const buttonColors = {
+    primary:'bg-indigo-500',
+    secondary:'bg-slate-500',
+    thirdly:'bg-[#f2f2f2]'
+}
+
+const buttonHoverColors = {
+
+    primary:'hover:bg-indigo-700',
+    secondary:'hover:bg-slate-700',
+    thirdly:'hover:bg-slate-200'
+}
+
+const buttonTextColors = {
+
+    primary:'text-white',
+    secondary:'text-white',
+    thirdly:'text-black'
 }
 
 export default observer(ButtonStyled);

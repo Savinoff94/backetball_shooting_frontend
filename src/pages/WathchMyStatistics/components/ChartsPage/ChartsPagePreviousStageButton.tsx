@@ -26,6 +26,7 @@ function ChartsPagePreviousStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChartsPagePreviousStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

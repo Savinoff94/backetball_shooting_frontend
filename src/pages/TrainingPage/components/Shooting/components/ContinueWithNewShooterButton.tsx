@@ -29,6 +29,7 @@ function ContinueWithNewShooterButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ContinueWithNewShooterButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Continue with new shooter'}

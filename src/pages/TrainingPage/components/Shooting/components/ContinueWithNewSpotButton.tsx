@@ -26,6 +26,7 @@ function ContinueWithNewSpotButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ContinueWithNewSpotButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Continue with new spot'}

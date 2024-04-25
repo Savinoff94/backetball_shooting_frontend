@@ -20,6 +20,7 @@ function ChooseUsersToRepresentChangeStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseUsersToRepresentChangeStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

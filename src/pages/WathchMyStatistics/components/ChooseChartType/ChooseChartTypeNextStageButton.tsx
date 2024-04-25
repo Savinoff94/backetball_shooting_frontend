@@ -19,6 +19,7 @@ function ChooseChartTypeNextStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseChartTypeNextStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

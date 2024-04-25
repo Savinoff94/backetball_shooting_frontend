@@ -153,8 +153,8 @@ function SignUpPage() : JSX.Element {
                     <br/>
                     
                     <div className="flex flex-col gap-2">
-                        <ButtonStyled type="submit" value="Login" text="Login" isDisabled={isSubmitFormDisabled} isPrimary={true}/>
-                        <ButtonStyled onClick={handleReset} type="reset" value="Reset" text="Reset"  isPrimary={false}/> 
+                        <ButtonStyled type="submit" value="Login" isDisabled={isSubmitFormDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled>
+                        <ButtonStyled onClick={handleReset} type="reset" value="Reset"  isPrimary={'secondary'}>{"Reset"}</ButtonStyled> 
                     </div>
                 </form>
 

@@ -20,6 +20,7 @@ function ChooseSquadChangeStageButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseSquadChangeStageButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

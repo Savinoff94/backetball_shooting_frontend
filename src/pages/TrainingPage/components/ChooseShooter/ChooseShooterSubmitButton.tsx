@@ -16,6 +16,7 @@ function ChooseShooterSubmitButton() : JSX.Element {
 
     return (
         <ChangeStageButton
+        key={'ChooseShooterSubmitButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
         buttonText = {'Submit'}

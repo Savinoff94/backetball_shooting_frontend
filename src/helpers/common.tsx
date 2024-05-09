@@ -58,9 +58,31 @@ function formatISODate(dateISOString: string) {
     return formattedDate;
 }
 
+function debounce(callback: (...args : any[]) => void, timeoutMiliseconds:number) {
+
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+
+    return (...args : any[]) => {
+
+        if(timeout) {
+
+            clearTimeout(timeout)
+        }
+
+        return new Promise<void>((resolve) => {
+            timeout = setTimeout(() => {
+                callback(...args);
+                timeout = null;
+                resolve();
+            }, timeoutMiliseconds);
+        });         
+    }
+}
+
 export {
     removeItemFromObjById,
     transferItemFromObjToObj,
     shouldDisplayErrorInInput,
-    formatISODate
+    formatISODate,
+    debounce
 }

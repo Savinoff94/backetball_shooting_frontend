@@ -203,10 +203,9 @@ export default class UserConnectionsStore {
     }
 
     getSearchStr = () => this.searchStr;
+    setSearchStr = (newSearchString:string) => this.searchStr = newSearchString
 
     onSearch = async (userInput: string) => {
-
-        this.searchStr = userInput;
 
         userInput = userInput.toLowerCase();
     

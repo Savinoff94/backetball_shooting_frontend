@@ -10,6 +10,7 @@ import PageStyled from "../../StyledComponents/PageStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import InputStyled from "../../StyledComponents/InputStyled";
 import SearchField from "../../StyledComponents/SearchField";
+import { debounce } from "../../helpers/common";
 
 
 
@@ -28,13 +29,21 @@ function FriendsNew() {
       userConnectionsStore.fetchUserConncections();
     }
   }, []);
+
+  const onSearch = debounce(userConnectionsStore.onSearch, 1000)
+
+  const onSearchChangeHandle = (userInput: string) => {
+
+    userConnectionsStore.setSearchStr(userInput)
+
+    onSearch(userInput)
+  }
     
   return (
     <PageStyled>
       <div className="flex flex-col gap-6 w-full h-screen sm:h-fit sm:pb-5 sm:w-1/3 sm:pt-10" id="friendsBlock">
         <Header1Styled>Friends</Header1Styled>
-        <SearchField name="searchFriendsInput" value={userConnectionsStore.getSearchStr()} placeholder="Find your friends" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {userConnectionsStore.onSearch(e.target.value)}}/>
-        {/* <InputStyled name="searchFriendsInput" value={userConnectionsStore.getSearchStr()} placeholder="Find your friends" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {userConnectionsStore.onSearch(e.target.value)}}/> */}
+        <SearchField name="searchFriendsInput" value={userConnectionsStore.getSearchStr()} placeholder="Find your friends" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {onSearchChangeHandle(e.target.value)}}/>
         <>
         <UsersList listHeader="Search list" key='search' borderColor='blue'>
         {Object.values(userConnectionsStore.getSearchList()).map((listItem, index, arr) => <SearchFriendBlock isAlone={arr.length === 1} key={listItem['id']} {...listItem}/>)}

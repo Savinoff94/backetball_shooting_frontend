@@ -9,7 +9,7 @@ function PageStyled({children}:PageStyledProps) {
 
     return (
         
-        <div className="flex min-h-screen max-w-full min-w-full bg-[#f2f2f2] justify-center items-start overflow-y-scroll">
+        <div className="flex min-h-screen max-w-full min-w-full bg-[#f2f2f2] justify-center items-start overflow-y-scroll bg-combined bg-left-bottom bg-cover md:bg-center">
             {children}
         </div>
     )

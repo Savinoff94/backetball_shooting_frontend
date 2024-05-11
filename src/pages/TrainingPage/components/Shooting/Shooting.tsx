@@ -18,14 +18,20 @@ function Shooting() {
 
     return (
         <>
-            <FlexWrapper>
-                <MakesInput/>
-                <TriesInput/>
+            
+            <FlexWrapper classes="gap-0 m-5">
+
+                <FlexWrapper classes="items-center justify-center" isColumn={true}>
+                    <MakesInput/>
+                    <button className="bg-green-800 rounded-lg text-warmGray-100 font-sofia w-2/3 h-16" onClick={() => trainingBoardStore.shotMade()}>Make</button>
+                </FlexWrapper>
+                
+                <FlexWrapper classes="items-center justify-center" isColumn={true}>
+                    <TriesInput/>
+                    <button className="bg-red-500 rounded-lg text-warmGray-100 font-sofia w-2/3 h-16" onClick={() => trainingBoardStore.shotMissed()}>Miss</button>
+                </FlexWrapper>
+                    
             </FlexWrapper>
-            <div className="m-4 flex gap-4 mt-8 mb-8">
-                <button className="bg-green-800 rounded-full text-white font-sofia w-1/2 h-16" onClick={() => trainingBoardStore.shotMade()}>Make</button>
-                <button className="bg-orange-600 rounded-full text-white font-sofia w-1/2 h-16" onClick={() => trainingBoardStore.shotMissed()}>Miss</button>
-            </div>
             <div>
                 <FlexWrapper isColumn={true}>
                     <ContinueWithNewShooterButton/>

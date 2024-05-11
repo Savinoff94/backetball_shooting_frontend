@@ -108,7 +108,7 @@ function SignUpPage() : JSX.Element {
     return (
         <PageStyled>
             <SignFormWrapper>
-                <Header1Styled>Sign Up</Header1Styled>
+                <Header1Styled classes='text-warmGray-100'>Sign Up</Header1Styled>
                 <form className="flex flex-col content-between" onSubmit={handleFormSubmit}>
                     <InputFieldStyled
                         type="text"

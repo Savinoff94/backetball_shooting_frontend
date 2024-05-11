@@ -11,6 +11,8 @@ function MakesInput() {
         <ControlledScoresInput
         text = {'Makes:'}
         inputControl ={() => trainingBoardStore.getCurrentMakes()}
+        spanClasses="bg-green-800"
+        inputClasses='border-green-800'
         />
     )
 

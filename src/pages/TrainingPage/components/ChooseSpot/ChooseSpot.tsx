@@ -18,7 +18,7 @@ function ChooseSpot() {
 
     return (
         <>  
-            <Header1Styled>Choose spot</Header1Styled>
+            <Header1Styled classes="text-warmGray-100">Choose spot</Header1Styled>
             <div className="w-full flex h-4/6 justify-center">
                 <BasketballCourtSVG ifCheckedFunction={ifCheckedFunction} onClickFunction={trainingBoardStore.setCurrentSpot}/>
             </div>

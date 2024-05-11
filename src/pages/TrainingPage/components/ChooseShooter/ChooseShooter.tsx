@@ -19,7 +19,7 @@ function ChooseShooter() : JSX.Element {
 
     return (
         <>
-            <Header1Styled>Choose shooter</Header1Styled>
+            <Header1Styled classes="text-warmGray-100">Choose shooter</Header1Styled>
             <div>
                 <ChooseUsersTemplate
                 usersListType={'trainingSquadIds'}

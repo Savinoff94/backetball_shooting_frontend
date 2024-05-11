@@ -29,7 +29,7 @@ function ChooseSquad() : JSX.Element  {
     
     return (
         <>
-        <Header1Styled>Choose your squad</Header1Styled>
+        <Header1Styled classes="text-warmGray-100">Choose your squad</Header1Styled>
         <ChooseUsersTemplate
         usersListType={"trainingSquadIds"}
         usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}

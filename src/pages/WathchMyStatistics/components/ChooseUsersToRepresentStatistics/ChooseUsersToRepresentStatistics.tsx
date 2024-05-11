@@ -29,7 +29,7 @@ function ChooseUsersToRepresentStatistics() {
 
     return (
         <>
-        <Header1Styled>Select users</Header1Styled>
+        <Header1Styled classes='text-warmGray-100'>Select users</Header1Styled>
         <ChooseUsersTemplate
         usersListType={"representInChartUsersIds"}
         usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}

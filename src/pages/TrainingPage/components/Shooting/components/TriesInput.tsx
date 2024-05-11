@@ -11,6 +11,8 @@ function TriesInput() {
         <ControlledScoresInput
         text = {'Tries:'}
         inputControl ={() => trainingBoardStore.getCurrentTries()}
+        spanClasses="bg-red-500"
+        inputClasses='border-red-500'
         />
     )
 

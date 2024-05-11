@@ -12,18 +12,16 @@ export default function FriendBlock({simpleStats, login, id, buttonsInfosList, i
 
     return (
 
-        <li data-isalone={isAlone} className='flex justify-between pb-1 pt-1 data-[isalone=false]:border-b data-[isalone=false]:border-purple-200'  key={id} id={id}>
-            <div className='flex justify-evenly items-center w-2/3'>
-                <div className='flex-col'>
+        <li data-isalone={isAlone} className='grid grid-cols-5 justify-between pb-1 pt-1 data-[isalone=false]:border-b data-[isalone=false]:border-black'  key={id} id={id}>
+                <div className='flex flex-col items-center justify-center'>
                     <BasketballIcon/>
                     {/* <img alt='profile' src={friendBlockProps['imageSrc']}/> */}
-                    <div className='flex font-sofia'>{login}</div>
+                    <div className='flex mt-1 font-sofia'>{login}</div>
                 </div>
-                <div className='flex font-sofia'>1pt: {simpleStats['freethrows']}%</div>
-                <div className='flex font-sofia'>2pt: {simpleStats['twoPointers']}%</div>
-                <div className='flex font-sofia'>3pt: {simpleStats['threePointers']}%</div>
-            </div>
-            <div className='flex gap-1 flex-col sm:flex-row items-center'>
+                <div className='flex flex-col font-sofia items-center justify-center'><span>1pt: </span><span>{simpleStats['freethrows']}%</span></div>
+                <div className='flex flex-col font-sofia items-center justify-center'><span>2pt: </span><span>{simpleStats['twoPointers']}%</span></div>
+                <div className='flex flex-col font-sofia items-center justify-center'><span>3pt: </span><span>{simpleStats['threePointers']}%</span></div>
+            <div className='flex gap-1 flex-col items-center justify-center'>
             {
                 buttonsInfosList.map((buttonInfo: FriendActionButtonInfo): JSX.Element => {
 

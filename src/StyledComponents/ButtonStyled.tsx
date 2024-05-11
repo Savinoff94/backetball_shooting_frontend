@@ -18,27 +18,27 @@ function ButtonStyled({type='button', value='', children, isDisabled = false, on
     const textColor = buttonTextColors[isPrimary]
 
     return (
-        <button className={`font-sofia transition duration-200 font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 ${textColor} ${bgColor} ${bgHoverColor} ${isDisabled? 'opacity-30' : ''} ${classes}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{children}</button>
+        <button className={`font-sofia transition duration-200 opacity-90 font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 ${textColor} ${bgColor} ${bgHoverColor} ${isDisabled? 'opacity-30' : ''} ${classes}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{children}</button>
     );
 }
 
 const buttonColors = {
-    primary:'bg-indigo-500',
+    primary:'bg-orange-700',
     secondary:'bg-slate-500',
     thirdly:'bg-[#f2f2f2]'
 }
 
 const buttonHoverColors = {
 
-    primary:'hover:bg-indigo-700',
+    primary:'hover:bg-orange-900',
     secondary:'hover:bg-slate-700',
     thirdly:'hover:bg-slate-200'
 }
 
 const buttonTextColors = {
 
-    primary:'text-white',
-    secondary:'text-white',
+    primary:'text-warmGray-100',
+    secondary:'text-warmGray-100',
     thirdly:'text-black'
 }
 

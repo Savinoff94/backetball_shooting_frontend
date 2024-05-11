@@ -3,13 +3,14 @@ import { ReactNode } from 'react';
 type FlexWrapperType = {
 
     children: ReactNode,
-    isColumn?: boolean
+    isColumn?: boolean,
+    classes ?: string
 }
 
-function FlexWrapper({children, isColumn = false}:FlexWrapperType) {
+function FlexWrapper({children, isColumn = false, classes=''}:FlexWrapperType) {
 
     return (
-        <div data-is-column={isColumn} className='flex data-[is-column=true]:flex-col gap-2'>
+        <div data-is-column={isColumn} className={`flex data-[is-column=true]:flex-col gap-2 ${classes}`}>
             {children}
         </div>
     )

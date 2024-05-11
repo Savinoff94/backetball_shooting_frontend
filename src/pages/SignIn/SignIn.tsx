@@ -48,7 +48,7 @@ function SignInPage() : JSX.Element {
     return (
         <PageStyled>
             <SignFormWrapper>
-                <Header1Styled>Sign In</Header1Styled>
+                <Header1Styled classes="text-warmGray-100">Sign In</Header1Styled>
                 <form className="flex flex-col content-between h-4/5" onSubmit={handleFormSubmit}>
 
                     <InputFieldStyled

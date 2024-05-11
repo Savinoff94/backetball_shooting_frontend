@@ -12,7 +12,7 @@ export default function UserButton({userInfo, isClicked, handlerOnClick}: UserBu
             <figure>
                 {/* <img src={userInfo.imageSrc} alt="userPic"/> */}
                 <BasketballIcon/>
-                <figcaption className='flex font-sofia'>{userInfo.login}</figcaption>
+                <figcaption className='flex font-sofia text-warmGray-100'>{userInfo.login}</figcaption>
             </figure>
         </button>
     )

@@ -34,17 +34,17 @@ function ManageMyShootingSetsTable() : JSX.Element {
 
     return (
         <PageStyled>
-            <div className='relative flex-col gap-5'>
-                <table className="m-1 border-collapse border border-purple-200">
+            <div className='relative flex-col gap-5  bg-gray-300 bg-transparent text-gray-100 border-gray-400 border box-content rounded-b-lg mt-5'>
+                <table className="border-collapse border border-gray-400 ">
                     <tbody>
                         <tr key="tableHeaders">
-                            <th className='border-purple-200 border font-sofia p-1'>Shooter</th>
-                            <th className='border-purple-200 border font-sofia p-1'>Host</th>
-                            <th className='border-purple-200 border font-sofia p-1'>Date</th>
-                            {/* <th className='border-purple-200 border font-sofia p-1'>Spot</th> */}
-                            <th className='border-purple-200 border font-sofia p-1'>Tries</th>
-                            <th className='border-purple-200 border font-sofia p-1'>Makes</th>
-                            <th className='border-purple-200 border font-sofia p-1'>Action</th>
+                            <th className='border-gray-400 border font-sofia p-1'>Shooter</th>
+                            <th className='border-gray-400 border font-sofia p-1'>Host</th>
+                            <th className='border-gray-400 border font-sofia p-1'>Date</th>
+                            {/* <th className='border-gray-400 border font-sofia p-1'>Spot</th> */}
+                            <th className='border-gray-400 border font-sofia p-1'>Tries</th>
+                            <th className='border-gray-400 border font-sofia p-1'>Makes</th>
+                            <th className='border-gray-400 border font-sofia p-1'>Action</th>
                         </tr>
 
                         {
@@ -56,19 +56,19 @@ function ManageMyShootingSetsTable() : JSX.Element {
                                 
                                 return (
                                     <tr key={setId}>
-                                        <td className='border-purple-200 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shooterId'])}</td>
-                                        <td className='border-purple-200 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shootingHostUserId'])}</td>
-                                        <td className='border-purple-200 border font-sofia p-1'>{formatISODate(currentSetdata['createdAtStr'])}</td>
-                                        {/* <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['spotKey']}</td> */}
-                                        <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['tries']}</td>
-                                        <td className='border-purple-200 border font-sofia p-1'>{currentSetdata['makes']}</td>
-                                        <td className='border-purple-200 border font-sofia p-1'>
-                                            {/* <button className='border-purple-200 border font-sofia p-1 bg-red-400 rounded-lg' onClick={() => {manageTrainingDataStore.removeSet(setId)}}>Delete</button> */}
+                                        <td className='border-gray-400 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shooterId'])}</td>
+                                        <td className='border-gray-400 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shootingHostUserId'])}</td>
+                                        <td className='border-gray-400 border font-sofia p-1'>{formatISODate(currentSetdata['createdAtStr'])}</td>
+                                        {/* <td className='border-gray-400 border font-sofia p-1'>{currentSetdata['spotKey']}</td> */}
+                                        <td className='border-gray-400 border font-sofia p-1'>{currentSetdata['tries']}</td>
+                                        <td className='border-gray-400 border font-sofia p-1'>{currentSetdata['makes']}</td>
+                                        <td className='border-gray-400 border font-sofia p-1'>
+                                            {/* <button className='border-gray-400 border font-sofia p-1 bg-red-400 rounded-lg' onClick={() => {manageTrainingDataStore.removeSet(setId)}}>Delete</button> */}
                                             <ButtonStyled
                                             isPrimary='thirdly'
                                             onClick={() => {manageTrainingDataStore.removeSet(setId)}}
                                             isDisabled={false}
-                                            classes='h-1/2 ml-0 mr-0 p-0'
+                                            classes='h-1/2 ml-0 mr-0 p-0 bg-transparent'
                                             >
                                                 <AnimatedCrossIcon width='25' height='25' isLoading={manageTrainingDataStore.getIsLoading()}/>
                                             </ButtonStyled>
@@ -80,7 +80,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
                         {setsIds.length === 0 && <tr><td>No data</td></tr>}
                     </tbody>
                 </table>
-                <div>
+                <div className='mb-2 mt-2'>
                     <ButtonStyled
                         isPrimary={'primary'}
                         isDisabled={!manageTrainingDataStore.isNextPageAvilable(currentPage)}
@@ -97,7 +97,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
                     </ButtonStyled>
                     
                     <ButtonStyled
-                        isPrimary={'primary'}
+                        isPrimary={'secondary'}
                         isDisabled={!manageTrainingDataStore.isPreviousPageAvilable(currentPage)}
                         onClick={() => {
                             

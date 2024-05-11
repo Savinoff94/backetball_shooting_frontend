@@ -13,8 +13,8 @@ type InputStyledProps = {
 function SearchField({value, name, type='text', placeholder = '', onChange} : InputStyledProps) {
 
     return(
-        <div className="ml-4 mr-4 rounded-lg border border-purple-200 flex justify-around bg-white">
-            <input className="w-5/6 focus:outline-none" placeholder={placeholder} type={type}  value={value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChange(event)} name={name}  required/>
+        <div className="ml-4 mr-4 rounded-lg flex justify-around  opacity-75 p-1 bg-main">
+            <input className="w-5/6 text-warmGray-100 bg-transparency-zero focus:outline-none" placeholder={placeholder} type={type}  value={value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChange(event)} name={name}  required/>
             <i><SearchIcon/></i>
         </div>
     )

@@ -20,8 +20,8 @@ function ChooseChartType() {
 
     return (
         <>
-        <Header1Styled>Choose chart type</Header1Styled>
-        <ul className='flex flex-col gap-2 pb-2'>
+        <Header1Styled classes='text-warmGray-100'>Choose chart type</Header1Styled>
+        <ul className='flex flex-col gap-2 pb-3 pt-2'>
             {chartTypesArray.map((chartType) => {
 
                 if(chartType === 'shotsAmountAndPercentageChart' && watchMyStatiscicsStore.getRepresentedUsersIds().length > 1) {

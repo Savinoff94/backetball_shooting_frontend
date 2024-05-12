@@ -51,7 +51,9 @@ function formatISODate(dateISOString: string) {
 
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-indexed
-    const year = date.getFullYear();
+    const year = date.getFullYear().toString().substr(-2);
+
+    
 
     const formattedDate = `${day}/${month}/${year}`;
     

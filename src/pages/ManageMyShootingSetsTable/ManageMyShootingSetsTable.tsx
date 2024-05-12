@@ -38,7 +38,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
                 <table className="border-collapse border border-gray-400 ">
                     <tbody>
                         <tr key="tableHeaders">
-                            <th className='border-gray-400 border font-sofia p-1'>Shooter</th>
+                            {/* <th className='border-gray-400 border font-sofia p-1'>Shooter</th> */}
                             <th className='border-gray-400 border font-sofia p-1'>Host</th>
                             <th className='border-gray-400 border font-sofia p-1'>Date</th>
                             {/* <th className='border-gray-400 border font-sofia p-1'>Spot</th> */}
@@ -56,7 +56,7 @@ function ManageMyShootingSetsTable() : JSX.Element {
                                 
                                 return (
                                     <tr key={setId}>
-                                        <td className='border-gray-400 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shooterId'])}</td>
+                                        {/* <td className='border-gray-400 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shooterId'])}</td> */}
                                         <td className='border-gray-400 border font-sofia p-1'>{manageTrainingDataStore.getUserLogin(currentSetdata['shootingHostUserId'])}</td>
                                         <td className='border-gray-400 border font-sofia p-1'>{formatISODate(currentSetdata['createdAtStr'])}</td>
                                         {/* <td className='border-gray-400 border font-sofia p-1'>{currentSetdata['spotKey']}</td> */}

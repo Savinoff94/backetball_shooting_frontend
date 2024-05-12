@@ -81,35 +81,37 @@ function ManageMyShootingSetsTable() : JSX.Element {
                     </tbody>
                 </table>
                 <div className='mb-2 mt-2'>
+                    {manageTrainingDataStore.isNextPageAvilable(currentPage) && 
                     <ButtonStyled
-                        isPrimary={'primary'}
-                        isDisabled={!manageTrainingDataStore.isNextPageAvilable(currentPage)}
-                        onClick={() => {
+                    isPrimary={'primary'}
+                    isDisabled={!manageTrainingDataStore.isNextPageAvilable(currentPage)}
+                    onClick={() => {
 
-                            if(manageTrainingDataStore.isNextPageAvilable(currentPage)) {
-                                const page = currentPage + 1
-                                setCurrentPage(page);
-                                manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
-                            }
-                        }}
+                        if(manageTrainingDataStore.isNextPageAvilable(currentPage)) {
+                            const page = currentPage + 1
+                            setCurrentPage(page);
+                            manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
+                        }
+                    }}
                     >
                         {'Next page'}
-                    </ButtonStyled>
+                    </ButtonStyled>}
                     
+                    {manageTrainingDataStore.isPreviousPageAvilable(currentPage) && 
                     <ButtonStyled
-                        isPrimary={'secondary'}
-                        isDisabled={!manageTrainingDataStore.isPreviousPageAvilable(currentPage)}
-                        onClick={() => {
-                            
-                            if(manageTrainingDataStore.isPreviousPageAvilable(currentPage)) {
-                                const page = currentPage - 1
-                                setCurrentPage(page)
-                                manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
-                            }
-                        }}
+                    isPrimary={'secondary'}
+                    isDisabled={!manageTrainingDataStore.isPreviousPageAvilable(currentPage)}
+                    onClick={() => {
+                        
+                        if(manageTrainingDataStore.isPreviousPageAvilable(currentPage)) {
+                            const page = currentPage - 1
+                            setCurrentPage(page)
+                            manageTrainingDataStore.fetchUsersShootingSets(store.getUserId(), page)
+                        }
+                    }}
                     >
                         {'Previous page'}
-                    </ButtonStyled>
+                    </ButtonStyled>}
                 </div>
                 
                 {manageTrainingDataStore.getIsLoading() ? <LoadingBar/> : null}

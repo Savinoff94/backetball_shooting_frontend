@@ -208,6 +208,13 @@ export default class UserConnectionsStore {
     onSearch = async (userInput: string) => {
 
         userInput = userInput.toLowerCase();
+
+        if(userInput.length === 1 || userInput.length === 0) {
+
+            this.setSearchList({})
+
+            return
+        }
     
         if(userInput.length !== 1 && ((userInput.length % 3) !== 0)) {
     

@@ -8,8 +8,8 @@ import PendingThisUserFriendRequestBlock from "./components/EnhancedFriendBlocks
 import UsersList from './components/FriendBlocksListNew/FriendBlocksListNew'
 import PageStyled from "../../StyledComponents/PageStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
-import InputStyled from "../../StyledComponents/InputStyled";
-import SearchField from "../../StyledComponents/SearchField";
+import InputStyled from "../../StyledComponents/inputs/InputStyled";
+import SearchField from "../../StyledComponents/inputs/SearchField";
 import { debounce } from "../../helpers/common";
 
 

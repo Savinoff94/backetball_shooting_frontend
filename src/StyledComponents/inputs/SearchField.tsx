@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import SearchIcon from "../commonComponents/SearchIcon/SearchIcon"
+import React from 'react';
+import SearchIcon from "../../commonComponents/SearchIcon/SearchIcon"
 
 type InputStyledProps = {
     value: string,

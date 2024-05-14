@@ -6,12 +6,13 @@ import { Context } from '../../index';
 import {observer} from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import PageStyled from "../../StyledComponents/PageStyled";
-import InputFieldStyled from "../../StyledComponents/InputFieldStyled";
+import InputFieldStyled from "../../StyledComponents/inputs/InputFieldStyled";
 import ButtonStyled from "../../StyledComponents/ButtonStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import {shouldDisplayErrorInInput} from '../../helpers/common'
 import SignFormWrapper from '../../StyledComponents/SignFormWrapper';
 import LoadingBar from '../../StyledComponents/LoadingBar';
+import PasswordInput from '../../StyledComponents/inputs/PasswordInput';
 
 
 
@@ -138,13 +139,10 @@ function SignUpPage() : JSX.Element {
                     />
                     <br/>
 
-                    <InputFieldStyled 
-                        type="password"
-                        inputVal={password}
-                        htmlFor="password"
-                        labelText="Password"
-                        onChange={(event: React.FormEvent<HTMLInputElement>) => {handlePasswordChange(event)}}
-                        isError={shouldDisplayErrorInInput(password, passwordErrorInfoList, store.getPasswordServerErrors())}
+                    <PasswordInput
+                    password={password}
+                    isError={shouldDisplayErrorInInput(password, passwordErrorInfoList, store.getPasswordServerErrors())}
+                    onChange={(event: React.FormEvent<HTMLInputElement>) => {handlePasswordChange(event)}}
                     />
                     <ErrorsListNew 
                         errorInfosList={passwordErrorInfoList}

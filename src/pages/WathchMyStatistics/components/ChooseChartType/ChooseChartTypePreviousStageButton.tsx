@@ -5,9 +5,9 @@ import {observer} from 'mobx-react-lite';
 
 function ChooseChartTypePreviousStageButton() {
 
-    const {multiStageFormsStore} = useContext(Context);
+    const {multiStageFormsStore, myTeamStoreInstance} = useContext(Context);
 
-    const isSubmitButtonDisabled = false;
+    const isSubmitButtonDisabled = myTeamStoreInstance.hasNoFriends();
 
     const submitHandler = () => {
         

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Context } from '../../../../index';
 import ChooseSquadChangeStageButton from "./ChooseSquadChangeStageButton";
 import {UsersInfoById} from '../../../Friends/types/friendsTypes';
@@ -8,39 +8,45 @@ import ChooseSquadUserButton from '../ChooseSquad/ChooseSquadUserButton';
 import Header1Styled from "../../../../StyledComponents/Header1Styled";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 import LoadingBar from "../../../../StyledComponents/LoadingBar";
+import useFetchMyTeamData from "../../../../hooks/useFetchMyTeamData";
 
 
 function ChooseSquad() : JSX.Element  {
 
-    const {myTeamStoreInstance} = useContext(Context);
+    const {myTeamStoreInstance, trainingBoardStore, multiStageFormsStore} = useContext(Context);
 
-    useEffect(() => {
+    useFetchMyTeamData(() => {
 
-        const fetchData = async () => {
+        if(myTeamStoreInstance.hasNoFriends()) {
 
-            await myTeamStoreInstance.fetchMyTeamUsers();
-        };
+            const currentUserId = myTeamStoreInstance.getOnlyUserIdInTeam()
 
-        fetchData();
+            myTeamStoreInstance.handleOnUserClick(currentUserId, 'trainingSquadIds')
 
-    }, []);
+            trainingBoardStore.setCurrentShooter(currentUserId);
+
+            multiStageFormsStore.setCurrentTrainingStage('chooseSpot');
+        }
+    })
+
+    
 
     const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getMyTeamUsers();
     
     return (
         <>
-        <Header1Styled classes="text-warmGray-100">Choose your squad</Header1Styled>
-        <ChooseUsersTemplate
-        usersListType={"trainingSquadIds"}
-        usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
-        usersInfos={possibleTrainingSquadUsers}
-        UserButtonComponentType={ChooseSquadUserButton}
-        />
-        <FlexWrapper isColumn={true}>
-            <ChooseSquadChangeStageButton/>
-        </FlexWrapper>
+            <Header1Styled classes="text-warmGray-100">Choose your squad</Header1Styled>
+            <ChooseUsersTemplate
+            usersListType={"trainingSquadIds"}
+            usersIdsToShow={Object.keys(possibleTrainingSquadUsers)}
+            usersInfos={possibleTrainingSquadUsers}
+            UserButtonComponentType={ChooseSquadUserButton}
+            />
+            <FlexWrapper isColumn={true}>
+                <ChooseSquadChangeStageButton/>
+            </FlexWrapper>
 
-        {myTeamStoreInstance.getIsLoading() ? <LoadingBar/> : null}
+            {myTeamStoreInstance.getIsLoading() ? <LoadingBar/> : null}
         </>
     )
 }

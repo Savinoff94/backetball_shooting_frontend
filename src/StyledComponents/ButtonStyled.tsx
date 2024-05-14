@@ -11,14 +11,15 @@ type ButtonProps = {
     classes?: string
 }
 
-function ButtonStyled({type='button', value='', children, isDisabled = false, onClick, isPrimary, classes = ''} : ButtonProps) {
+function ButtonStyled({type='button', value='', children, isDisabled = true, onClick, isPrimary, classes = ''} : ButtonProps) {
 
     const bgColor = buttonColors[isPrimary];
     const bgHoverColor = buttonHoverColors[isPrimary]
     const textColor = buttonTextColors[isPrimary]
 
     return (
-        <button className={`font-sofia transition duration-200 opacity-90 font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 ${textColor} ${bgColor} ${bgHoverColor} ${isDisabled? 'opacity-30' : ''} ${classes}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{children}</button>
+        
+        <button className={`font-sofia transition duration-200  font-bold text-lg ml-4 mr-4 h-12 rounded-lg p-1 ${textColor} ${bgColor} ${bgHoverColor} ${isDisabled? 'opacity-30' : 'opacity-90'} ${classes}`} onClick={onClick} disabled={isDisabled} type={type} value={value}>{children}</button>
     );
 }
 

@@ -8,22 +8,24 @@ import ChooseUsersToRepresentChangeStageButton from './ChooseUsersToRepresentCha
 import Header1Styled from '../../../../StyledComponents/Header1Styled';
 import FlexWrapper from '../../../../StyledComponents/FlexWrapper';
 import LoadingBar from '../../../../StyledComponents/LoadingBar';
+import useFetchMyTeamData from '../../../../hooks/useFetchMyTeamData';
 
 
 function ChooseUsersToRepresentStatistics() {
 
-    const {myTeamStoreInstance} = useContext(Context);
+    const {myTeamStoreInstance, multiStageFormsStore} = useContext(Context);
 
-    useEffect(() => {
+    useFetchMyTeamData(() => {
 
-        const fetchData = async () => {
+        if(myTeamStoreInstance.hasNoFriends()) {
 
-            await myTeamStoreInstance.fetchMyTeamUsers();
-        };
+            const currentUserId = myTeamStoreInstance.getOnlyUserIdInTeam()
 
-        fetchData();
+            myTeamStoreInstance.handleOnUserClick(currentUserId, 'representInChartUsersIds')
 
-    }, []);
+            multiStageFormsStore.setCurrentChartStage('selectChartTypeState');
+        }
+    })
 
     const possibleTrainingSquadUsers : UsersInfoById = myTeamStoreInstance.getMyTeamUsers();
 

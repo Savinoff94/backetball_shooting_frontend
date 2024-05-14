@@ -5,9 +5,9 @@ import {observer} from 'mobx-react-lite';
 
 function ChooseSpotPreviousStageButton() : JSX.Element {
 
-    const {multiStageFormsStore, trainingBoardStore} = useContext(Context);
+    const {multiStageFormsStore, trainingBoardStore, myTeamStoreInstance} = useContext(Context);
 
-    const isSubmitButtonDisabled = false;
+    const isSubmitButtonDisabled = myTeamStoreInstance.hasNoFriends();
 
     const submitHandler = () => {
 

@@ -27,6 +27,18 @@ export default class MyTeamStore {
 
         return MyTeamStore.instance;
     }
+
+    hasNoFriends = () => Object.keys(this.myTeamUsers).length === 1
+
+    getOnlyUserIdInTeam = () => {
+
+        if(this.hasNoFriends()) {
+
+            return Object.keys(this.myTeamUsers)[0]
+        }
+
+        throw new Error('wrong amount in myTeamUsers');
+    }
     
     getUsersIdsListByKey = (key: MyTeamIdsListType = 'trainingSquadIds') => [...toJS(this[key])];
 

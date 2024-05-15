@@ -62,7 +62,6 @@ function SignInPage() : JSX.Element {
                         errorInfosList={[]}
                         serverErrors={store.getLoginServerErrors()}
                     />
-                    {/* <br/> */}
 
                     <PasswordInput
                     password={password}
@@ -73,7 +72,6 @@ function SignInPage() : JSX.Element {
                         errorInfosList={[]} 
                         serverErrors={store.getPasswordServerErrors()}
                     />
-                    {/* <br/> */}
 
                     <div className="flex flex-col gap-2">
                         <ButtonStyled type="submit" value="Login" isDisabled={isDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled> 

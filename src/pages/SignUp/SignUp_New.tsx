@@ -123,7 +123,7 @@ function SignUpPage() : JSX.Element {
                         errorInfosList={loginErrorInfoList}
                         serverErrors={store.getLoginServerErrors()}
                     /> 
-                    <br/>
+                    {/* <br className='leading-tight'/> */}
 
                     <InputFieldStyled
                         type="email"
@@ -137,7 +137,7 @@ function SignUpPage() : JSX.Element {
                         errorInfosList={emailErrorInfoList}
                         serverErrors={store.getEmailServerErrors()}
                     />
-                    <br/>
+                    {/* <br className='leading-tight'/> */}
 
                     <PasswordInput
                     password={password}
@@ -148,7 +148,7 @@ function SignUpPage() : JSX.Element {
                         errorInfosList={passwordErrorInfoList}
                         serverErrors={store.getPasswordServerErrors()}
                     />
-                    <br/>
+                    {/* <br className='leading-tight'/> */}
                     
                     <div className="flex flex-col gap-2">
                         <ButtonStyled type="submit" value="Login" isDisabled={isSubmitFormDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled>

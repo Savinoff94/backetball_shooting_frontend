@@ -1,34 +1,34 @@
 
 const SignUpPasswordRulesList = [
 
+    // {
+    //     textRule: 'At least one capital character',
+    //     ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+    //         const letters = valueToCheck.split('');
+
+    //         return !letters.some((letter: any) => {
+
+    //             return (letter === letter.toUpperCase() && isNaN(letter));
+    //         });
+    //     },
+    //     key: 'SignUpPasswordRulesList1',
+    // },
+    // {
+    //     textRule: 'At least one lowcase character',
+    //     ruleCheckerFunction: function(valueToCheck: any): boolean {
+
+    //         const letters = valueToCheck.split('');
+
+    //         return !letters.some((letter: any) => {
+
+    //             return (letter === letter.toLowerCase() && isNaN(letter));
+    //         });
+    //     },
+    //     key: 'SignUpPasswordRulesList2',
+    // },
     {
-        textRule: 'Should contain at least one capital character',
-        ruleCheckerFunction: function(valueToCheck: any): boolean {
-
-            const letters = valueToCheck.split('');
-
-            return !letters.some((letter: any) => {
-
-                return (letter === letter.toUpperCase() && isNaN(letter));
-            });
-        },
-        key: 'SignUpPasswordRulesList1',
-    },
-    {
-        textRule: 'Should contain at least one lowcase character',
-        ruleCheckerFunction: function(valueToCheck: any): boolean {
-
-            const letters = valueToCheck.split('');
-
-            return !letters.some((letter: any) => {
-
-                return (letter === letter.toLowerCase() && isNaN(letter));
-            });
-        },
-        key: 'SignUpPasswordRulesList2',
-    },
-    {
-        textRule: 'Should contain at least one number',
+        textRule: 'At least one number',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             const letters = valueToCheck.split('');
@@ -41,7 +41,7 @@ const SignUpPasswordRulesList = [
         key: 'SignUpPasswordRulesList3',
     },
     {
-        textRule: 'Should only characters and numbers',
+        textRule: 'Only characters and numbers',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             if(valueToCheck.length === 0) {
@@ -66,7 +66,7 @@ const SignUpPasswordRulesList = [
 
 const SignUpLoginRulesList = [
     {
-        textRule: 'Should contain only characters and numbers',
+        textRule: 'Only characters and numbers',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
             
             if(valueToCheck.length === 0) {
@@ -79,7 +79,7 @@ const SignUpLoginRulesList = [
         key: 'SignUpPasswordRulesList6',
     },
     {
-        textRule: 'Should be longer than 5 symbols',
+        textRule: 'Longer than 5 symbols',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             return valueToCheck.length <= 5;
@@ -97,7 +97,7 @@ const SignUpLoginRulesList = [
 ];
 const SignUpEmailRulesList = [
     {
-        textRule: 'Should be valid email',
+        textRule: 'Valid email',
         ruleCheckerFunction: function(email: string): boolean {
 
             if(email.length === 0) {
@@ -117,7 +117,7 @@ const SignUpEmailRulesList = [
         key: 'SignEmailRulesList6',
     },
     {
-        textRule: 'Should be longer than 5 symbols',
+        textRule: 'Longer than 5 symbols',
         ruleCheckerFunction: function(valueToCheck: any): boolean {
 
             return valueToCheck.length <= 5;

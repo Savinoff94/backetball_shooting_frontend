@@ -84,8 +84,13 @@ export default class TrainingBoardStore {
         try {
 
             await ShootingTrainingService.saveShootingSet(currentShooter, currentSpot, currentTries, currentMakes);
+            
+            // this.updateTrainingDataLocally();// in session
 
             SimpleStatsServise.updateUsersSimpleStats(currentShooter, currentSpot)
+
+            this.resetCurrentMakes()
+            this.resetCurrentTries()
             
         } catch (error) {
             

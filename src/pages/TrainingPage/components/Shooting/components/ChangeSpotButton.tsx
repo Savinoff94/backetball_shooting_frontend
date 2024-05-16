@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Context } from '../../../../../index';
 import {observer} from 'mobx-react-lite';
 
-function ContinueWithNewShooterButton() : JSX.Element {
+function ChangeSpotButton() : JSX.Element {
 
     const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
 
@@ -11,8 +11,8 @@ function ContinueWithNewShooterButton() : JSX.Element {
 
     const submitHandler = () => {
 
-        trainingBoardStore.resetCurrentMakes();
-        trainingBoardStore.resetCurrentTries();
+        trainingBoardStore.resetCurrentMakes()
+        trainingBoardStore.resetCurrentTries()
 
         trainingBoardStore.setCurrentSpot('');
         
@@ -21,12 +21,13 @@ function ContinueWithNewShooterButton() : JSX.Element {
 
     return (
         <ChangeStageButton
-        key={'ContinueWithNewShooterButton'}
+        key={'ChangeSpotButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
-        buttonText = {'Back'}
+        buttonText = {'Select other spot'}
+        isPrimary = {false}
         />
     )
 }
 
-export default observer(ContinueWithNewShooterButton)
+export default observer(ChangeSpotButton)

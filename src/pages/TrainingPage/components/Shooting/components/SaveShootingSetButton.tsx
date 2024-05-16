@@ -3,9 +3,9 @@ import { useContext } from "react";
 import { Context } from '../../../../../index';
 import {observer} from 'mobx-react-lite';
 
-function ContinueWithNewSpotButton() : JSX.Element {
+function SaveShootingSetButton() : JSX.Element {
 
-    const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
+    const {trainingBoardStore} = useContext(Context);
 
     const isSubmitButtonDisabled = !trainingBoardStore.isShootingSetValid();
 
@@ -18,20 +18,17 @@ function ContinueWithNewSpotButton() : JSX.Element {
 
         await trainingBoardStore.saveCurrentShooterDataDb(currentShooter, currentSpot, currentTries, currentMakes);
         trainingBoardStore.updateTrainingDataLocally();
-
-        trainingBoardStore.setCurrentSpot('');
         
-        multiStageFormsStore.submitTrainingStage(!isSubmitButtonDisabled, 'chooseSpot');
     }
 
     return (
         <ChangeStageButton
-        key={'ContinueWithNewSpotButton'}
+        key={'SaveShootingSet'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
-        buttonText = {'Continue with new spot'}
+        buttonText = {'Save'}
         />
     )
 }
 
-export default observer(ContinueWithNewSpotButton)
+export default observer(SaveShootingSetButton)

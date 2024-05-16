@@ -122,7 +122,6 @@ function SignUpPage() : JSX.Element {
                     <ErrorsListNew
                         errorInfosList={loginErrorInfoList}
                         serverErrors={store.getLoginServerErrors()}
-                        classes="mb-3"
                     /> 
 
                     <InputFieldStyled
@@ -136,7 +135,6 @@ function SignUpPage() : JSX.Element {
                     <ErrorsListNew 
                         errorInfosList={emailErrorInfoList}
                         serverErrors={store.getEmailServerErrors()}
-                        classes="mb-3"
                     />
 
                     <PasswordInput
@@ -147,7 +145,6 @@ function SignUpPage() : JSX.Element {
                     <ErrorsListNew 
                         errorInfosList={passwordErrorInfoList}
                         serverErrors={store.getPasswordServerErrors()}
-                        classes="mb-3"
                     />
                     
                     <div className="flex flex-col gap-2">

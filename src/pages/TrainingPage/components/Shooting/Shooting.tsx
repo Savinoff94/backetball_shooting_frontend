@@ -3,15 +3,15 @@ import { useContext } from "react";
 import { Context } from '../../../../index';
 import MakesInput from "./components/MakesInput";
 import TriesInput from "./components/TriesInput";
-import ContinueWithNewShooterButton from "./components/ContinueWithNewShooterButton";
-import ContinueWithNewSpotButton from "./components/ContinueWithNewSpotButton";
-import ChangeStageButton from "../commonComponents/ChangeStageButton/ChangeStageButton";
+import ChangeShooterButton from "./components/ChangeShooterButton";
+import ChangeSpotButton from "./components/ChangeSpotButton";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 import LoadingBar from "../../../../StyledComponents/LoadingBar";
+import SaveShootingSetButton from "./components/SaveShootingSetButton";
 
 function Shooting() {
 
-    const {trainingBoardStore, multiStageFormsStore} = useContext(Context);
+    const {trainingBoardStore} = useContext(Context);
 
     trainingBoardStore.resetCurrentMakes();
     trainingBoardStore.resetCurrentTries();
@@ -34,15 +34,9 @@ function Shooting() {
             </FlexWrapper>
             <div>
                 <FlexWrapper isColumn={true}>
-                    <ContinueWithNewShooterButton/>
-                    <ChangeStageButton
-                    key={"StartWithNewSpot"}
-                    handleClick = {() => {multiStageFormsStore.submitTrainingStage(true, 'chooseSpot');}}
-                    isDisabled = {false}
-                    buttonText = {'Back'}
-                    isPrimary = {false}
-                    />
-                    <ContinueWithNewSpotButton/>
+                    <SaveShootingSetButton/>
+                    <ChangeShooterButton/>
+                    <ChangeSpotButton/>
                 </FlexWrapper>
             </div>
 

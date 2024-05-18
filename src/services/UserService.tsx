@@ -11,9 +11,9 @@ export default class UserService {
     //     return $api.get<IUser[]>('/users');
     // }
 
-    static async searchUsers(login: string, exact: boolean = false): Promise<AxiosResponse<UsersInfoById>> {
+    static async searchUsers(login: string, exact: boolean = false, signal: AbortSignal | null = null): Promise<AxiosResponse<UsersInfoById>> {
 
-        return $api.post('/searchUsers', {login, exact});
+        return $api.post('/searchUsers', {login, exact, signal});
     }
 
 

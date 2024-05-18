@@ -205,7 +205,7 @@ export default class UserConnectionsStore {
     getSearchStr = () => this.searchStr;
     setSearchStr = (newSearchString:string) => this.searchStr = newSearchString
 
-    onSearch = async (userInput: string) => {
+    onSearch = async (userInput: string, signal: AbortSignal | null = null) => {
 
         userInput = userInput.toLowerCase();
 
@@ -227,7 +227,7 @@ export default class UserConnectionsStore {
     
         try {
     
-            const usersResponse : AxiosResponse<UsersInfoById> = await UserService.searchUsers(userInput, false);
+            const usersResponse : AxiosResponse<UsersInfoById> = await UserService.searchUsers(userInput, false, signal);
 
             const users : UsersInfoById = usersResponse.data;
 

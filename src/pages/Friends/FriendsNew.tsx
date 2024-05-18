@@ -10,7 +10,7 @@ import PageStyled from "../../StyledComponents/PageStyled";
 import Header1Styled from "../../StyledComponents/Header1Styled";
 import InputStyled from "../../StyledComponents/inputs/InputStyled";
 import SearchField from "../../StyledComponents/inputs/SearchField";
-import { debounce } from "../../helpers/common";
+import { debounce, withAbortController } from "../../helpers/common";
 
 
 
@@ -30,13 +30,13 @@ function FriendsNew() {
     }
   }, []);
 
-  const onSearch = debounce(userConnectionsStore.onSearch, 1000)
+  const onSearchWithAbortControllerDeboune = withAbortController(debounce(userConnectionsStore.onSearch, 1000))
 
   const onSearchChangeHandle = (userInput: string) => {
 
     userConnectionsStore.setSearchStr(userInput)
 
-    onSearch(userInput)
+    onSearchWithAbortControllerDeboune(userInput)
   }
     
   return (

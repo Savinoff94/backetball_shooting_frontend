@@ -81,10 +81,29 @@ function debounce(callback: (...args : any[]) => void, timeoutMiliseconds:number
     }
 }
 
+function withAbortController(callback: (...args : any[]) => void) {
+
+    let abortController: null | AbortController = null
+
+    return (...args : any[]) => {
+
+        if(abortController) {
+
+            abortController.abort()
+        }
+
+        abortController = new AbortController()
+        let signal = abortController.signal;
+
+        callback(...args, signal)
+    }
+}
+
 export {
     removeItemFromObjById,
     transferItemFromObjToObj,
     shouldDisplayErrorInInput,
     formatISODate,
-    debounce
+    debounce,
+    withAbortController
 }

@@ -104,6 +104,8 @@ function SignUpPage() : JSX.Element {
 
         return {text: ruleInfo['textRule'], key: ruleInfo['key'], isError:isError}
     })
+
+    const isResetDisabled = !(login !== '' || password !== '' || email !== '')
     
     
     return (
@@ -149,7 +151,7 @@ function SignUpPage() : JSX.Element {
                     
                     <div className="flex flex-col gap-2">
                         <ButtonStyled type="submit" value="Login" isDisabled={isSubmitFormDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled>
-                        <ButtonStyled onClick={handleReset} type="reset" value="Reset"  isPrimary={'secondary'}>{"Reset"}</ButtonStyled> 
+                        <ButtonStyled onClick={handleReset} type="reset" value="Reset"  isPrimary={'secondary'} isDisabled={isResetDisabled}>{"Reset"}</ButtonStyled> 
                     </div>
                 </form>
 

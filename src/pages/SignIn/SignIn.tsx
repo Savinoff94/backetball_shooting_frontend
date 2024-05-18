@@ -22,7 +22,8 @@ function SignInPage() : JSX.Element {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const isDisabled = login === '' || password === '' ? true : false;
+    const isSubmitDisabled = login === '' || password === '';
+    const isResetDisabled = !(login !== '' || password !== '');
 
     const handleReset = () => {
 
@@ -74,8 +75,23 @@ function SignInPage() : JSX.Element {
                     />
 
                     <div className="flex flex-col gap-2">
-                        <ButtonStyled type="submit" value="Login" isDisabled={isDisabled} isPrimary={'primary'}>{"Login"}</ButtonStyled> 
-                        <ButtonStyled onClick={handleReset} type="reset" value="Reset"  isPrimary={'secondary'}>{"Reset"}</ButtonStyled> 
+                        <ButtonStyled
+                            type="submit"
+                            value="Login"
+                            isDisabled={isSubmitDisabled}
+                            isPrimary={'primary'}
+                        >
+                            {"Login"}
+                        </ButtonStyled> 
+                        <ButtonStyled 
+                        onClick={handleReset}
+                        type="reset"
+                        value="Reset"
+                        isPrimary={'secondary'}
+                        isDisabled={isResetDisabled}
+                        >
+                            {"Reset"}
+                        </ButtonStyled> 
                     </div>
                 </form>
 

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Context } from '../../../../index';
-import ChooseSquadChangeStageButton from "./ChooseSquadChangeStageButton";
+import ChooseSquadChangeStageButton from "./navButtons/ChooseSquadChangeStageButton";
 import {UsersInfoById} from '../../../Friends/types/friendsTypes';
 import {observer} from 'mobx-react-lite';
 import ChooseUsersTemplate from "../../../../commonComponents/ChooseUsersTemplate/ChooseUsersTemplate";

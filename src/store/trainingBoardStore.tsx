@@ -4,6 +4,7 @@ import {getSessionStorageData, setSessionStorageData} from './helpers';
 import {LocalTrainingData} from './types';
 import ShootingTrainingService from "../services/ShootingTrainingService";
 import SimpleStatsServise from "../services/SimpleStatsServise";
+import { callback } from "chart.js/dist/helpers/helpers.core";
 
 
 export default class TrainingBoardStore {
@@ -19,6 +20,8 @@ export default class TrainingBoardStore {
     private currentMakes = 0 as number
 
     private isLoading = false;
+
+    private modalVisibilityControl = new ModalControl()
 
     constructor() {
 
@@ -42,6 +45,11 @@ export default class TrainingBoardStore {
     setCurrentShooter = (id: string) => this.currentShooter = id;
     isCurrentShooter = (id: string) => this.currentShooter === id;
     isCurrentShooterSet = () => this.currentShooter === '';
+
+    get modalVisibilityController () {
+
+        return this.modalVisibilityControl
+    }
     
 
     getCurrentSpot = () => this.currentSpot;
@@ -77,7 +85,12 @@ export default class TrainingBoardStore {
         this.appendCurrentTries();
     }
 
-    saveCurrentShooterDataDb = async (currentShooter:string, currentSpot:string, currentTries:number, currentMakes:number) => {
+    saveCurrentShooterDataDb = async () => {
+
+        this.saveShooterDataDb(this.getCurrentShooter(), this.getCurrentSpot(), this.getCurrentTries(), this.getCurrentMakes())
+    }
+
+    saveShooterDataDb = async (currentShooter:string, currentSpot:string, currentTries:number, currentMakes:number) => {
 
         this.setIsLoading(true);
         
@@ -88,9 +101,6 @@ export default class TrainingBoardStore {
             // this.updateTrainingDataLocally();// in session
 
             SimpleStatsServise.updateUsersSimpleStats(currentShooter, currentSpot)
-
-            this.resetCurrentMakes()
-            this.resetCurrentTries()
             
         } catch (error) {
             
@@ -132,5 +142,56 @@ export default class TrainingBoardStore {
         currentTrainingData[this.currentShooter][this.currentSpot].push({tries: this.currentTries, makes: this.currentMakes});
 
         setSessionStorageData('currentTraining', JSON.stringify(currentTrainingData));
+    }
+}
+
+class ModalControl {
+
+    private isHidden = true;
+    private onSubmitModalCallback: null | (() => void) = null
+    private onCancelModalCallback: null | (() => void) = null
+
+    constructor() {
+        makeAutoObservable(this);
+    }
+
+    get isModalHidden() {
+
+        return this.isHidden
+    }
+
+    runSubmitModalCallback = () => {
+
+        if(this.onSubmitModalCallback) {
+
+            this.onSubmitModalCallback()
+        }
+    }
+
+    runCancelModalCallback = () => {
+
+        if(this.onCancelModalCallback) {
+
+            this.onCancelModalCallback()
+        }
+    }
+
+    toggleModalVisibility = () => {
+
+        runInAction(() => {
+
+            this.isHidden = !this.isHidden
+        })
+
+    }
+
+    setSubmitModalCallback = (callback: null | (() => void)) => {
+
+        this.onSubmitModalCallback = callback;
+    }
+
+    setCancelModalCallback = (callback: null | (() => void)) => {
+
+        this.onCancelModalCallback = callback;
     }
 }

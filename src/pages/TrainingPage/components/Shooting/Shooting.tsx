@@ -1,20 +1,26 @@
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from '../../../../index';
 import MakesInput from "./components/MakesInput";
 import TriesInput from "./components/TriesInput";
-import ChangeShooterButton from "./components/ChangeShooterButton";
-import ChangeSpotButton from "./components/ChangeSpotButton";
+import ChangeShooterButton from "./components/navButtons/ChangeShooterButton";
+import ChangeSpotButton from "./components/navButtons/ChangeSpotButton";
 import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 import LoadingBar from "../../../../StyledComponents/LoadingBar";
 import SaveShootingSetButton from "./components/SaveShootingSetButton";
+import SaveResultModal from "./components/SaveResultModal";
+
 
 function Shooting() {
-
+    
     const {trainingBoardStore} = useContext(Context);
 
-    trainingBoardStore.resetCurrentMakes();
-    trainingBoardStore.resetCurrentTries();
+    useEffect(() => {
+        trainingBoardStore.resetCurrentMakes();
+        trainingBoardStore.resetCurrentTries();
+    
+      
+    }, [])
 
     return (
         <>
@@ -41,6 +47,8 @@ function Shooting() {
             </div>
 
             {trainingBoardStore.getIsLoading() ? <LoadingBar/> : null}
+
+            <SaveResultModal/>
         </>
     )
 }

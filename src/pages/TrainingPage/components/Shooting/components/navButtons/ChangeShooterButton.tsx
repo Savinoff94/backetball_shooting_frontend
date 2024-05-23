@@ -1,30 +1,32 @@
-import ChangeStageButton from "../commonComponents/ChangeStageButton/ChangeStageButton";
+import ChangeStageButton from "../../../commonComponents/ChangeStageButton/ChangeStageButton";
 import { useContext } from "react";
-import { Context } from '../../../../index';
+import { Context } from '../../../../../../index';
 import {observer} from 'mobx-react-lite';
 
-function ChooseSpotPreviousStageButton() : JSX.Element {
+function ChangeShooterButton() : JSX.Element {
 
-    const {multiStageFormsStore, trainingBoardStore, myTeamStoreInstance} = useContext(Context);
+    const {trainingBoardStore, multiStageFormsStore, myTeamStoreInstance} = useContext(Context);
 
     const isSubmitButtonDisabled = myTeamStoreInstance.hasNoFriends();
 
     const submitHandler = () => {
 
         trainingBoardStore.setCurrentSpot('');
+
+        trainingBoardStore.setCurrentShooter('');
         
         multiStageFormsStore.submitTrainingStage(!isSubmitButtonDisabled, 'chooseShooter');
     }
 
     return (
         <ChangeStageButton
-        key={'ChooseSpotPreviousStageButton'}
+        key={'ChangeShooterButton'}
         handleClick = {submitHandler}
         isDisabled = {isSubmitButtonDisabled}
-        buttonText = {'Back'}
+        buttonText = {'Select other shooter'}
         isPrimary = {false}
         />
     )
 }
 
-export default observer(ChooseSpotPreviousStageButton)
+export default observer(ChangeShooterButton)

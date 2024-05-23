@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-import ChooseSpotPreviousStageButton from "./ChooseSpotPreviousStageButton";
-import ChooseSpotSubmitButton from "./ChooseSpotSubmitButton";
+import ChooseSpotPreviousStageButton from "./navButtons/ChooseSpotPreviousStageButton";
+import ChooseSpotSubmitButton from "./navButtons/ChooseSpotSubmitButton";
 import { useContext } from "react";
 import { Context } from '../../../../index';
 import BasketballCourtSVG from '../../../../commonComponents/BasketballCourt/BasketballCourtSVG'

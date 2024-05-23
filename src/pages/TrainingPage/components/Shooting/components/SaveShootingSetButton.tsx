@@ -11,14 +11,11 @@ function SaveShootingSetButton() : JSX.Element {
 
     const submitHandler = async () => {
 
-        const currentShooter = trainingBoardStore.getCurrentShooter();
-        const currentSpot = trainingBoardStore.getCurrentSpot();
-        const currentTries = trainingBoardStore.getCurrentTries();
-        const currentMakes = trainingBoardStore.getCurrentMakes();
-
-        await trainingBoardStore.saveCurrentShooterDataDb(currentShooter, currentSpot, currentTries, currentMakes);
+        await trainingBoardStore.saveCurrentShooterDataDb();
         trainingBoardStore.updateTrainingDataLocally();
-        
+
+        trainingBoardStore.resetCurrentMakes()
+        trainingBoardStore.resetCurrentTries()
     }
 
     return (

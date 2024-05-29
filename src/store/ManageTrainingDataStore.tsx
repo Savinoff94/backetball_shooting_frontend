@@ -1,6 +1,7 @@
 import { makeAutoObservable, toJS, runInAction } from "mobx";
 import {UserIdLoginMapType, ShootingSetRecord} from './types';
 import manageTrainingDataService from '../services/ManageTrainingDataService';
+import ModalControl from "./utilityClasses/ModalControl";
 
 
 export default class ManageTrainingDataStore {
@@ -15,6 +16,9 @@ export default class ManageTrainingDataStore {
     private pagesAmount = 1;
 
     private isLoading = false;
+
+    private modalVisibilityControl = new ModalControl()
+
 
     constructor() {
 
@@ -33,6 +37,11 @@ export default class ManageTrainingDataStore {
 
     get getCurrentDataPage() {return this.currentDataPage}
     get getPagesAmount(){ return this.pagesAmount}
+
+    get modalVisibilityController () {
+
+        return this.modalVisibilityControl
+    }
 
     isNextPageAvilable = (currentPage: number) => {
 

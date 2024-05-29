@@ -6,6 +6,7 @@ import ButtonStyled from '../../StyledComponents/ButtonStyled';
 import LoadingBar from '../../StyledComponents/LoadingBar';
 import {AnimatedCrossIcon} from '../../commonComponents/SimpleIcons/SimpleIcons'
 import {formatISODate} from '../../helpers/common'
+import RemoveSetModal from './components/RemoveSetModal';
 
 
 
@@ -66,7 +67,20 @@ function ManageMyShootingSetsTable() : JSX.Element {
                                             {/* <button className='border-gray-400 border font-sofia p-1 bg-red-400 rounded-lg' onClick={() => {manageTrainingDataStore.removeSet(setId)}}>Delete</button> */}
                                             <ButtonStyled
                                             isPrimary='thirdly'
-                                            onClick={() => {manageTrainingDataStore.removeSet(setId)}}
+                                            onClick={() => {
+                                                    manageTrainingDataStore.modalVisibilityController.toggleModalVisibility()
+                                                    manageTrainingDataStore.modalVisibilityController.setSubmitModalCallback(() => {
+                                                    
+                                                        manageTrainingDataStore.modalVisibilityController.toggleModalVisibility()    
+                                                        manageTrainingDataStore.removeSet(setId)
+                                                    })
+                                                    manageTrainingDataStore.modalVisibilityController.setCancelModalCallback(() => {
+                                                        
+                                                        manageTrainingDataStore.modalVisibilityController.toggleModalVisibility()
+                                                        manageTrainingDataStore.modalVisibilityController.setSubmitModalCallback(null)
+                                                    })
+                                                }
+                                            }
                                             isDisabled={false}
                                             classes='h-1/2 ml-0 mr-0 p-0 bg-transparent'
                                             >
@@ -117,6 +131,9 @@ function ManageMyShootingSetsTable() : JSX.Element {
                 {manageTrainingDataStore.getIsLoading() ? <LoadingBar/> : null}
                 
             </div>
+
+            <RemoveSetModal/>
+
         </PageStyled>
     )
     

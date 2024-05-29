@@ -5,6 +5,7 @@ import {LocalTrainingData} from './types';
 import ShootingTrainingService from "../services/ShootingTrainingService";
 import SimpleStatsServise from "../services/SimpleStatsServise";
 import { callback } from "chart.js/dist/helpers/helpers.core";
+import ModalControl from "./utilityClasses/ModalControl";
 
 
 export default class TrainingBoardStore {
@@ -145,53 +146,3 @@ export default class TrainingBoardStore {
     }
 }
 
-class ModalControl {
-
-    private isHidden = true;
-    private onSubmitModalCallback: null | (() => void) = null
-    private onCancelModalCallback: null | (() => void) = null
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    get isModalHidden() {
-
-        return this.isHidden
-    }
-
-    runSubmitModalCallback = () => {
-
-        if(this.onSubmitModalCallback) {
-
-            this.onSubmitModalCallback()
-        }
-    }
-
-    runCancelModalCallback = () => {
-
-        if(this.onCancelModalCallback) {
-
-            this.onCancelModalCallback()
-        }
-    }
-
-    toggleModalVisibility = () => {
-
-        runInAction(() => {
-
-            this.isHidden = !this.isHidden
-        })
-
-    }
-
-    setSubmitModalCallback = (callback: null | (() => void)) => {
-
-        this.onSubmitModalCallback = callback;
-    }
-
-    setCancelModalCallback = (callback: null | (() => void)) => {
-
-        this.onCancelModalCallback = callback;
-    }
-}

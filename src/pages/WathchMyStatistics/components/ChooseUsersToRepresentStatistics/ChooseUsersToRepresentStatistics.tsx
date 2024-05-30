@@ -13,7 +13,7 @@ import useFetchMyTeamData from '../../../../hooks/useFetchMyTeamData';
 
 function ChooseUsersToRepresentStatistics() {
 
-    const {myTeamStoreInstance, multiStageFormsStore} = useContext(Context);
+    const {myTeamStoreInstance, multiStageFormsStore, watchMyStatiscicsStore} = useContext(Context);
 
     useFetchMyTeamData(() => {
 
@@ -21,7 +21,7 @@ function ChooseUsersToRepresentStatistics() {
 
             const currentUserId = myTeamStoreInstance.getOnlyUserIdInTeam()
 
-            myTeamStoreInstance.handleOnUserClick(currentUserId, 'representInChartUsersIds')
+            watchMyStatiscicsStore.setRepresentedUsersIds([currentUserId]);
 
             multiStageFormsStore.setCurrentChartStage('selectChartTypeState');
         }

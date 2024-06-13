@@ -9,6 +9,7 @@ import FlexWrapper from "../../../../StyledComponents/FlexWrapper";
 import LoadingBar from "../../../../StyledComponents/LoadingBar";
 import SaveShootingSetButton from "./components/SaveShootingSetButton";
 import SaveResultModal from "./components/SaveResultModal";
+import VoiceInterface from "./components/VoiceInterface";
 
 
 function Shooting() {
@@ -24,8 +25,12 @@ function Shooting() {
 
     return (
         <>
+            <div className="absolute top-[-120px] flex justify-center w-full h-fit">
+                <VoiceInterface/>
+            </div>
             
             <FlexWrapper classes="gap-0 m-5">
+
 
                 <FlexWrapper classes="items-center justify-center" isColumn={true}>
                     <MakesInput/>
@@ -37,7 +42,7 @@ function Shooting() {
                     <button className="bg-red-500 rounded-lg text-warmGray-100 font-sofia w-2/3 h-16" onClick={() => trainingBoardStore.shotMissed()}>Miss</button>
                 </FlexWrapper>
                     
-            </FlexWrapper>
+            </FlexWrapper>           
             <div>
                 <FlexWrapper isColumn={true}>
                     <SaveShootingSetButton/>

@@ -18,6 +18,9 @@ module.exports = {
       fontFamily: {
         sofia: ['Sofia Sans', 'sans-serif'],
       },
+      animation: {
+        'custom-ping': 'custom-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+      },
       keyframes: {
         bounce: {
           '0%, 100%': { 
@@ -29,6 +32,13 @@ module.exports = {
             'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)'
           },
         },
+        'ping': {
+          '75%, 100%': {
+            transform: 'scale(1.3)',
+            opacity: '0'
+          }
+          
+        }
       },
       backgroundImage: {
         'combined': "url(../public/backgroundImages/combined.png)",

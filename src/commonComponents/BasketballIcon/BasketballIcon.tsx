@@ -2,16 +2,18 @@ type BasketballIconProps = {
     width?: string,
     height?: string,
     isLoading?: boolean
+    fill?: string
+    classes?: string
 }
 
-function BasketballIcon({width='40', height='40', isLoading=false} : BasketballIconProps) {
+function BasketballIcon({width='40', height='40', isLoading=false, fill='#E2560C', classes=''} : BasketballIconProps) {
     return (
       <svg
-        className={isLoading ? "animate-bounce" : ''}
+        className={(isLoading ? "animate-bounce " : '') + classes}
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
-        fill="#E2560C"
+        fill={fill}
         version="1.1"
         viewBox="0 0 51.054 51.055"
         xmlSpace="preserve"
